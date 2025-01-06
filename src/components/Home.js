@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import Header from "./Header";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { gsap } from "gsap";
+import "./Style.css"
 
+
+// import Project from "./Project";
 import hoverSound from "../assets/namee.mp3";
 
 function Home() {
@@ -59,13 +62,13 @@ function Home() {
   return (
     <>
       <Header />
-      <div className="gradien-bg"></div>
-      <div className="gif-container fade-in">
+      <div className="gradient-bg"></div>
+      <div className="main-container fade-in">
         <div className="container">
           <div className="text">
             {/* Praisejah with letter spans */}
             <div
-              className="hi-text"
+              className="name-text"
               onMouseEnter={() => {
                 handleHover();
                 playHoverSound(); // Play sound on hover
@@ -99,8 +102,8 @@ function Home() {
               </span>
             </div>
             <br />
-            <div className="down-section">
-              <span className="name-text">
+            <div className="desc-section">
+              <span className="desc-text">
                 Building impactful software and exploring efficient solutions
                 excite me. Open-source contributor and problem-solver.
               </span>
@@ -133,7 +136,7 @@ function Home() {
             </div>
             <div className="social-icon">
               <a
-                href="www.linkedin.com/in/praisejah-osumgba-benson"
+                href="https://www.linkedin.com/in/praisejah-osumgba-benson"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -143,10 +146,14 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="f-text">Designed by ME / Developed by ME</div>
-      <div className="footer-text">
-        PRAISEJAH (HER/SHE) AKA PJ IS AN INDEPENDENT ENGINEER FROM NIGERIA.
-      </div>
+      {/* <div className="footer"> */}
+        <div className="f-text">Designed by ME / Developed by ME</div>
+        <div className="footer-text">
+          PRAISEJAH (HER/SHE) AKA PJ IS AN INDEPENDENT ENGINEER FROM NIGERIA.
+        </div>
+     {/*  </div> */}
+{/* 
+      <Project /> */}
     </>
   );
 }
