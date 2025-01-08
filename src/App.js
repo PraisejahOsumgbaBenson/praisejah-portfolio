@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./Style.css";
 import Home from "./components/Home";
 import Cursor from "./custom/cursor";
 import Intro from "./custom/Intro";
+import Project from "./components/Project";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -21,6 +21,7 @@ function App() {
         ) : (
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Project/>}/>
           </Routes>
         )}
       </div>

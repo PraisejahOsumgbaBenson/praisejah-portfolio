@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 // Sound file for hover effect
 import hoverSound from "../assets/key.mp3";
+import "./Style.css";
 
 function Header() {
   const [time, setTime] = useState("");
