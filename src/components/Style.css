@@ -96,7 +96,7 @@ body::-webkit-scrollbar {
   width: 50px; /* Fixed width for the logo */
   margin-right: 10px; /* Space between logo and navigation */
   font-family: "Barlow Condensed", system-ui;
-  font-weight: 900; /* Bold font for emphasis */
+  font-weight: 600; /* Bold font for emphasis */
   font-size: 30px; /* Large logo size */
   color: #A4C2A5; /* Dark red color */
  transition: transform 0.3s ease, color 0.3s ease;
@@ -443,3 +443,79 @@ sup{
 color:#7db37f ;
 }
 
+.cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursor-image {
+  position: absolute;
+  width: 80px; /* Adjust size as needed */
+  height: 80px; /* Adjust size as needed */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: twinkle 1s ease-in-out forwards;
+}
+
+@keyframes twinkle {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  50% {
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+
+/* Prevent cursor image from showing on specific text elements */
+.name-text,
+.collaboration-text,
+.desc-text,
+.cv {
+  pointer-events: none;
+}
+
+
+.no-cursor {
+  pointer-events: none; /* Prevents the custom cursor from showing up */
+}
+
+
+/* Ensure the cursor-container is positioned correctly */
+.cursor-container {
+  position: fixed;
+  pointer-events: none;  /* Prevent interference with other content */
+  z-index: 10;  /* Adjust z-index so it doesn't overlap other important content */
+}
+
+/* Ensure images are absolutely positioned within the cursor-container */
+.cursor-image {
+  position: absolute;
+  width: 30px;  /* You can adjust this size */
+  height: 30px;  /* You can adjust this size */
+  z-index: 5;  /* Lower z-index to prevent overlap with text */
+  pointer-events: none;  /* Prevent interaction with the images */
+}
+
+.cursor-image {
+  position: absolute;
+  width: 200px; /* Reduced size for better spacing */
+  height: 200px; /* Reduced size for better spacing */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: twinkle 1s ease-in-out forwards;
+}
