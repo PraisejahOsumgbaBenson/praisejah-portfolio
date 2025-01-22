@@ -3,6 +3,7 @@ import Header from "./Header";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { gsap } from "gsap";
 import "./Style.css";
+import hoverSound from "../assets/namee.mp3";
 import image1 from "../assets/1.png";
 import image2 from "../assets/2.png";
 import image3 from "../assets/3.png";
@@ -14,12 +15,22 @@ import image8 from "../assets/9.png";
 import image9 from "../assets/10.png";
 import image10 from "../assets/11.png";
 
-// Import hover sound
-import hoverSound from "../assets/namee.mp3";
-
 function Home() {
+  const handleHover = () => {
+    gsap.fromTo(
+      ".praisejah-letter",
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" }
+    );
+  };
+
+  const playHoverSound = () => {
+    const audio = new Audio(hoverSound);
+    audio.play();
+  };
+
   useEffect(() => {
-    // GSAP animations
+    // GSAP initial animations
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
 
     tl.fromTo(
@@ -66,70 +77,54 @@ function Home() {
       };
     };
 
-   let lastImageTime = 0;
+ const createImage = (e) => {
+   const xPos = e.pageX;
+   const yPos = e.pageY;
 
-   const createImage = (e) => {
-     const currentTime = Date.now();
-     if (currentTime - lastImageTime < 100) {
-       // Prevent creating a new image too quickly
-       return;
-     }
+   const images = [
+     image1,
+     image2,
+     image3,
+     image4,
+     image5,
+     image6,
+     image7,
+     image8,
+     image9,
+     image10,
+   ];
 
-     lastImageTime = currentTime;
+   const randomImage = images[Math.floor(Math.random() * images.length)];
 
-     const xPos = e.pageX + Math.random() * 10; // Adding random offset for spacing
-     const yPos = e.pageY + Math.random() * 10; // Adding random offset for spacing
+   const image = document.createElement("img");
+   image.src = randomImage;
+   image.classList.add("cursor-image");
 
-     const images = [
-       image1,
-       image2,
-       image3,
-       image4,
-       image5,
-       image6,
-       image7,
-       image8,
-       image9,
-       image10,
-     ];
+   const container = document.querySelector(".cursor-container");
+   container.appendChild(image);
 
-     const randomImage = images[Math.floor(Math.random() * images.length)];
+   image.style.left = `${xPos}px`;
+   image.style.top = `${yPos}px`;
 
-     const image = document.createElement("img");
-     image.src = randomImage;
-     image.classList.add("cursor-image");
+   setTimeout(() => {
+     image.remove();
+   }, 1000);
+ };
 
-     const container = document.querySelector(".cursor-container");
-     container.appendChild(image);
+ const handleMouseLeave = () => {
+   const container = document.querySelector(".cursor-container");
+   container.innerHTML = "";
+ };
 
-     image.style.left = `${xPos}px`;
-     image.style.top = `${yPos}px`;
+ document.addEventListener("mousemove", throttle(createImage, 100));
+ document.addEventListener("mouseleave", handleMouseLeave);
 
-     setTimeout(() => {
-       image.remove();
-     }, 1000);
-   };
+ return () => {
+   document.removeEventListener("mousemove", throttle(createImage, 100));
+   document.removeEventListener("mouseleave", handleMouseLeave);
+ };
 
-      
-
-    const handleMouseLeave = () => {
-      const container = document.querySelector(".cursor-container");
-      container.innerHTML = "";
-    };
-
-    document.addEventListener("mousemove", throttle(createImage, 100));
-    document.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      document.removeEventListener("mousemove", throttle(createImage, 100));
-      document.removeEventListener("mouseleave", handleMouseLeave);
-    };
   }, []);
-
-  const playHoverSound = () => {
-    const audio = new Audio(hoverSound);
-    audio.play();
-  };
 
   return (
     <>
@@ -142,7 +137,10 @@ function Home() {
             {/* Praisejah Name Section */}
             <div
               className="name-text"
-              onMouseEnter={playHoverSound}
+              onMouseEnter={() => {
+                handleHover(); // Trigger animation on hover
+                playHoverSound(); // Play sound on hover
+              }}
               style={{ display: "flex", gap: "2px" }}
             >
               {"Praisejah".split("").map((letter, index) => (
@@ -185,7 +183,7 @@ function Home() {
                 className="cv"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={playHoverSound}
+                onMouseEnter={playHoverSound} // Play sound only
               >
                 <span className="cv-text">My CV</span>
               </a>
