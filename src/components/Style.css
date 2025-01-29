@@ -457,7 +457,7 @@ color:#7db37f ;
   position: absolute;
   width: 80px; /* Adjust size as needed */
   height: 80px; /* Adjust size as needed */
-  transform: translate(-50%, -50%);
+  transform: translate(-40%, -40%);
   pointer-events: none;
   animation: twinkle 1s ease-in-out forwards;
 }
@@ -469,8 +469,8 @@ color:#7db37f ;
     opacity: 0.5;
   }
   50% {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     opacity: 1;
   }
   100% {
@@ -480,42 +480,9 @@ color:#7db37f ;
   }
 }
 
-
-/* Prevent cursor image from showing on specific text elements */
-.name-text,
-.collaboration-text,
-.desc-text,
-.cv {
-  pointer-events: none;
-}
-
-
-.no-cursor {
-  pointer-events: none; /* Prevents the custom cursor from showing up */
-}
-
-
-/* Ensure the cursor-container is positioned correctly */
-.cursor-container {
-  position: fixed;
-  pointer-events: none;  /* Prevent interference with other content */
-  z-index: 10;  /* Adjust z-index so it doesn't overlap other important content */
-}
-
-/* Ensure images are absolutely positioned within the cursor-container */
 .cursor-image {
   position: absolute;
-  width: 30px;  /* You can adjust this size */
-  height: 30px;  /* You can adjust this size */
-  z-index: 5;  /* Lower z-index to prevent overlap with text */
-  pointer-events: none;  /* Prevent interaction with the images */
+  pointer-events: none; /* So images don't interfere with mouse events */
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; /* Smooth transition for opacity and transform */
 }
 
-.cursor-image {
-  position: absolute;
-  width: 200px; /* Reduced size for better spacing */
-  height: 200px; /* Reduced size for better spacing */
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: twinkle 1s ease-in-out forwards;
-}
