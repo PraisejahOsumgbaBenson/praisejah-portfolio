@@ -1,26 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { gsap } from "gsap";
 import "./Style.css";
 import hoverSound from "../assets/namee.mp3";
-import image1 from "../assets/1.png";
-import image2 from "../assets/2.png";
+import image6 from "../assets/6.png";
 import image3 from "../assets/3.png";
 import image4 from "../assets/4.png";
 import image5 from "../assets/5.png";
-import image6 from "../assets/7.png";
-import image7 from "../assets/8.png";
-import image8 from "../assets/9.png";
-import image9 from "../assets/10.png";
-import image10 from "../assets/11.png";
+import image7 from "../assets/7.png";
+import image8 from "../assets/8.png";
+import image10 from "../assets/10.png";
 
 function Home() {
+  const [cursorDisabled, setCursorDisabled] = useState(false);
+
   const handleHover = () => {
     gsap.fromTo(
       ".praisejah-letter",
-      { x: 50, opacity: 0 },
-      { x: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" }
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.1, duration: 1.2, ease: "power1.out" }
     );
   };
 
@@ -29,7 +28,10 @@ function Home() {
     audio.play();
   };
 
+ 
+
   useEffect(() => {
+    // GSAP animation for sliding in content - This will only happen once on page reload
     // GSAP initial animations
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
 
@@ -77,69 +79,99 @@ function Home() {
       };
     };
 
- const createImage = (e) => {
-   const xPos = e.pageX;
-   const yPos = e.pageY;
+    const isInsideInteractiveElement = (e) => {
+      return (
+        e.target.closest(".text") ||
+        e.target.closest(".cv") ||
+        e.target.closest(".github") ||
+        e.target.closest(".collaboration-text") ||
+        e.target.closest("button") ||
+        e.target.closest(".header") ||
+        e.target.closest(".social-icon") ||
+        e.target.closest(".f-text") ||
+        e.target.closest(".footer-text")
+      );
+    };
 
-   const images = [
-     image1,
-     image2,
-     image3,
-     image4,
-     image5,
-     image6,
-     image7,
-     image8,
-     image9,
-     image10,
-   ];
+    const createImage = (e) => {
+      if (cursorDisabled || isInsideInteractiveElement(e)) return;
 
-   const randomImage = images[Math.floor(Math.random() * images.length)];
+      const xPos = e.pageX;
+      const yPos = e.pageY;
 
-   const image = document.createElement("img");
-   image.src = randomImage;
-   image.classList.add("cursor-image");
+      const images = [image6, image3, image4, image5, image7, image8, image10];
+      const randomImage = images[Math.floor(Math.random() * images.length)];
 
-   const container = document.querySelector(".cursor-container");
-   container.appendChild(image);
+      const image = document.createElement("img");
+      image.src = randomImage;
+      image.classList.add("cursor-image");
 
-   image.style.left = `${xPos}px`;
-   image.style.top = `${yPos}px`;
+      const cursorContainer = document.querySelector(".cursor-container");
+      cursorContainer.appendChild(image);
 
-   setTimeout(() => {
-     image.remove();
-   }, 1000);
- };
+      // Positioning image at cursor position
+      image.style.left = `${xPos}px`;
+      image.style.top = `${yPos}px`;
 
- const handleMouseLeave = () => {
-   const container = document.querySelector(".cursor-container");
-   container.innerHTML = "";
- };
+      gsap.fromTo(
+        image,
+        {
+          opacity: 0,
+          scale: 0.4,
+          zIndex: 10,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6, // Duration for smooth transition
+          ease: "power1.out", // Easing for smoother transition
+          onComplete: () => {
+            // Fade out the image smoothly without shaking
+            gsap.to(image, {
+              opacity: 0,
+              scale: 0.6,
+              zIndex: -1, // Move the image behind others
+              duration: 1.2, // Smoother fade-out duration
+              ease: "power1.inOut", // Apply an easing for smooth scaling and fading
+              onComplete: () => image.remove(),
+            });
+          },
+        }
+      );
+    };
 
- document.addEventListener("mousemove", throttle(createImage, 100));
- document.addEventListener("mouseleave", handleMouseLeave);
+    const handleMouseMove = throttle((e) => {
+      setCursorDisabled(isInsideInteractiveElement(e));
+      createImage(e); // Throttled image creation
+    }, 100); // Adjust the time limit (in ms) to control frequency of image creation
 
- return () => {
-   document.removeEventListener("mousemove", throttle(createImage, 100));
-   document.removeEventListener("mouseleave", handleMouseLeave);
- };
+    const handleMouseLeave = () => {
+      const cursorContainer = document.querySelector(".cursor-container");
+      cursorContainer.innerHTML = "";
+    };
 
-  }, []);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []); // Empty dependency array ensures this useEffect runs only once when the component mounts (page reload)
 
   return (
     <>
       <Header />
-      <div className="cursor-container"></div> {/* Cursor effect container */}
+      <div className="cursor-container"></div>
       <div className="gradient-bg"></div>
       <div className="main-container fade-in">
         <div className="container">
           <div className="text">
-            {/* Praisejah Name Section */}
             <div
               className="name-text"
               onMouseEnter={() => {
-                handleHover(); // Trigger animation on hover
-                playHoverSound(); // Play sound on hover
+                handleHover();
+                playHoverSound();
               }}
               style={{ display: "flex", gap: "2px" }}
             >
@@ -155,7 +187,6 @@ function Home() {
               <sup>(OB)</sup>
             </div>
             <br />
-            {/* Collaboration Section */}
             <div className="collaboration-section">
               <span className="collaboration-text">
                 Open for any collaboration and offer /{" "}
@@ -170,26 +201,25 @@ function Home() {
               </span>
             </div>
             <br />
-            {/* Description Section */}
             <div className="desc-section">
               <span className="desc-text">
                 Building impactful software and exploring efficient solutions
                 excite me. Open-source contributor and problem-solver.
               </span>
-              {/* CV Button */}
               <a
                 href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
                 download
                 className="cv"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={playHoverSound} // Play sound only
+                onMouseEnter={playHoverSound}
               >
                 <span className="cv-text">My CV</span>
               </a>
             </div>
           </div>
         </div>
+
         <div className="socials-container">
           <div className="socials">
             <div className="social-icon">
