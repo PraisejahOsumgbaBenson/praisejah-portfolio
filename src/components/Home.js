@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import About from "./About";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { gsap } from "gsap";
 import "./Style.css";
@@ -14,6 +15,7 @@ import image10 from "../assets/10.png";
 
 function Home() {
   const [cursorDisabled, setCursorDisabled] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   const handleHover = () => {
     gsap.fromTo(
@@ -28,11 +30,53 @@ function Home() {
     audio.play();
   };
 
- 
+useEffect(() => {
+  // Disable scrolling
+  document.body.style.overflow = "hidden";
+
+  const handleScroll = (e) => {
+    if (e.deltaY > 0 && !showAbout) {
+      setShowAbout(true);
+      gsap.to(".home-container", {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        onComplete: () => gsap.set(".home-container", { visibility: "hidden" }),
+      });
+      gsap.set(".about-container", { visibility: "visible" });
+      gsap.fromTo(
+        ".about-container",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, ease: "power2.out" }
+      );
+    } else if (e.deltaY < 0 && showAbout) {
+      setShowAbout(false);
+      gsap.to(".about-container", {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.in",
+        onComplete: () =>
+          gsap.set(".about-container", { visibility: "hidden" }),
+      });
+      gsap.set(".home-container", { visibility: "visible" });
+      gsap.fromTo(
+        ".home-container",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, ease: "power2.out" }
+      );
+    }
+  };
+
+  window.addEventListener("wheel", handleScroll);
+  return () => {
+    window.removeEventListener("wheel", handleScroll);
+    document.body.style.overflow = ""; // Restore scrolling when component unmounts
+  };
+}, [showAbout]);
+
+
 
   useEffect(() => {
-    // GSAP animation for sliding in content - This will only happen once on page reload
-    // GSAP initial animations
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
 
     tl.fromTo(
@@ -67,7 +111,6 @@ function Home() {
         "<0.5"
       );
 
-    // Cursor animations
     const throttle = (callback, delay) => {
       let lastTime = 0;
       return function (...args) {
@@ -109,7 +152,6 @@ function Home() {
       const cursorContainer = document.querySelector(".cursor-container");
       cursorContainer.appendChild(image);
 
-      // Positioning image at cursor position
       image.style.left = `${xPos}px`;
       image.style.top = `${yPos}px`;
 
@@ -123,16 +165,15 @@ function Home() {
         {
           opacity: 1,
           scale: 1,
-          duration: 0.6, // Duration for smooth transition
-          ease: "power1.out", // Easing for smoother transition
+          duration: 0.6,
+          ease: "power1.out",
           onComplete: () => {
-            // Fade out the image smoothly without shaking
             gsap.to(image, {
               opacity: 0,
               scale: 0.6,
-              zIndex: -1, // Move the image behind others
-              duration: 1.2, // Smoother fade-out duration
-              ease: "power1.inOut", // Apply an easing for smooth scaling and fading
+              zIndex: -1,
+              duration: 1.2,
+              ease: "power1.inOut",
               onComplete: () => image.remove(),
             });
           },
@@ -142,8 +183,8 @@ function Home() {
 
     const handleMouseMove = throttle((e) => {
       setCursorDisabled(isInsideInteractiveElement(e));
-      createImage(e); // Throttled image creation
-    }, 100); // Adjust the time limit (in ms) to control frequency of image creation
+      createImage(e);
+    }, 100);
 
     const handleMouseLeave = () => {
       const cursorContainer = document.querySelector(".cursor-container");
@@ -157,95 +198,100 @@ function Home() {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []); // Empty dependency array ensures this useEffect runs only once when the component mounts (page reload)
+  }, []);
 
   return (
     <>
       <Header />
       <div className="cursor-container"></div>
       <div className="gradient-bg"></div>
-      <div className="main-container fade-in">
-        <div className="container">
-          <div className="text">
-            <div
-              className="name-text"
-              onMouseEnter={() => {
-                handleHover();
-                playHoverSound();
-              }}
-              style={{ display: "flex", gap: "2px" }}
-            >
-              {"Praisejah".split("").map((letter, index) => (
-                <span
-                  key={index}
-                  className="praisejah-letter"
-                  style={{ display: "inline-block" }}
-                >
-                  {letter}
+      <div className="home-container">
+        <div className="main-container fade-in">
+          <div className="container">
+            <div className="text">
+              <div
+                className="name-text"
+                onMouseEnter={() => {
+                  handleHover();
+                  playHoverSound();
+                }}
+                style={{ display: "flex", gap: "2px" }}
+              >
+                {"Praisejah".split("").map((letter, index) => (
+                  <span
+                    key={index}
+                    className="praisejah-letter"
+                    style={{ display: "inline-block" }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+                <sup>(OB)</sup>
+              </div>
+              <br />
+              <div className="collaboration-section">
+                <span className="collaboration-text">
+                  Open for any collaboration and offer /{" "}
+                  <a
+                    className="github"
+                    href="https://github.com/PraisejahOsumgbaBenson"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GITHUB
+                  </a>
                 </span>
-              ))}
-              <sup>(OB)</sup>
-            </div>
-            <br />
-            <div className="collaboration-section">
-              <span className="collaboration-text">
-                Open for any collaboration and offer /{" "}
+              </div>
+              <br />
+              <div className="desc-section">
+                <span className="desc-text">
+                  Building impactful software and exploring efficient solutions
+                  excite me. Open-source contributor and problem-solver.
+                </span>
                 <a
-                  className="github"
+                  href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
+                  download
+                  className="cv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={playHoverSound}
+                >
+                  <span className="cv-text">My CV</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="socials-container">
+            <div className="socials">
+              <div className="social-icon">
+                <a
                   href="https://github.com/PraisejahOsumgbaBenson"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GITHUB
+                  <FaGithub size={12} />
                 </a>
-              </span>
-            </div>
-            <br />
-            <div className="desc-section">
-              <span className="desc-text">
-                Building impactful software and exploring efficient solutions
-                excite me. Open-source contributor and problem-solver.
-              </span>
-              <a
-                href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
-                download
-                className="cv"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={playHoverSound}
-              >
-                <span className="cv-text">My CV</span>
-              </a>
+              </div>
+              <div className="social-icon">
+                <a
+                  href="https://www.linkedin.com/in/praisejah-osumgba-benson"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLinkedin size={12} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="socials-container">
-          <div className="socials">
-            <div className="social-icon">
-              <a
-                href="https://github.com/PraisejahOsumgbaBenson"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub size={12} />
-              </a>
-            </div>
-            <div className="social-icon">
-              <a
-                href="https://www.linkedin.com/in/praisejah-osumgba-benson"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin size={12} />
-              </a>
-            </div>
-          </div>
+        <div className="f-text">Designed by ME / Developed by ME</div>
+        <div className="footer-text">
+          PRAISEJAH (HER/SHE) AKA PJ IS AN INDEPENDENT ENGINEER FROM NIGERIA.
         </div>
       </div>
-      <div className="f-text">Designed by ME / Developed by ME</div>
-      <div className="footer-text">
-        PRAISEJAH (HER/SHE) AKA PJ IS AN INDEPENDENT ENGINEER FROM NIGERIA.
+      <div className={`about-container ${showAbout ? "visible" : ""}`}>
+        <About />
       </div>
     </>
   );
