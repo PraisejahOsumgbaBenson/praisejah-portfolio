@@ -9,9 +9,15 @@
 
 .intro-text {
   font-size: 5rem;
+  letter-spacing: 6px;
   font-weight: 600;
-  color: #d7e2d7; /* White text color */
+  color: #db9197; /* White text color */
   display: inline-block;
-  font-family: "Bebas Neue", sans-serif;
-  font-family: "Barlow Condensed", system-ui;
+   font-family: "meo", system-ui;
+}
+@font-face {
+  font-family: 'meo';
+  src: url('../assets/fonts/Glamour.ttf') format('truetype');
+  font-weight: 100;
+
 }
