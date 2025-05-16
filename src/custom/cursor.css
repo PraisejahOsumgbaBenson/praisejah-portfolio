@@ -2,7 +2,7 @@
   position: fixed;
   width: 40px; /* Adjust size as needed */
   height: 40px; /* Adjust size as needed */
-  border: 2px solid rgba(135, 186, 126, 0.5); /* Color and transparency */
+  border: 2px solid rgba(182, 87, 107, 0.5); /* Color and transparency */
   border-radius: 50%; /* Circular shape */
   pointer-events: none; /* Prevent it from blocking clicks */
   transform: translate(-50%, -50%); /* Center the ring */
@@ -11,13 +11,13 @@
 
 .cursor-ring.clicked {
   transform: translate(-50%, -50%) scale(1.5); /* Scale up when clicked */
-  border-color: rgb(177, 215, 174); /* Change color on click */
+  border-color: #871933; /* Change color on click */
   transition: all 0.2s ease; /* Smooth transition */
 }
 
 /* Hide the default cursor */
 body, html {
   cursor: none; /* Hide the default cursor */
-  height: 100%; /* Ensure full height for the body */
+
   margin: 0; /* Remove default margin */
 }
