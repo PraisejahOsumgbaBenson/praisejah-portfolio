@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-// Sound file for hover effect
-import hoverSound from "../assets/key.mp3";
+import hoverSound from "../assets/sounds/nav_keys.mp3";
 import "./Style.css";
 
-function Header() {
+function Header({ onAboutClick }) {
   const [time, setTime] = useState("");
 
   // Function to fetch current Nigerian time
@@ -65,11 +64,11 @@ function Header() {
             style={{ cursor: "pointer" }}
           >
             <span>P</span>
-            <span>J</span>
+            <span>j</span>
           </p>
         </div>
         <div className="time">
-          <p>NIGERIA, {time} WAT</p>
+          <p>NIGERIA,{time} WAT</p>
         </div>
       </div>
 
@@ -83,6 +82,16 @@ function Header() {
               onMouseEnter={playHoverSound} // Add hover sound effect
             >
               HOME
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className="nav-link"
+              onMouseEnter={playHoverSound} // Add hover sound effect
+              onClick={onAboutClick} // Trigger the About section logic
+            >
+              ABOUT
             </Link>
           </li>
           <li>
