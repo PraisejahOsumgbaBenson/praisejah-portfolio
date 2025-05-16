@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import About from "./About";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { gsap } from "gsap";
 import "./Style.css";
-import hoverSound from "../assets/namee.mp3";
-import image6 from "../assets/6.png";
-import image3 from "../assets/3.png";
-import image4 from "../assets/4.png";
-import image5 from "../assets/5.png";
-import image7 from "../assets/7.png";
-import image8 from "../assets/8.png";
-import image10 from "../assets/10.png";
+
+//               playHoverSound();
+import hoverSound from "../assets/sounds/header_keys.mp3";
+//               playHoverSound();
+
+import arrow from "../assets/home_page img/arrow.png";
+import bow from "../assets/home_page img/bow.png";
+import disk from "../assets/home_page img/disk.png";
+import floffy from "../assets/home_page img/floffy.png";
+import flower from "../assets/home_page img/flower.png";
+import pin from "../assets/home_page img/pin.png";
+import star from "../assets/home_page img/star.png";
+
 
 function Home() {
   const [cursorDisabled, setCursorDisabled] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
+
 
   const handleHover = () => {
     gsap.fromTo(
@@ -30,51 +34,7 @@ function Home() {
     audio.play();
   };
 
-useEffect(() => {
-  // Disable scrolling
-  document.body.style.overflow = "hidden";
-
-  const handleScroll = (e) => {
-    if (e.deltaY > 0 && !showAbout) {
-      setShowAbout(true);
-      gsap.to(".home-container", {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        onComplete: () => gsap.set(".home-container", { visibility: "hidden" }),
-      });
-      gsap.set(".about-container", { visibility: "visible" });
-      gsap.fromTo(
-        ".about-container",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out" }
-      );
-    } else if (e.deltaY < 0 && showAbout) {
-      setShowAbout(false);
-      gsap.to(".about-container", {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.in",
-        onComplete: () =>
-          gsap.set(".about-container", { visibility: "hidden" }),
-      });
-      gsap.set(".home-container", { visibility: "visible" });
-      gsap.fromTo(
-        ".home-container",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out" }
-      );
-    }
-  };
-
-  window.addEventListener("wheel", handleScroll);
-  return () => {
-    window.removeEventListener("wheel", handleScroll);
-    document.body.style.overflow = ""; // Restore scrolling when component unmounts
-  };
-}, [showAbout]);
-
-
+ 
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
@@ -142,7 +102,7 @@ useEffect(() => {
       const xPos = e.pageX;
       const yPos = e.pageY;
 
-      const images = [image6, image3, image4, image5, image7, image8, image10];
+      const images = [arrow, bow, disk, floffy, flower, pin, star];
       const randomImage = images[Math.floor(Math.random() * images.length)];
 
       const image = document.createElement("img");
@@ -202,7 +162,7 @@ useEffect(() => {
 
   return (
     <>
-      <Header />
+      <Header className="header" />
       <div className="cursor-container"></div>
       <div className="gradient-bg"></div>
       <div className="home-container">
@@ -290,9 +250,7 @@ useEffect(() => {
           PRAISEJAH (HER/SHE) AKA PJ IS AN INDEPENDENT ENGINEER FROM NIGERIA.
         </div>
       </div>
-      <div className={`about-container ${showAbout ? "visible" : ""}`}>
-        <About />
-      </div>
+     
     </>
   );
 }
