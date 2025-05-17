@@ -7,17 +7,32 @@
   font-family: safiro-regular;
   font-style: normal;
   font-weight: 400;
-  src: url(../assets/safiro-regular.woff2) format("woff2"),
-    url(../assets/safiro-regular.woff2) format("woff");
+  src: url(../assets/fonts/safiro-regular.woff2) format("woff2"),
+    url(../assets/fonts/safiro-regular.woff2) format("woff");
 }
 @font-face {
   font-display: block;
   font-family: safiro;
   font-style: normal;
   font-weight: 400;
-  src: url(../safiro-regular-i.woff2) format("woff2"),
-    url(../safiro-regular-i.woff2) format("woff");
+  src: url(../assets/fonts/safiro-regular-i.woff2) format("woff2"),
+    url(../assets/fonts/safiro-regular-i.woff2) format("woff");
 }
+@font-face {
+  font-display: block;
+  font-family: praisejah;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/ROMANTIC.TTF) format("TTF"),
+    url(../assets/fonts/ROMANTIC.TTF) format("TTF");
+}
+@font-face {
+  font-family: 'praisejah';
+  src: url('../assets/fonts/ROMANTIC.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -90,19 +105,26 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center; /* Align vertically */
 }
+@font-face {
+  font-family: 'nav';
+  src: url('../assets/fonts/Glamour.ttf') format('truetype');
+  font-weight: 100;
 
+}
 /* Logo */
 .logo {
   width: 50px; /* Fixed width for the logo */
   margin-right: 10px; /* Space between logo and navigation */
-  font-family: "Barlow Condensed", system-ui;
+  font-family: "nav", system-ui;
   font-weight: 600; /* Bold font for emphasis */
   font-size: 30px; /* Large logo size */
-  color: #A4C2A5; /* Dark red color */
+  color: #d9979c; /* Dark red color */
  transition: transform 0.3s ease, color 0.3s ease;
+ letter-spacing: 1px;
 }
+
 .logo:hover{
-  color: #d7e2d7;
+  color: #c7e2c7;
 }
 .left-nav{
   display: flex;
@@ -137,7 +159,7 @@ body::-webkit-scrollbar {
   right: 0;
   bottom: -5px; /* Positioning the underline */
   height: 1.2px; /* Thickness of the underline */
-  background-color: #A4C2A5; /* Red underline */
+  background-color: #db9197; /* Red underline */
   transform: scaleX(0); /* Initially hidden */
   transition: transform 0.3s; /* Smooth transition for the underline */
 }
@@ -183,14 +205,14 @@ body::-webkit-scrollbar {
   align-items: center; /* Vertically align */
 }
 .darkmode{
-  background-color: #000b11;
+  background-color: #bd7085;
   border-radius: 9999px;
   height: 1rem;
   width: 1rem;
   border: none;
 }
 .darkmode:hover{
-  background-color: #2f4858;
+  background-color: #35582f;
 }
 
 /* Responsive design for small screens */
@@ -222,7 +244,7 @@ body::-webkit-scrollbar {
   align-items: center;
   padding: 2rem;
   position: absolute;
-  right: 20px;
+  right: -350px;
   color: #141414;
 
 }
@@ -256,7 +278,7 @@ body::-webkit-scrollbar {
 }
 
 .socials a:hover {
-  color: #5eae60; /* New color on hover */
+  color:#db9197; /* New color on hover */
   transform: translateY(-3px); /* Move the element up slightly */
   transition-delay: 0.1s; /* Add a small delay before the hover effect starts */
 }
@@ -320,7 +342,7 @@ body::-webkit-scrollbar {
 
 .container {
   padding: 20px;
-  margin-top: -5px;
+  margin-top: -80px;
   align-items: center;
   justify-content: center;
 }
@@ -356,26 +378,30 @@ sup{
   align-items: center;
   font-size: 10rem;
   margin-top: -100px;
-  color: #F1F2EB; 
+  color: #be8a94; 
   font-family: safiro;
 }
 
 .desc-text {
   color: #F1F2EB;
-  display: block;
+  display: right;
   margin-top: 20px;
   font-size: 16px;
   gap: 20px;
   width: 300px;
   margin-left: 100px;
   font-family: safiro-regular;
+   text-align: left;
 }
 
 .desc-section{
   display: flex;
   align-items: center;
   margin-top: -30px;
+   
 }
+
+
 
 /* .footer{ */
   /* display: flex; */
@@ -391,7 +417,7 @@ sup{
   right: 100px; /* Adjust spacing from the right */
   font-family: "Bebas Neue", sans-serif; /* Match your font style */
   font-size: 17px; /* Adjust font size */
-  color: #D8DAD3; /* Match your color theme */
+  color: #db9197; /* Match your color theme */
   text-align: right;
   width: 160px;
   z-index: 10; /* Ensure it's on top of other elements */
@@ -404,7 +430,7 @@ sup{
   left: 100px; /* Adjust spacing from the right */
   font-family: "Bebas Neue", sans-serif; /* Match your font style */
   font-size: 17px; /* Adjust font size */
-  color: #D8DAD3; /* Match your color theme */
+  color: #db9197; /* Match your color theme */
   text-align: right;
   width: 160px;
   z-index: 10;
@@ -418,7 +444,7 @@ sup{
    font-size: 16px;
    font-family: safiro-regular;
    color: #D8DAD3;
-   border: 1.5px solid #A4C2A5;
+   border: 1.5px solid #db9197;
    padding: 9px;
    border-radius: 5px;
   /* Add transition for background color */
@@ -426,18 +452,18 @@ sup{
 }
 
 .cv:hover {
-  background-color: #98B399; /* Slightly darker on hover */
+  background-color: #819582; /* Slightly darker on hover */
 }
 
 .cv-text {
   display: inline-block;
   transition: transform 0.5s ease; /* Smooth rotation */
-  margin-left: 24px;
+  
 }
 
 .github{
   text-decoration: none;
-  color:  #A4C2A5;
+  color:  #db9197;
 }
 .github:hover{
 color:#7db37f ;
@@ -486,3 +512,37 @@ color:#7db37f ;
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; /* Smooth transition for opacity and transform */
 }
 
+
+/* Ensure the header is fixed at the top */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's above other content */
+  background-color: #566246; /* Match your background color */
+
+}
+
+/* Center the content vertically and horizontally */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+}
+
+.text{
+  align-items: center;
+  justify-content: center;
+  margin-top: 160px;
+}
+
+
+
+
+
+.aboutheader{
+  background-color: #000b11;
+}
