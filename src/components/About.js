@@ -3,13 +3,11 @@ import Header from "./Header";
 import "./About.css";
 
 import diary from "../assets/diary.png";
-import bowImage from "../assets/bow.png";
+import bowImage from "../assets/Bow.png";
 
 function About() {
-  const [showSkills, setShowSkills] = useState(false);
   const experienceSectionRef = useRef(null);
   const timelineRef = useRef(null);
-  const [isScrolling, setIsScrolling] = useState(false);
 
   // Horizontal scroll effect
   useEffect(() => {
@@ -79,19 +77,7 @@ function About() {
     };
   }, []);
 
-  // Original scroll effect for skills section
-  useEffect(() => {
-    const handleSkillsScroll = () => {
-      if (window.scrollY > 300) {
-        setShowSkills(true);
-      } else {
-        setShowSkills(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleSkillsScroll);
-    return () => window.removeEventListener("scroll", handleSkillsScroll);
-  }, []);
+ 
 
   // Scroll effect for timeline items
   useEffect(() => {
