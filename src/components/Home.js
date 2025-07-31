@@ -16,7 +16,7 @@ import flower from "../assets/home_page img/flower.png";
 import pin from "../assets/home_page img/pin.png";
 import star from "../assets/home_page img/star.png";
 
-
+let lastPlayedTime = 0;
 function Home() {
   const [cursorDisabled, setCursorDisabled] = useState(false);
 
@@ -30,11 +30,22 @@ function Home() {
   };
 
   const playHoverSound = () => {
+    const now = Date.now();
+
+    if (now - lastPlayedTime < 300) return; // Prevent rapid replay
+    lastPlayedTime = now;
+
     const audio = new Audio(hoverSound);
+    audio.volume = 0.5; // Reduce volume (0.0 to 1.0)
     audio.play();
   };
 
- 
+  // Play sound with a slight delay to ensure it doesn't interrupt other sounds
+  setTimeout(() => {
+    const audio = new Audio(hoverSound);
+    audio.volume = 1.0;
+    audio.play();
+  }, 100); // 100ms delay
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });

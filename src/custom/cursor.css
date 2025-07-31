@@ -12,7 +12,7 @@
 .cursor-ring.clicked {
   transform: translate(-50%, -50%) scale(1.5); /* Scale up when clicked */
   border-color: #871933; /* Change color on click */
-  transition: all 0.2s ease; /* Smooth transition */
+  transition: all 0.8s ease; /* Smooth transition */
 }
 
 /* Hide the default cursor */
