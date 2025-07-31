@@ -161,7 +161,7 @@ body::-webkit-scrollbar {
   height: 1.2px; /* Thickness of the underline */
   background-color: #db9197; /* Red underline */
   transform: scaleX(0); /* Initially hidden */
-  transition: transform 0.3s; /* Smooth transition for the underline */
+  transition: transform 0.5s; /* Smooth transition for the underline */
 }
 
 /* Hover effect to reveal the underline */

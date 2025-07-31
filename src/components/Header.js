@@ -26,9 +26,18 @@ function Header({ onAboutClick }) {
   }, []);
 
   // Function to play hover sound
+
+  let lastPlayTime = 0; // Add this outside the function
   const playHoverSound = () => {
-    const audio = new Audio(hoverSound);
-    audio.play();
+    const now = Date.now();
+    const delay = 400; // 300ms delay between plays
+
+    if (now - lastPlayTime > delay) {
+      const audio = new Audio(hoverSound);
+      audio.volume = 0.4; // Set volume (range: 0.0 to 1.0)
+      audio.play();
+      lastPlayTime = now;
+    }
   };
 
   // Function to handle logo hover effect (scale up)
