@@ -12,7 +12,7 @@ const Cursor = () => {
 
     const handleMouseClick = () => {
       setIsClicked(true);
-      setTimeout(() => setIsClicked(false), 300); // Duration of the click animation
+      setTimeout(() => setIsClicked(false), 700); // Duration of the click animation
     };
 
     window.addEventListener("mousemove", handleMouseMove);
