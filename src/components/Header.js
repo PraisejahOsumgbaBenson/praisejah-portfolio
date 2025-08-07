@@ -1,94 +1,140 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import hoverSound from "../assets/sounds/nav_keys.mp3";
+import hoverSound from "../assets/sounds/nav_keys.mp3"; // Regular hover sound
 import "./Style.css";
+import unlockSound from "../assets/sounds/silent.mp3"; // Silent sound used to unlock browser autoplay policy
 
 function Header({ onAboutClick }) {
+  // Stores the current time in Nigeria (Africa/Lagos time zone)
   const [time, setTime] = useState("");
 
-  // Function to fetch current Nigerian time
+  // Controls whether hover sounds should play or not
+  const [soundUnlocked, setSoundUnlocked] = useState(false);
+
+  // Keeps track of last sound play time to prevent sound spam
+  let lastPlayTime = 0;
+
+  // 🕒 Automatically updates the current time every second
   useEffect(() => {
     const updateTime = () => {
       const currentTime = new Date().toLocaleTimeString("en-NG", {
-        timeZone: "Africa/Lagos", // Nigerian time zone
+        timeZone: "Africa/Lagos",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: true, // 12-hour format
+        hour12: true,
       });
       setTime(currentTime);
     };
 
-    updateTime(); // Set initial time
+    updateTime(); // Run once immediately
     const interval = setInterval(updateTime, 1000); // Update every second
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval); // Cleanup
   }, []);
 
-  // Function to play hover sound
+  // 🔓 Unlocks sound playback on first user interaction (browser requirement)
+  useEffect(() => {
+    const unlockAudio = () => {
+      const audio = new Audio(unlockSound); // Use a silent/soft sound
+      audio.muted = true; // Required to allow autoplay in modern browsers
 
-  let lastPlayTime = 0; // Add this outside the function
+      audio
+        .play()
+        .then(() => {
+          audio.muted = false; // Unmute after unlocking
+          setSoundUnlocked(true); // Allow hover sound to play going forward
+        })
+        .catch(() => {
+          console.warn("User interaction needed to unlock audio.");
+        });
+
+      // Remove event listeners after first interaction
+      window.removeEventListener("click", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
+    };
+
+    // Add event listeners for first click or keypress
+    window.addEventListener("click", unlockAudio);
+    window.addEventListener("keydown", unlockAudio);
+
+    // Cleanup listeners if component unmounts
+    return () => {
+      window.removeEventListener("click", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
+    };
+  }, []);
+
+  // 🔊 Plays hover sound (but not more than once every 400ms)
   const playHoverSound = () => {
+    if (!soundUnlocked) return; // Only play if sound was unlocked
+
     const now = Date.now();
-    const delay = 400; // 300ms delay between plays
+    const delay = 400; // Minimum time between sound plays (ms)
 
     if (now - lastPlayTime > delay) {
       const audio = new Audio(hoverSound);
-      audio.volume = 0.4; // Set volume (range: 0.0 to 1.0)
-      audio.play();
+      audio.volume = 0.2; // Set volume lower to avoid loud clicks
+      audio.play().catch((err) => {
+        console.warn("Sound play error:", err);
+      });
       lastPlayTime = now;
     }
   };
 
-  // Function to handle logo hover effect (scale up)
+  // 🎯 Animation when logo is hovered
   const handleLogoHover = () => {
     gsap.to(".logo", {
-      scale: 1.2,
+      scale: 1.0,
       duration: 0.4,
       ease: "power2.out",
     });
   };
 
-  // Function to reset logo scale when mouse leaves
+  // 🔁 Logo scales back when mouse leaves
   const handleLogoMouseLeave = () => {
     gsap.to(".logo", {
       scale: 1,
       duration: 0.4,
-      ease: "power2.inOut", // Use a smooth easing for returning to original scale
+      ease: "power2.inOut",
     });
   };
 
   return (
     <header className="header">
       <div className="left-nav">
+        {/* Logo and Time */}
         <div className="header-left">
-          {/* Logo section */}
-          <p
-            className="logo"
+          <Link
+            to="/"
             onMouseEnter={() => {
-              handleLogoHover();
-              playHoverSound(); // Play hover sound
+              handleLogoHover(); // Animate
+              playHoverSound(); // Sound on hover
             }}
-            onMouseLeave={handleLogoMouseLeave} // Reset scale on mouse leave
-            style={{ cursor: "pointer" }}
+            onMouseLeave={handleLogoMouseLeave}
+            style={{ textDecoration: "none" }}
           >
-            <span>P</span>
-            <span>j</span>
-          </p>
+            <p className="logo" style={{ cursor: "pointer" }}>
+              <span>P</span>
+              <span>j</span>
+            </p>
+          </Link>
         </div>
+
         <div className="time">
-          <p>NIGERIA,{time} WAT</p>
+          {/* Time display */}
+          <p>NIGERIA, {time} WAT</p>
         </div>
       </div>
 
-      {/* Navigation bar */}
+      {/* Navigation links */}
       <nav className="header-center">
         <ul className="nav-list">
           <li>
             <Link
               to="/"
               className="nav-link home"
-              onMouseEnter={playHoverSound} // Add hover sound effect
+              onMouseEnter={playHoverSound}
             >
               HOME
             </Link>
@@ -97,8 +143,8 @@ function Header({ onAboutClick }) {
             <Link
               to="/about"
               className="nav-link"
-              onMouseEnter={playHoverSound} // Add hover sound effect
-              onClick={onAboutClick} // Trigger the About section logic
+              onMouseEnter={playHoverSound}
+              onClick={onAboutClick}
             >
               ABOUT
             </Link>
@@ -107,7 +153,7 @@ function Header({ onAboutClick }) {
             <Link
               to="/projects"
               className="nav-link"
-              onMouseEnter={playHoverSound} // Add hover sound effect
+              onMouseEnter={playHoverSound}
             >
               PROJECT
             </Link>
@@ -116,17 +162,16 @@ function Header({ onAboutClick }) {
             <Link
               to="/skills"
               className="nav-link"
-              onMouseEnter={playHoverSound} // Add hover sound effect
+              onMouseEnter={playHoverSound}
             >
               CONTACT
             </Link>
           </li>
         </ul>
+
+        {/* Dark mode toggle (future enhancement) */}
         <div className="d-mode">
-          <button
-            className="darkmode"
-            onMouseEnter={playHoverSound} // Add hover sound effect
-          ></button>
+          <button className="darkmode" onMouseEnter={playHoverSound}></button>
         </div>
       </nav>
     </header>
