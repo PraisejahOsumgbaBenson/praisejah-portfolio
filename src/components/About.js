@@ -2,101 +2,38 @@ import React, { useEffect, useRef } from "react";
 import Header from "./Header";
 import "./About.css";
 
-import diary from "../assets/diary.png";
-import bowImage from "../assets/Bow.png";
+import diary from "../assets/diary.png"; // Diary image asset
+import bowImage from "../assets/Bow.png"; // Decorative bow image asset
 
 function About() {
-  const experienceSectionRef = useRef(null);
-  const timelineRef = useRef(null);
+  // Refs
+  const experienceSectionRef = useRef(null); // Reference to experience section for scroll effects
 
-  // Horizontal scroll effect
+  /**
+   * Scroll animation effect for experience cards
+   * Animates cards to fade in and slide up when they enter viewport
+   */
   useEffect(() => {
-    const timeline = timelineRef.current;
-    const section = experienceSectionRef.current;
-
-    if (!timeline || !section) return;
-
-    let scrollTimeout;
-    let enableScroll = false; // Flag to enable horizontal scrolling after delay
-
-    const handleWheel = (e) => {
-      const sectionTop = section.offsetTop;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      const sectionInView =
-        scrollY + windowHeight > sectionTop && scrollY < sectionBottom;
-
-      if (!sectionInView || !enableScroll) return; // Let normal scroll happen
-
-      const delta = e.deltaY;
-      const maxScrollLeft = timeline.scrollWidth - timeline.clientWidth;
-      const currentScrollLeft = timeline.scrollLeft;
-
-      const canScrollRight = currentScrollLeft < maxScrollLeft;
-      const canScrollLeft = currentScrollLeft > 0;
-
-      // Only trigger horizontal scroll when at the bottom of the section
-      const atBottomOfSection = scrollY + windowHeight >= sectionBottom;
-
-      if (
-        atBottomOfSection &&
-        ((delta > 0 && canScrollRight) || (delta < 0 && canScrollLeft))
-      ) {
-        e.preventDefault();
-
-        // Multiply the delta value to increase scroll speed
-        const scrollSpeedMultiplier = 40; // Adjusted for faster scrolling
-        timeline.scrollLeft += delta * scrollSpeedMultiplier;
-      }
-    };
+    const experienceCards = document.querySelectorAll(".experience-card");
 
     const handleScroll = () => {
-      const sectionTop = section.offsetTop;
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      const sectionInView = scrollY + windowHeight > sectionTop;
-
-      if (sectionInView && !enableScroll) {
-        // Add a delay before enabling horizontal scroll
-        setTimeout(() => {
-          enableScroll = true; // Enable horizontal scrolling after delay
-        }, 2000); // 2-second delay before enabling scroll
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("wheel", handleWheel);
-      if (scrollTimeout) clearTimeout(scrollTimeout); // Clear timeout on cleanup
-    };
-  }, []);
-
- 
-
-  // Scroll effect for timeline items
-  useEffect(() => {
-    const timelineItems = document.querySelectorAll(".timeline-item-top");
-
-    const handleScroll = () => {
-      timelineItems.forEach((item, index) => {
-        const rect = item.getBoundingClientRect();
+      experienceCards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // Check if the item is in view
+        // When card is 100px from entering viewport
         if (rect.top < windowHeight - 100) {
-          item.classList.add("visible");
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
         }
       });
     };
 
+    // Set up scroll listener and initialize
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run once on mount
 
+    // Cleanup scroll listener on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -104,9 +41,12 @@ function About() {
 
   return (
     <div className="about-container">
+      {/* Header Component */}
       <Header />
 
+      {/* Hero Section */}
       <div className="about-header">
+        {/* Name/Titles */}
         <div className="about-title">
           <h1 className="praisejah-title" style={{ fontSize: "110px" }}>
             Praisejah
@@ -115,71 +55,81 @@ function About() {
             ─── Osumgba-Benson.✦
           </h1>
         </div>
+
+        {/* Bio Section with Image */}
         <div className="about-section">
+          {/* Text Content */}
           <div className="passage-container">
             <div className="passage">
               <div className="first-section">
                 <span className="text-block first">
                   Hello, I'm Praisejah <br />
-                  I build, break, and refine, because great software isn't just
-                  written, <br />
-                  it's crafted, and it's fun. Exploring new technologies is
-                  second nature to me. <br />
-                  Whether it's open-source contributions, software architecture,
-                  or pushing <br />
-                  the limits of what's possible I'll find it. And if there
-                  isn't? I'll build one. <br />
+                  a software engineer with a passion for crafting thoughtful,
+                  reliable, and user-focused digital experiences. <br />
+                  I don't just write code; I experiment, break things, and
+                  rebuild them better. <br />
+                  Whether it's contributing to open source, designing software
+                  architecture, or exploring bleeding-edge technologies, I
+                  thrive at the intersection of creativity and problem-solving.
+                  <br />
                 </span>
                 <span className="text-block second">
-                  Beyond tech, I love painting, even if my skills are still a
-                  work in progress <br />
-                  (yep, still trying!). <br />I also have a deep love for
-                  animals, they bring joy, chaos, and <br />
-                  inspiration to my world.
+                  Outside of tech, I find joy in painting and caring for animals
+                  <br />
+                  both of which teach me patience, curiosity, and the beauty of
+                  progress. I believe that the best solutions come from a blend
+                  of skill, experimentation, and heart. <br />
                 </span>
               </div>
             </div>
           </div>
 
+          {/* Diary Image */}
           <img
             src={diary}
-            alt="Draggable"
+            alt="Personal diary illustration"
             className="diary-image"
             style={{ width: "400px", height: "580px" }}
           />
 
+          {/* Scrolling Marquee Text */}
           <div className="scrolling-text">
             <div className="scrolling-content">
               <p>
                 ⋆. 𐙚 ̊ Exploring Tech | ❀˖° Painting | 🐨ྀི Animal Lover | ⟢
-                Coding for Fun and Impact!
+                Coding for Impact!
               </p>
               <p>
                 .☘︎ ݁˖ Exploring Tech | ⋆⭒˚.⋆ Painting | ୨ৎ Animal Lover | 🍓ྀི
-                Coding for Fun and Impact!
+                Coding for Impact!
               </p>
               <p>
                 ⊹₊⟡⋆ Exploring Tech | ⋆˚࿔ Painting | ˙ᵕ˙ Animal Lover | ₊˚⊹ᰔ
-                Coding for Fun and Impact!
+                Coding for Impact!
               </p>
               <p>
                 ꩜ .ᐟ Exploring Tech | ˚୨୧⋆.˚ Painting | ⋆. 𐙚 ̊ Animal Lover | ༄.°
-                Coding for Fun and Impact!
+                Coding for Impact!
               </p>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Decorative Bow Element */}
       <div className="bow-container">
         <img src={bowImage} alt="Decorative bow" className="bow-image" />
       </div>
 
+      {/* Resume/CV Section */}
       <div className="resume-layout">
+        {/* Background Letters */}
         <div className="resume-bg-letters">
           <span className="resume-bg-letter">P</span>
           <span className="resume-bg-letter">B</span>
         </div>
+
+        {/* Left Column - Personal Info */}
         <div className="left-column">
           <div className="name-contact">
             <h1 className="praisejah">
@@ -195,8 +145,11 @@ function About() {
           </div>
         </div>
 
+        {/* Middle Column - Education/Awards */}
         <div className="middle-column">
           <div className="section-divider before-education"></div>
+
+          {/* Education Section */}
           <div className="section">
             <h2 className="heading">EDUCATION</h2>
             <div className="entry">
@@ -205,10 +158,15 @@ function About() {
             </div>
             <div className="entry">
               <span className="date">2022 - 2023</span>
-              <span className="details spacing">Astra Nova</span>
+              <span className="details">Astra Nova</span>
+            </div>
+            <div className="entry">
+              <span className="date">2024 - 2028</span>
+              <span className="details spacing">University Of The People</span>
             </div>
           </div>
 
+          {/* Awards Section */}
           <div className="section">
             <h2 className="heading">AWARDS</h2>
             <div className="entry">
@@ -229,8 +187,19 @@ function About() {
             </div>
           </div>
 
+          {/* Certificates Section */}
           <div className="section">
             <h2 className="heading">CERTIFICATE</h2>
+            <div className="entry">
+              <span className="date">2025.</span>
+              <span className="details">IBM Qiskit Summer School(Quantum)</span>
+            </div>
+            <div className="entry">
+              <span className="date">2025.</span>
+              <span className="details">
+                Stanford Neurodiversity Project's Research (SNP-REACH)
+              </span>
+            </div>
             <div className="entry">
               <span className="date">2025.</span>
               <span className="details">
@@ -254,8 +223,11 @@ function About() {
           </div>
         </div>
 
+        {/* Right Column - Skills/Tools */}
         <div className="right-column">
           <div className="section-divider before-tools"></div>
+
+          {/* Tools Section */}
           <div className="section">
             <h2 className="heading">USED TOOLS</h2>
             <div className="entry">
@@ -277,6 +249,7 @@ function About() {
             </div>
           </div>
 
+          {/* Skills Section */}
           <div className="section">
             <h2 className="heading">SKILLS</h2>
             <div className="entry">
@@ -306,98 +279,208 @@ function About() {
         </div>
       </div>
 
-      {/* Experience Timeline Section with Horizontal Scroll */}
-      <div
-        className="experience-section relative h-[100vh]"
-        ref={experienceSectionRef}
-      >
+      {/* Experience Section */}
+      <div className="experience-section" ref={experienceSectionRef}>
         <div className="section-header">
           <span className="section-label">experience</span>
           <div className="vertical-line"></div>
+          <h2 className="section-main-title">Adventures in Tech</h2>
+          <p className="section-subtitle">
+            Significant pushes to my professional repo
+            <a
+              className="github"
+              href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              / CV
+            </a>
+          </p>
         </div>
 
-        <div className="timeline-header">
-          <h2 className="timeline-main-title">My Professional Evolution</h2>
-        </div>
-
-        <div
-          className="horizontal-timeline-wrapper timeline w-max"
-          ref={timelineRef}
-        >
-          <div className="timeline-container-top-numbers">
-            <div className="timeline-item-top">
-              <div className="timeline-marker-top">
-                <div className="timeline-number">01</div>
-                <div className="timeline-year">2025</div>
-              </div>
-              <div className="timeline-content-top">
-                <h3 className="timeline-title">
-                  Yale Entrepreneurial Society Fellowship
-                </h3>
-                <p className="timeline-description">
-                  Led Yale 1st-place team developing Proact+, engineered
-                  AI-driven app blocking to reclaim 30+ focused hours weekly
-                </p>
-              </div>
+        {/* Experience Cards Grid */}
+        <div className="experience-grid">
+          {/* Card 1 - UCLA Internship */}
+          <div className="experience-card card-1">
+            <div className="card-header">
+              <span className="card-number">01</span>
+              <span className="card-year">2025 - Present</span>
             </div>
-
-            <div className="timeline-item-top">
-              <div className="timeline-marker-top">
-                <div className="timeline-number">02</div>
-                <div className="timeline-year">2024 - Present</div>
-              </div>
-              <div className="timeline-content-top">
-                <h3 className="timeline-title">The BulleTeen</h3>
-                <p className="timeline-description">
-                  Led web development & recruited a diverse team to enhance STEM
-                  content accessibility globally.
-                </p>
-              </div>
+            <h3 className="card-title">Glitch Intern @ UCLA</h3>
+            <p className="card-description">
+              Building an LLM-powered tool that tracks internship/job news
+              worldwide. Scrapes 500+ sources, analyzes trends, and generates
+              personalized alerts. Working with UCLA seniors to optimize model
+              accuracy.
+            </p>
+            <div className="card-tags">
+              <span>LLM Development</span>
+              <span>Opportunity Analytics</span>
+              <span>Web Scraping</span>
+              <span>NLP Pipelines</span>
             </div>
+            <div className="card-highlight"></div>
+          </div>
 
-            <div className="timeline-item-top">
-              <div className="timeline-marker-top">
-                <div className="timeline-number">03</div>
-                <div className="timeline-year">2024 - 2025</div>
-              </div>
-              <div className="timeline-content-top">
-                <h3 className="timeline-title">Non-Trivial</h3>
-                <p className="timeline-description">
-                  Global research finalist engineered data-driven climate
-                  solutions to combat environmental degradation.
-                </p>
-              </div>
+          {/* Card 2 - Stanford Research */}
+          <div className="experience-card card-2">
+            <div className="card-header">
+              <span className="card-number">02</span>
+              <span className="card-year">Summer 2025</span>
             </div>
+            <h3 className="card-title">
+              Neurodiversity Researcher @ Stanford SNP-REACH
+            </h3>
+            <p className="card-description">
+              Developed new frameworks to share neurodiversity awareness and
+              create inclusive environments. Collected and analyzed data on
+              neurodivergent experiences in tech education.
+            </p>
+            <div className="card-tags">
+              <span>Awareness Campaigns</span>
+              <span>Inclusion Research</span>
+              <span>Data Analysis</span>
+              <span>Education</span>
+            </div>
+            <div className="card-highlight"></div>
+          </div>
 
-            <div className="timeline-item-top">
-              <div className="timeline-marker-top">
-                <div className="timeline-number">04</div>
-                <div className="timeline-year">2023 - 2024</div>
-              </div>
-              <div className="timeline-content-top">
-                <h3 className="timeline-title">
-                  Pearl Impact Network Africa (NGO)
-                </h3>
-                <p className="timeline-description">
-                  Revamped website with modern frameworks, driving 40% higher
-                  engagement through sleek UX.
-                </p>
-              </div>
+          {/* Card 3 - IBM Quantum */}
+          <div className="experience-card card-3">
+            <div className="card-header">
+              <span className="card-number">03</span>
+              <span className="card-year">Summer 2025</span>
             </div>
+            <h3 className="card-title">Quantum Computing @ IBM Qiskit</h3>
+            <p className="card-description">
+              Completed intensive quantum programming training using Qiskit.
+              Built and simulated quantum circuits through hands-on labs
+              covering superposition, entanglement, and quantum algorithms.
+            </p>
+            <div className="card-tags">
+              <span>Qiskit</span>
+              <span>Quantum Circuits</span>
+              <span>Quantum Algorithms</span>
+              <span>Python</span>
+            </div>
+            <div className="card-highlight"></div>
+          </div>
 
-            <div className="timeline-item-top">
-              <div className="timeline-marker-top">
-                <div className="timeline-number">05</div>
-                <div className="timeline-year">2019 - 2020</div>
-              </div>
-              <div className="timeline-content-top">
-                <h3 className="timeline-title"> Innovation Growth Hub </h3>
-                <p className="timeline-description">
-                  Mentored peers in Scratch, led app ideation for women's
-                  rights.
-                </p>
-              </div>
+          {/* Card 4 - Yale Fellowship */}
+          <div className="experience-card card-1">
+            <div className="card-header">
+              <span className="card-number">04</span>
+              <span className="card-year">Spring 2025</span>
             </div>
+            <h3 className="card-title">
+              Yale Entrepreneurial Fellowship (1st Place)
+            </h3>
+            <p className="card-description">
+              Contributed research and product development for Proact+, an AI
+              focus app that won top prize among 10 teams. Helped design
+              behavioral models and pitch the solution to judges.
+            </p>
+            <div className="card-tags">
+              <span>AI Research</span>
+              <span>Product Development</span>
+              <span>Pitching</span>
+              <span>Team Collaboration</span>
+            </div>
+            <div className="card-highlight"></div>
+          </div>
+
+          {/* Card 5 - BulleTeen */}
+          <div className="experience-card card-2">
+            <div className="card-header">
+              <span className="card-number">05</span>
+              <span className="card-year">Sep 2024 - Present</span>
+            </div>
+            <h3 className="card-title">
+              The BulleTeen | Web Dev & Hiring Lead
+            </h3>
+            <p className="card-description">
+              <span className="card-achievement">▲</span> Boosted STEM
+              accessibility 50% via UX optimization
+              <br />
+              <span className="card-achievement">▲</span> Scaled to 500+ monthly
+              visitors
+              <br />
+              <span className="card-achievement">▲</span> Built/managed 55+
+              volunteer team
+              <br />
+              <span className="card-achievement">▲</span> Produced global STEM
+              content pipeline
+            </p>
+            <div className="card-tags">
+              <span>Web Accessibility</span>
+              <span>Team Scaling</span>
+              <span>Content Strategy</span>
+              <span>UX Optimization</span>
+            </div>
+            <div className="card-highlight"></div>
+          </div>
+
+          {/* Card 6 - Non-Trivial */}
+          <div className="experience-card card-3">
+            <div className="card-header">
+              <span className="card-number">06</span>
+              <span className="card-year">2024-2025</span>
+            </div>
+            <h3 className="card-title">Non-Trivial</h3>
+            <p className="card-description">
+              Researched and modeled climate solutions as global finalist,
+              analyzing environmental datasets and presenting findings to domain
+              experts.
+            </p>
+            <div className="card-tags">
+              <span>Climate Research</span>
+              <span>Data Analysis</span>
+              <span>Research Presentation</span>
+              <span>Global Finalist</span>
+              <span>Competitive Analysis</span>
+            </div>
+            <div className="card-highlight"></div>
+          </div>
+
+          {/* Card 7 - Pearl Impact */}
+          <div className="experience-card card-4">
+            <div className="card-header">
+              <span className="card-number">07</span>
+              <span className="card-year">2022-2023</span>
+            </div>
+            <h3 className="card-title">Pearl Impact Network Africa</h3>
+            <p className="card-description">
+              Modernized NGO website with improved UX/UI, increasing engagement
+              by 40% through responsive design and streamlined content delivery.
+            </p>
+            <div className="card-tags">
+              <span>Web Redesign</span>
+              <span>UX Optimization</span>
+              <span>Non-profit Tech</span>
+              <span>Frontend Development</span>
+            </div>
+            <div className="card-highlight"></div>
+          </div>
+
+          {/* Card 8 - Innovation Hub */}
+          <div className="experience-card card-5">
+            <div className="card-header">
+              <span className="card-number">08</span>
+              <span className="card-year">2019 - 2020</span>
+            </div>
+            <h3 className="card-title">Innovation Growth Hub Mentor</h3>
+            <p className="card-description">
+              Taught Scratch programming to 50+ peers and co-designed women's
+              rights app prototypes, blending tech education with social
+              advocacy.
+            </p>
+            <div className="card-tags">
+              <span>Tech Education</span>
+              <span>App Prototyping</span>
+              <span>Youth Mentorship</span>
+              <span>Gender Equity</span>
+            </div>
+            <div className="card-highlight"></div>
           </div>
         </div>
       </div>
