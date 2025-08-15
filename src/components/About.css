@@ -357,7 +357,7 @@
 }
 
 .tools {
-  font-family: "safiro-regular", sans-serif;
+  font-family: "details", sans-serif;
   font-size: 1.2rem;
 }
 
@@ -493,8 +493,8 @@
 /* Main section title */
 .section-main-title {
   font-family: "praisejah-name", serif;
-  font-size: 3.5rem;
-  color: #eec4ce; /* Pinkish cream */
+  font-size: 2.5rem;
+  color: #f5c3cf; /* Pinkish cream */
   margin: 0 auto 15px auto;
   line-height: 1.1;
   font-weight: normal;
@@ -690,7 +690,7 @@
   }
   
   .section-main-title {
-    font-size: 2.8rem;
+    font-size: 2rem;
     margin-left: 80px;
   }
 }
