@@ -5,6 +5,7 @@ import Cursor from "./custom/cursor";
 import Intro from "./custom/Intro";
 import Project from "./components/Project";
 import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -22,8 +23,9 @@ function App() {
         ) : (
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Project/>}/>
+            <Route path="/projects" element={<Project />} />
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         )}
       </div>
