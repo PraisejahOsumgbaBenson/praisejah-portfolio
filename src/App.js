@@ -19,6 +19,9 @@ const Project = lazy(() =>
 const About = lazy(() =>
   import(/* webpackChunkName: "about" */ "./components/About")
 );
+const Contact = lazy(() =>
+  import(/* webpackChunkName: "contact" */ "./components/Contact")
+);
 
 /**
  * Loading component that shows while lazy-loaded components are being fetched
@@ -64,6 +67,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Project />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           )}
         </Suspense>
