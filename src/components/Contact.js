@@ -3,6 +3,8 @@ import Header from "./Header";
 import "./Contact.css";
 import { FiArrowRight } from "react-icons/fi";
 
+import Terminal from "./Terminal"; // Add terminal import
+
 /**
  * Contact component - Renders a contact form with submission handling
  * Features include form validation, submission status feedback, and auto-dismissal of status messages
@@ -98,6 +100,7 @@ function Contact() {
   };
 
   return (
+    <>
     <div className="contact-container">
       <Header />
       <div className="contact-wrapper">
@@ -243,6 +246,8 @@ function Contact() {
         </div>
       </div>
     </div>
+    <Terminal />
+    </>
   );
 }
 

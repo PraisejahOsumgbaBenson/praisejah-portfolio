@@ -6,7 +6,7 @@ import "./Style.css";
 import hoverSound from "../assets/sounds/header_keys.mp3"; // Hover sound effect
 import unlockSound from "../assets/sounds/silent.mp3"; // Silent audio to unlock autoplay
 
-import Terminal from "./Terminal"; // Add this import
+import Terminal from "./Terminal"; // Add terminal import
 
 function Home() {
   // Track if audio is unlocked and ready to be played
