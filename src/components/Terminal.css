@@ -181,7 +181,7 @@
   font-size: 12px;
 }
 
-.input-line {
+.input-lines {
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.2);
@@ -196,7 +196,7 @@
   font-weight: 600;
 }
 
-.input-line input {
+.input-lines input {
   background: transparent;
   border: none;
   color: #E8E8E8;

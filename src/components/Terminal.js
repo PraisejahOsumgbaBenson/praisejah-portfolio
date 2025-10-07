@@ -211,7 +211,7 @@ const Terminal = () => {
                 ))}
               </div>
             ))}
-            <div className="input-line">
+            <div className="input-lines">
               <span className="prompt">$</span>
               <input
                 type="text"
