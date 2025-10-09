@@ -160,7 +160,7 @@ function Header({ onAboutClick }) {
           </li> */}
           <li>
             <Link
-              to="/skills"
+              to="/contact"
               className="nav-link"
               onMouseEnter={playHoverSound}
             >

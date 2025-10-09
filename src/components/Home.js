@@ -6,6 +6,8 @@ import "./Style.css";
 import hoverSound from "../assets/sounds/header_keys.mp3"; // Hover sound effect
 import unlockSound from "../assets/sounds/silent.mp3"; // Silent audio to unlock autoplay
 
+import Terminal from "./Terminal"; // Add terminal import
+
 function Home() {
   // Track if audio is unlocked and ready to be played
   const [audioReady, setAudioReady] = useState(false);
@@ -229,6 +231,8 @@ function Home() {
           PRAISEJAH (HER/SHE) AKA PJ IS AN INDEPENDENT ENGINEER FROM NIGERIA.
         </div>
       </div>
+      {/* Add the Terminal component */}
+      <Terminal />
     </>
   );
 }

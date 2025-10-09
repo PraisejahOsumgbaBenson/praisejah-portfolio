@@ -1,73 +1,92 @@
+/* ====================== */
+/*  ABOUT PAGE STYLESHEET */
+/* ====================== */
+
+/* Main container for the about page */
 .about-container {
-  margin-top: 160px;
-  overflow: hidden;
+  margin-top: 160px; /* Compensates for fixed header */
+  overflow: hidden; /* Prevents horizontal scroll */
 }
 
+/* Custom font for the main title */
 @font-face {
   font-family: "about-title";
   src: url("../assets/fonts/Tempting\ -\ PERSONAL\ USE\ ONLY.ttf") format("truetype");
   font-weight: 50;
 }
 
+/* Title section styling */
 .about-title {
   display: flex;
   flex-direction: column;
-  color: #8eeb9e;
-  font-family: "about-title", serif !important; /* Ensure the font is applied */
-  font-weight: 100;
+  color: #8eeb9e; /* Mint green color */
+  font-family: "about-title", serif !important;
+  font-weight: 100; /* Thin font weight */
 }
 
+/* Glowing text effect for main title */
 .about-title h1 {
- text-shadow: 0 0 10px rgba(243, 204, 224, 0.8),
-    0 0 20px rgba(217, 243, 204, 0.6);
+  text-shadow: 0 0 10px rgba(243, 204, 224, 0.8),
+              0 0 20px rgba(217, 243, 204, 0.6);
   transition: text-shadow 0.3s ease-in-out;
 }
 
+/* Hover effect for title glow */
 .about-title h1:hover {
-  text-shadow: 0 0 15px rgb(243, 204, 229), 0 0 30px rgba(243, 204, 240, 0.8);
+  text-shadow: 0 0 15px rgb(243, 204, 229), 
+              0 0 30px rgba(243, 204, 240, 0.8);
 }
 
+/* Custom font for surname */
 @font-face {
   font-family: "surname";
   src: url("../assets/fonts/Glamour.ttf") format("truetype");
   font-weight: 100;
 }
-.praisejah-title{
- font-weight: 100;
- font-family: "about-title", serif !important;
+
+/* Main name styling */
+.praisejah-title {
+  font-weight: 100;
+  font-family: "about-title", serif !important;
 }
+
+/* Surname styling with offset */
 .surname {
-  margin-left: 215px;
-  margin-top: -10px;
+  margin-left: 215px; /* Right offset */
+  margin-top: -10px; /* Moves closer to main name */
   font-family: surname, system-ui;
   font-weight: 100;
 }
 
+/* Header section container */
 .about-header {
   margin-top: 40px;
-  padding: 100px;
+  padding: 100px; /* Generous padding */
 }
 
+/* Custom readable font for paragraphs */
 @font-face {
   font-display: block;
   font-family: safiro-regular;
   font-style: normal;
   font-weight: 400;
   src: url(../assets/fonts/safiro-regular.woff2) format("woff2"),
-    url(../assets/fonts/safiro-regular.woff2) format("woff");
+       url(../assets/fonts/safiro-regular.woff2) format("woff");
 }
+
+/* Bio text container */
 .passage-container {
   display: flex;
   justify-content: flex-start;
-  padding-left: 160px;
+  padding-left: 160px; /* Indentation */
   margin-top: 20px;
-  color: #e5e9d1;
+  color: #e5e9d1; /* Cream color */
   font-family: safiro-regular;
   font-size: 15px;
 }
 
 .passage {
-  max-width: 600px;
+  max-width: 600px; /* Optimal reading width */
 }
 
 .first-section {
@@ -75,34 +94,39 @@
   flex-direction: column;
 }
 
+/* Text block styling */
 .text-block {
   display: block;
-  line-height: 1.6;
+  line-height: 1.6; /* Improved readability */
   margin-bottom: 5px;
 }
 
 .second {
-  margin-top: 15px;
+  margin-top: 15px; /* Space between paragraphs */
 }
 
+/* Main content + image layout */
 .about-section {
   display: flex;
 }
 
+/* Diary image positioning */
 .diary-image {
-  margin-left: 230px;
-  margin-top: -250px;
+  margin-left: 230px; /* Offset from text */
+  margin-top: -250px; /* Overlap effect */
 }
 
 .img {
   border-radius: 5px;
 }
 
+/* Scrolling marquee text at bottom */
 @font-face {
   font-family: "scrolling-text";
   src: url("../assets/fonts/Baristo.ttf") format("truetype");
   font-weight: 100;
 }
+
 .scrolling-text {
   width: 100%;
   height: 40px;
@@ -110,9 +134,9 @@
   position: fixed;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
-  background-color: #c5918b;
-  color: #385338;
+  transform: translateX(-50%); /* Perfect centering */
+  background-color: #c5918b; /* Dusty pink */
+  color: #385338; /* Dark green */
   font-size: 15px;
   font-weight: bold;
   font-family: scrolling-text, serif;
@@ -129,9 +153,10 @@
 
 .scrolling-content p {
   margin: 0;
-  padding-right: 50px;
+  padding-right: 50px; /* Space between items */
 }
 
+/* Marquee animation */
 @keyframes scrollText {
   from {
     transform: translateX(0%);
@@ -141,131 +166,130 @@
   }
 }
 
-
-/* Skills Section */
-
-/* Bow decoration styles */
+/* Decorative bow element */
 .bow-container {
   display: flex;
   justify-content: center;
   margin-top: 200px;
-  margin-bottom: -195px; /* Adjust this to position the bow closer to the resume */
+  margin-bottom: -195px; /* Negative margin for overlap */
   z-index: 10;
   position: relative;
 }
 
 .bow-image {
-  width: 90px; /* Adjust size as needed */
+  width: 90px;
   height: auto;
   filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2));
-  transform: rotate(-5deg);
-  /* animation: float 3s ease-in-out infinite; */
+  transform: rotate(-5deg); /* Slight tilt */
 }
 
+/* Resume/CV section styling */
 .resume-layout {
   display: flex;
-  gap: 40px; /* Space between columns */
-  padding: 20px; /* Outer spacing */
+  gap: 40px;
+  padding: 20px;
   margin-top: 140px;
-  border-radius: 30px;
+  border-radius: 30px 30px 0 0; /* Only round top corners */
   position: relative;
   overflow: hidden;
-  background-color: #da99a9; 
+  background-color: #da99a9; /* Blush pink */
 }
 
-/* Resume background letters */
+/* Decorative background letters */
 .resume-bg-letters {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; /* Allows clicking through */
+  z-index: 0; /* Behind content */
 }
 
-
+/* Custom font for background letters */
 @font-face {
   font-family: "kom";
   src: url("../assets/fonts/candlescript/Candlescript\ Demo\ Version.otf") format("truetype");
   font-weight: 100;
 }
+
 .resume-bg-letter {
   position: absolute;
   font-family: "kom", serif;
-  font-size: 25rem;
+  font-size: 25rem; /* Massive size */
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.08); /* Very subtle white letters */
+  color: rgba(255, 255, 255, 0.08); /* Very subtle */
   line-height: 1;
-  user-select: none;
+  user-select: none; /* Prevents text selection */
 }
 
+/* Position first letter (P) */
 .resume-bg-letter:first-child {
   top: -50px;
   left: -50px;
   transform: rotate(-15deg);
 }
 
+/* Position second letter (B) */
 .resume-bg-letter:last-child {
   bottom: -50px;
   right: -50px;
   transform: rotate(15deg);
 }
 
-/* Ensure content stays above the letters */
+/* Resume columns */
 .left-column,
 .middle-column,
 .right-column {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Above background letters */
   background-color: transparent;
+  padding: 85px;
 }
 
-/* left column 1: Name/Contact */
-.left-column,
-.middle-column,
-.right-column {
-  padding: 85px; /* Inner spacing for each column */
-}
 .left-column {
-  margin-top: 110px;
+  margin-top: 150px; /* Extra spacing */
 }
 
+/* Name styling */
 @font-face {
   font-family: "praisejah-name";
   src: url("../assets/fonts/Aston\ Script.ttf") format("truetype");
   font-weight: 100;
 }
+
 .praisejah {
   font-size: 4.3rem;
   margin: 0 0 5px 0;
-  font-weight: 600;
+  font-weight: normal;
   font-family: "praisejah-name", sans-serif;
-  color: #95384e;
+  color: #95384e; /* Deep pink */
 }
 
+/* "Beauty" styling */
 @font-face {
   font-family: "beauty-name";
   src: url("../assets/fonts/candlescript/Candlescript\ Demo\ Version.otf") format("truetype");
   font-weight: 100;
 }
+
 .beauty {
   font-size: 4rem;
   margin: 0 0 5px 0;
   font-weight: 550;
-  margin-top: -29px;
-  margin-left: 30px;
+  margin-top: -29px; /* Tighter spacing */
+  margin-left: 30px; /* Indent */
   font-family: "beauty-name", sans-serif;
-  color: #5f6644;
+  color: #5f6644; /* Olive green */
 }
 
-
+/* Surname styling */
 @font-face {
   font-family: "name-roman";
   src: url("../assets/fonts/christmas_gladness/Christmas\ Gladness.otf") format("truetype");
-  /*   src: url('../Augent.ttf') format('truetype'); */
   font-weight: 100;
 }
+
 .name-surname {
   font-size: 1.1rem;
   margin: 0 0 5px 0;
@@ -275,15 +299,16 @@
   font-family: "name-roman", sans-serif;
 }
 
+/* Personal details typography */
 .birthdate {
   font-size: 0.89rem;
-  opacity: 0.7;
+  opacity: 0.7; /* Subtle */
   margin: 0;
   font-family: "Courier New", monospace;
 }
 
 .contact-spacing {
-  height: 30px;
+  height: 30px; /* Consistent spacing */
 }
 
 .phone,
@@ -293,35 +318,7 @@
   font-family: "Courier New", monospace;
 }
 
-/* column 2: Middle Sections (Education, License, Tools) */
-.middle-row {
-  display: flex;
-  gap: 40px;
-}
-
-/* column 3: Bottom Sections (Awards, Activity) */
-.bottom-row {
-  display: flex;
-  gap: 40px;
-}
-
-/* Shared Section Styles */
-.education-section,
-.license-section,
-.tools-section,
-.awards-section,
-.activity-section {
-  flex: 1;
-}
-
-
-@font-face {
-  font-family: "more";
-  src: url("../assets/fonts/Bubbly-Regular.otf") format("truetype");
-  src: url("../assets/fonts/merchant_copy/Merchant\ Copy.ttf") format("truetype");
-  /*  src: url('../Vortigra.otf') format('truetype'); */
-  font-weight: 100;
-}
+/* Resume content sections */
 .heading {
   font-size: 1.3rem;
   cursor: pointer;
@@ -335,22 +332,23 @@
 }
 
 .spacing {
-  padding-bottom: 20px;
+  padding-bottom: 20px; /* Section spacing */
 }
 
 .date {
-  width: 120px;
+  width: 120px; /* Fixed width for alignment */
   flex-shrink: 0;
   font-family: "Courier New", monospace;
   font-size: 0.85rem;
 }
 
-
+/* Details text */
 @font-face {
   font-family: "details";
   src: url("../assets/fonts/merchant_copy/Merchant\ Copy.ttf") format("truetype");
   font-weight: 100;
 }
+
 .details {
   flex-grow: 1;
   font-size: 1.2rem;
@@ -359,11 +357,11 @@
 }
 
 .tools {
-  font-family: "safiro-regular", sans-serif;
-  font-size: 1.2rem;
   font-family: "details", sans-serif;
+  font-size: 1.2rem;
 }
-/* Responsive Adjustments */
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .middle-row,
   .bottom-row {
@@ -372,7 +370,7 @@
   }
 }
 
-/* Colorful animated dots */
+/* Animated bullet points */
 .tools {
   position: relative;
   padding-left: 25px;
@@ -389,6 +387,7 @@
   margin-top: -4px;
 }
 
+/* Alternating bullet colors */
 .entry:nth-child(odd) .tools::before {
   color: #92516b;
 }
@@ -397,20 +396,14 @@
   color: #c27a8c;
 }
 
+/* Pulsing animation */
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.3);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
 }
 
-/* horizinatal skill lines */
-/* Line under Praisejah Beauty */
+/* Divider lines */
 .name-divider {
   height: 1px;
   width: 50%;
@@ -419,34 +412,22 @@
   opacity: 0.2;
 }
 
-/* Line before Education section */
-.before-education {
-  height: 1px;
-  width: 100%;
-  background-color: #6d5555;
-  margin: 40px 0;
-  opacity: 0.2;
-}
-
-/* Line before Tools section */
+.before-education,
 .before-tools {
   height: 1px;
   width: 100%;
   background-color: #6d5555;
   margin: 40px 0;
   opacity: 0.2;
-}
-
-/* verticle lines */
-/* Vertical line beside Education section */
-.middle-column {
   position: relative;
+  z-index: 1;
 }
 
+/* Vertical dividers */
 .middle-column::before {
   content: "";
   position: absolute;
-  left: -20px; /* Adjust this value to position the line */
+  left: -20px;
   top: 0;
   height: 100%;
   width: 1px;
@@ -454,15 +435,10 @@
   opacity: 0.2;
 }
 
-/* Vertical line beside Tools section */
-.right-column {
-  position: relative;
-}
-
 .right-column::before {
   content: "";
   position: absolute;
-  left: -20px; /* Adjust this value to position the line */
+  left: -20px;
   top: 180px;
   height: 50%;
   width: 1px;
@@ -470,28 +446,27 @@
   opacity: 0.2;
 }
 
-/* Adjust the existing horizontal lines to work with vertical lines */
-.before-education,
-.before-tools {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* Experience Timeline with Top Numbers */
+/* Experience section styling */
 .experience-section {
-  padding: 80px 100px;
+  padding: 120px 100px;
+  background-color: #1a1e16; /* Dark green */
+  color: #edf3cc; /* Light cream */
   position: relative;
-  background-color: #333a2a;
-  color: #edf3cc;
+  overflow: hidden;
 }
 
 .section-header {
+  margin-bottom: 60px;
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-left: 100px; /* Space for vertical elements */
 }
 
+/* Vertical label styling */
 .section-label {
   font-family: "safiro-regular", sans-serif;
   font-size: 14px;
@@ -500,249 +475,265 @@
   color: rgba(237, 243, 204, 0.6);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  margin-right: 20px;
+  position: absolute;
+  left: -50px;
+  top: -70px;
 }
 
+/* Vertical accent line */
 .vertical-line {
   width: 1px;
   height: 80px;
   background-color: rgba(237, 243, 204, 0.2);
-  margin-top: 10px;
+  position: absolute;
+  left: -60px;
+  top: -70px;
 }
 
-.timeline-container-top-numbers {
-  display: flex;
-  gap: 40px;
-  padding-left: 40px;
+/* Main section title */
+.section-main-title {
+  font-family: "praisejah-name", serif;
+  font-size: 2.5rem;
+  color: #f5c3cf; /* Pinkish cream */
+  margin: 0 auto 15px auto;
+  line-height: 1.1;
+  font-weight: normal;
+  text-align: center;
+  width: fit-content;
 }
 
-.timeline-item-top {
-  flex: 1;
+/* Section subtitle */
+.section-subtitle {
+  font-family: "safiro-regular", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(237, 243, 204, 0.8);
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* Experience cards grid */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
   position: relative;
-  margin-left: 20px;
+  z-index: 2;
+}
+
+/* Individual experience card */
+.experience-card {
+  background: rgba(40, 45, 30, 0.6);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(237, 243, 204, 0.1);
+  min-height: 320px;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-/* Keyframes for the rising animation */
-@keyframes riseUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.timeline-item-top.visible {
-  animation: riseUp 0.5s ease forwards;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.timeline-marker-top {
-  margin-bottom: 50px; /* Space between number/year and content */
+/* Visible state for scroll animation */
+.experience-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-
-@font-face {
-  font-family: "skill-num";
-  src: url("../assets/fonts/Vortigra.otf") format("truetype");
-  font-weight: 100;
+/* Card hover effects */
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(237, 243, 204, 0.3);
 }
-.timeline-number {
+
+/* Card header (number + year) */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.card-number {
   font-family: "skill-num", serif;
-  font-size: 90px;
+  font-size: 2.5rem;
   color: rgba(237, 243, 204, 0.8);
+  line-height: 1;
 }
 
-.timeline-year {
+.card-year {
   font-family: "safiro-regular", sans-serif;
-  font-size: 15px;
+  font-size: 0.9rem;
   color: rgba(237, 243, 204, 0.6);
-  margin-top: 8px;
+  align-self: flex-end;
 }
 
-.timeline-content-top {
-  padding-top: 10px; /* Additional spacing if needed */
-  margin-top: 300px;
-  width: 200px;
-}
-@font-face {
-  font-family: "timeline";
-  src: url("../assets/fonts/Augent.ttf") format("truetype");
-  font-weight: 100;
-}
-
-.timeline-title {
+/* Card content styling */
+.card-title {
   font-family: "timeline", serif;
-  font-size: 20px;
+  font-size: 1.5rem;
   color: #edf3cc;
   margin-bottom: 15px;
+  line-height: 1.3;
 }
 
-.timeline-description {
+.card-description {
   font-family: "safiro-regular", sans-serif;
-  font-size: 14px;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: rgba(237, 243, 204, 0.8);
+  margin-bottom: 20px;
 }
 
-/* Vertical dividers between items */
-.timeline-item-top:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: -20px;
-  top: 0;
-  height: 100%;
-  width: 1px;
-  background-color: rgba(237, 243, 204, 0.1);
+/* Skill tags */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .experience-section {
-    padding: 60px;
-  }
-
-  .timeline-container-top-numbers {
-    gap: 30px;
-  }
-}
-
-@media (max-width: 992px) {
-  .timeline-container-top-numbers {
-    flex-direction: column;
-    gap: 60px;
-  }
-
-  .timeline-item-top:not(:last-child)::after {
-    right: auto;
-    left: 0;
-    top: auto;
-    bottom: -30px;
-    height: 1px;
-    width: 100%;
-  }
-
-  .timeline-marker-top {
-    margin-bottom: 30px;
-    text-align: left;
-  }
-}
-
-@media (max-width: 768px) {
-  .experience-section {
-    padding: 40px 20px;
-  }
-
-  .section-header {
-    margin-bottom: 40px;
-  }
-
-  .timeline-container-top-numbers {
-    padding-left: 20px;
-  }
-
-  .timeline-number {
-    font-size: 40px;
-  }
-
-  .timeline-title {
-    font-size: 20px;
-  }
-
-  .timeline-description {
-    font-size: 14px;
-  }
-}
-
-/* Centered Header Styles */
-.timeline-header {
-  text-align: center;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 1;
-  margin-top: -120px;
-}
-@font-face {
-  font-family: "k";
-  src: url("../assets/fonts/Aston Script.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-.timeline-main-title {
-  font-family: "k", serif;
-  font-size: 2rem;
-  color: #eec4ce; /* Light mint */
-  margin-bottom: 15px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: relative;
-  display: inline-block;
-}
-
-.timeline-main-title::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(224, 235, 196, 0.8),
-    transparent
-  );
-}
-
-.timeline-subtitle {
+.card-tags span {
   font-family: "safiro-regular", sans-serif;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  background: rgba(237, 243, 204, 0.1);
+  border-radius: 20px;
+  color: rgba(237, 243, 204, 0.9);
 }
 
-/* Responsive adjustments */
+/* Gradient highlight effect */
+.card-highlight {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    circle at center, 
+    rgba(142, 235, 158, 0.1) 0%, 
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.experience-card:hover .card-highlight {
+  opacity: 1;
+}
+
+/* Individual card color variants */
+.card-1:hover {
+  background: rgba(40, 45, 30, 0.8);
+  border-color: rgba(142, 235, 158, 0.3);
+}
+.card-1 .card-tags span {
+  background: rgba(142, 235, 158, 0.15);
+}
+
+.card-2:hover {
+  background: rgba(40, 45, 30, 0.8);
+  border-color: rgba(218, 153, 169, 0.3);
+}
+.card-2 .card-tags span {
+  background: rgba(218, 153, 169, 0.15);
+}
+
+.card-3:hover {
+  background: rgba(40, 45, 30, 0.8);
+  border-color: rgba(149, 56, 78, 0.3);
+}
+.card-3 .card-tags span {
+  background: rgba(149, 56, 78, 0.15);
+}
+
+.card-4:hover {
+  background: rgba(40, 45, 30, 0.8);
+  border-color: rgba(95, 102, 68, 0.3);
+}
+.card-4 .card-tags span {
+  background: rgba(95, 102, 68, 0.15);
+}
+
+.card-5:hover {
+  background: rgba(40, 45, 30, 0.8);
+  border-color: rgba(197, 122, 140, 0.3);
+}
+.card-5 .card-tags span {
+  background: rgba(197, 122, 140, 0.15);
+}
+
+/* Subtle background pattern */
+.experience-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(142, 235, 158, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(218, 153, 169, 0.03) 0%, transparent 20%);
+  z-index: 1;
+}
+
+/* ====================== */
+/* RESPONSIVE ADJUSTMENTS */
+/* ====================== */
+
+@media (max-width: 1024px) {
+  .experience-section {
+    padding: 80px 60px;
+  }
+  
+  .section-main-title {
+    font-size: 2rem;
+    margin-left: 80px;
+  }
+}
+
 @media (max-width: 768px) {
-  .timeline-main-title {
+  .experience-section {
+    padding: 60px 30px;
+  }
+  
+  .section-label, 
+  .vertical-line {
+    display: none;
+  }
+  
+  .section-main-title {
+    margin-left: 0;
+    font-size: 2.5rem;
+  }
+  
+  .section-subtitle {
+    margin-left: 0;
+  }
+  
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 50px 20px;
+  }
+  
+  .section-main-title {
     font-size: 2rem;
   }
-
-  .timeline-subtitle {
-    font-size: 0.9rem;
+  
+  .experience-card {
+    padding: 30px;
+    min-height: 280px;
   }
-
-  .timeline-header {
-    margin-bottom: 40px;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .card-title {
+    font-size: 1.3rem;
   }
 }
-
-
-/* Horizontal Timeline Wrapper */
-/* .horizontal-timeline-wrapper { */
-  /* width: 100%; */
-  /* overflow-x: auto; */
-  /* padding-bottom: 30px; */
-  /* -webkit-overflow-scrolling: touch; */
-  /* scroll-behavior: smooth; */
-/* } */
-/*  */
-/* .timeline-item-top { */
-  /* min-width: 300px; */
-  /* position: relative; */
-  /* flex-shrink: 0; */
-/* } */
