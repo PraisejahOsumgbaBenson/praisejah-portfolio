@@ -149,7 +149,7 @@ function Header({ onAboutClick }) {
               ABOUT
             </Link>
           </li>
-          <li>
+         {/*  <li>
             <Link
               to="/projects"
               className="nav-link"
@@ -157,7 +157,7 @@ function Header({ onAboutClick }) {
             >
               PROJECT
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to="/skills"
