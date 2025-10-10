@@ -13,9 +13,9 @@ const Intro = lazy(() =>
 const Home = lazy(() =>
   import(/* webpackChunkName: "home" */ "./components/Home")
 );
-const Project = lazy(() =>
-  import(/* webpackChunkName: "project" */ "./components/Project")
-);
+// const Project = lazy(() =>
+//   import(/* webpackChunkName: "project" */ "./components/Project")
+// );
 const About = lazy(() =>
   import(/* webpackChunkName: "about" */ "./components/About")
 );
@@ -65,7 +65,8 @@ function App() {
             // Main content routes after intro completes
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Project />} />
+         {/*      <Route path="/projects" element={<Project />} /> */}
+
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
