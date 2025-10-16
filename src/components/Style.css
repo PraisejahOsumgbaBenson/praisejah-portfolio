@@ -1,6 +1,6 @@
-
 @import url("https://api.fontshare.com/v2/css?f[]=striper@400&f[]=chillax@400&f[]=stardom@400&f[]=space-grotesk@300,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Gaegu&family=Gotu&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap");
+
 /* bebas neue */
 @font-face {
   font-display: block;
@@ -46,19 +46,16 @@ html {
 body {
   margin: 0;
   box-sizing: border-box;
-  background-size: cover; /* Ensures the background image covers the entire body */
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-color: #566246; /* Uncomment if you want a fallback color */
-/* Hides the scrollbar */
+  background-repeat: no-repeat;
+  background-color: #566246;
   scroll-behavior: smooth;
-  
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Hides scrollbar in Webkit browsers (e.g., Chrome, Edge, Safari) */
+  display: none;
 }
-
 
 /* Header container */
 .header {
@@ -69,94 +66,91 @@ body::-webkit-scrollbar {
   padding-top: 2rem;
   padding-left: 4rem;
   padding-right: 4rem;
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #566246;
 }
 
 /* Left section containing logo and nav links */
 .header-left {
   display: flex;
-  align-items: center; /* Align vertically */
+  align-items: center;
 }
+
 @font-face {
   font-family: 'nav';
   src: url('../assets/fonts/Glamour.ttf') format('truetype');
   font-weight: 100;
-
 }
+
 /* Logo */
 .logo {
-  width: 50px; /* Fixed width for the logo */
-  margin-right: 10px; /* Space between logo and navigation */
+  width: 50px;
+  margin-right: 10px;
   font-family: "nav", system-ui;
-  font-weight: 600; /* Bold font for emphasis */
-  font-size: 30px; /* Large logo size */
-  color: #d9979c; /* Dark red color */
- transition: transform 0.3s ease, color 0.3s ease;
- letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 30px;
+  color: #d9979c;
+  transition: transform 0.3s ease, color 0.3s ease;
+  letter-spacing: 1px;
 }
 
 .logo:hover{
   color: #c7e2c7;
 }
+
 .left-nav{
   display: flex;
   align-items: center;
   gap: 70px;
 }
+
 .time {
   font-family: safiro-regular;
   color: #F1F2EB;
   font-size: 13px;
-      text-transform: uppercase;
+  text-transform: uppercase;
 }
+
 /* Styling for navigation links */
 .nav-link {
-  text-decoration: none; /* Remove underline from links */
-  position: relative; /* For positioning the underline effect */
-  transition: color 0.3s, transform 0.3s; /* Smooth transitions */
-
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s, transform 0.3s;
+  margin: 0 15px;
+  color: #F1F2EB;
+  font-size: 12px;
+  cursor: pointer;
 }
 
-/* Hover effects for links */
 .nav-link:hover {
-  color: #F1F2EB; /* White text on hover */
-  border-radius: 4px; /* Rounded corners */
+  color: #D8DAD3;
 }
 
-/* Underline effect */
 .nav-link::after {
   content: "";
   position: absolute;
   left: 2px;
   right: 0;
-  bottom: -5px; /* Positioning the underline */
-  height: 1.2px; /* Thickness of the underline */
-  background-color: #db9197; /* Red underline */
-  transform: scaleX(0); /* Initially hidden */
-  transition: transform 0.5s; /* Smooth transition for the underline */
+  bottom: -5px;
+  height: 1.2px;
+  background-color: #db9197;
+  transform: scaleX(0);
+  transition: transform 0.5s;
 }
 
-/* Hover effect to reveal the underline */
 .nav-link:hover::after {
-  transform: scaleX(1); /* Show underline on hover */
+  transform: scaleX(1);
 }
 
-.nav-link {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #F1F2EB;
-  font-size: 12px;
-  cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-.nav-link:hover {
-  color: #D8DAD3; /* Hover effect */
-}
 /* Center section of the header */
 .header-center {
   display: flex;
-  justify-content: right; /* Center-align links */
-  flex-grow: 1; /* Ensure the center section takes available space */
+  justify-content: right;
+  flex-grow: 1;
   gap: 80px;
   align-items: center;
 }
@@ -166,16 +160,16 @@ body::-webkit-scrollbar {
   display: flex;
   font-family: safiro-regular;
   color: #F1F2EB;
-  list-style: none; /* Remove bullet points */
+  list-style: none;
   gap: -10px;
-
 }
 
 /* Right section with Services link */
 .header-right {
   display: flex;
-  align-items: center; /* Vertically align */
+  align-items: center;
 }
+
 .darkmode{
   background-color: #bd7085;
   border-radius: 9999px;
@@ -183,30 +177,9 @@ body::-webkit-scrollbar {
   width: 1rem;
   border: none;
 }
+
 .darkmode:hover{
   background-color: #35582f;
-}
-
-/* Responsive design for small screens */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column; /* Stack the header sections */
-    align-items: flex-start; /* Align to the left */
-  }
-
-  .header-center,
-  .header-right {
-    width: 100%; /* Full width for center and right sections */
-    text-align: center; /* Center-align the links */
-  }
-
-  .nav-list {
-    flex-direction: column; /* Stack links vertically */
-  }
-
-  .nav-link {
-    margin: 10px 0; /* Add space between each link */
-  }
 }
 
 /* Socials container */
@@ -218,7 +191,6 @@ body::-webkit-scrollbar {
   position: absolute;
   right: -350px;
   color: #141414;
-
 }
 
 .socials {
@@ -245,14 +217,14 @@ body::-webkit-scrollbar {
 }
 
 .socials a svg {
-  width: 20px; /* Adjusted size */
+  width: 20px;
   height: 20px;
 }
 
 .socials a:hover {
-  color:#db9197; /* New color on hover */
-  transform: translateY(-3px); /* Move the element up slightly */
-  transition-delay: 0.1s; /* Add a small delay before the hover effect starts */
+  color:#db9197;
+  transform: translateY(-3px);
+  transition-delay: 0.1s;
 }
 
 /* Keyframes for a fade-in effect */
@@ -273,20 +245,22 @@ body::-webkit-scrollbar {
   padding: 3%;
   align-items: center;
   height: 55rem;
-  opacity: 0; /* Start invisible */
-  animation: fadeIn 1s ease-out forwards; /* Fade-in animation */
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
   justify-content: center;
 }
 
 .text-container {
-  animation: fadeIn 1s ease-out forwards; /* Delayed fade-in */
+  animation: fadeIn 1s ease-out forwards;
 }
+
 .header {
-  animation: fadeIn 1s ease-out forwards; /* Delayed fade-in */
+  animation: fadeIn 1s ease-out forwards;
   opacity: 0;
 }
+
 .socials-container {
-  animation: fadeIn 1s ease-out forwards; /* Further delayed fade-in */
+  animation: fadeIn 1s ease-out forwards;
   opacity: 0;
 }
 
@@ -303,12 +277,12 @@ body::-webkit-scrollbar {
 /* Keyframes for the sliding effect */
 @keyframes slideIn {
   0% {
-    transform: translateX(-100%); /* Start off-screen to the left */
-    opacity: 0; /* Start invisible */
+    transform: translateX(-100%);
+    opacity: 0;
   }
   100% {
-    transform: translateX(60%); /* End at original position */
-    opacity: 1; /* Fully visible */
+    transform: translateX(60%);
+    opacity: 1;
   }
 }
 
@@ -323,18 +297,18 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0; /* Add spacing above and below */
-  gap: 10px; /* Space between icon and text */
+  margin: 20px 0;
+  gap: 10px;
 }
 
 .collaboration-icon {
-  color: #2f4858; /* Icon color */
+  color: #2f4858;
 }
 
 .collaboration-text {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 13px; /* Adjust font size */
-  color: #D8DAD3; /* Text color */
+  font-size: 13px;
+  color: #D8DAD3;
   text-transform: uppercase;
   text-align: center;
   margin-top: 20px;
@@ -363,46 +337,35 @@ sup{
   width: 300px;
   margin-left: 100px;
   font-family: safiro-regular;
-   text-align: left;
+  text-align: left;
 }
 
 .desc-section{
   display: flex;
   align-items: center;
   margin-top: -30px;
-   
 }
 
-
-
-/* .footer{ */
-  /* display: flex; */
-  /* padding-left: 20px; */
-  /* gap: 76rem; */
-  /* padding: 3.5rem; */
-  /*  */
-/* } */
-
 .footer-text {
-  position: fixed; /* Sticks it to the viewport */
-  bottom: 20px; /* Adjust spacing from the bottom */
-  right: 100px; /* Adjust spacing from the right */
-  font-family: "Bebas Neue", sans-serif; /* Match your font style */
-  font-size: 17px; /* Adjust font size */
-  color: #db9197; /* Match your color theme */
+  position: fixed;
+  bottom: 20px;
+  right: 100px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 17px;
+  color: #db9197;
   text-align: right;
   width: 160px;
-  z-index: 10; /* Ensure it's on top of other elements */
+  z-index: 10;
   top: 870px;
 }
 
 .f-text{
-   position: fixed; /* Sticks it to the viewport */
-  bottom: 20px; /* Adjust spacing from the bottom */
-  left: 100px; /* Adjust spacing from the right */
-  font-family: "Bebas Neue", sans-serif; /* Match your font style */
-  font-size: 17px; /* Adjust font size */
-  color: #db9197; /* Match your color theme */
+  position: fixed;
+  bottom: 20px;
+  left: 100px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 17px;
+  color: #db9197;
   text-align: right;
   width: 160px;
   z-index: 10;
@@ -410,35 +373,34 @@ sup{
 }
 
 .cv{
-   width: 130px;
-    height: 40px;
-   margin-left: 150px;
-   font-size: 16px;
-   font-family: safiro-regular;
-   color: #D8DAD3;
-   border: 1.5px solid #db9197;
-   padding: 9px;
-   border-radius: 5px;
-  /* Add transition for background color */
+  width: 130px;
+  height: 40px;
+  margin-left: 150px;
+  font-size: 16px;
+  font-family: safiro-regular;
+  color: #D8DAD3;
+  border: 1.5px solid #db9197;
+  padding: 9px;
+  border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .cv:hover {
-  background-color: #819582; /* Slightly darker on hover */
+  background-color: #819582;
 }
 
 .cv-text {
   display: inline-block;
-  transition: transform 0.5s ease; /* Smooth rotation */
-  
+  transition: transform 0.5s ease;
 }
 
 .github{
   text-decoration: none;
   color:  #db9197;
 }
+
 .github:hover{
-color:#7db37f ;
+  color:#7db37f ;
 }
 
 .cursor-container {
@@ -453,8 +415,8 @@ color:#7db37f ;
 
 .cursor-image {
   position: absolute;
-  width: 80px; /* Adjust size as needed */
-  height: 80px; /* Adjust size as needed */
+  width: 80px;
+  height: 80px;
   transform: translate(-40%, -40%);
   pointer-events: none;
   animation: twinkle 1s ease-in-out forwards;
@@ -480,20 +442,8 @@ color:#7db37f ;
 
 .cursor-image {
   position: absolute;
-  pointer-events: none; /* So images don't interfere with mouse events */
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; /* Smooth transition for opacity and transform */
-}
-
-
-/* Ensure the header is fixed at the top */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Ensure it's above other content */
-  background-color: #566246; /* Match your background color */
-
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 
 /* Center the content vertically and horizontally */
@@ -501,7 +451,7 @@ color:#7db37f ;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   text-align: center;
 }
 
@@ -511,10 +461,359 @@ color:#7db37f ;
   margin-top: 160px;
 }
 
-
-
-
-
 .aboutheader{
   background-color: #000b11;
 }
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+}
+
+.mobile-menu-btn span {
+  width: 25px;
+  height: 2px;
+  background-color: #F1F2EB;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===== MOBILE MENU OVERLAY (Glass-Black Style) ===== */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 300px;
+  left: 0;
+  width: 100%;
+  height: 700%;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== FULLSCREEN MENU CONTENT ===== */
+.mobile-fullscreen-nav {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Fraunces", serif;
+  text-align: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.mobile-fullscreen-nav.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== MOBILE MENU OVERLAY (Solid Black - Full Page) ===== */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== FULLSCREEN MENU CONTENT ===== */
+.mobile-fullscreen-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Fraunces", serif;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.mobile-fullscreen-nav.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== MENU LIST STYLING - PROPERLY CENTERED ===== */
+.mobile-fullscreen-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0rem; /* Better spacing control */
+}
+
+.mobile-fullscreen-nav-list li {
+  margin: 0; /* Remove individual margins */
+}
+.mobile-fullscreen-nav-link {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-size: 5.5rem;
+  font-family: "Fraunces", serif;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem; /* Reduced from 1rem to 0.5rem */
+  padding: 0rem 0;
+    margin-bottom: -20px;
+}
+
+.mobile-fullscreen-nav-link::before {
+  content: attr(data-number);
+  font-size: 0.7rem;
+  color: #aaa;
+  font-family: "Space Grotesk", sans-serif;
+  min-width: 1.5rem;
+  align-self: flex-end;
+  margin-bottom: 1.1rem;
+}
+
+/* For About only - move number to the end */
+.mobile-fullscreen-nav-link[data-position="back"]::before {
+  order: 1; /* This moves it to the end */
+  margin-left: 0.5rem; /* Add some space between text and number */
+}
+@font-face {
+  font-display: block;
+  font-family: third-font;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/Helvetica.ttf) format("woff2"),
+    url(../assets/fonts/Helvetica.ttf) format("woff");
+}
+
+@font-face {
+  font-display: block;
+  font-family: second-font;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/lovelace-italic.ttf) format("woff2"),
+    url(../assets/fonts/lovelace-italic.ttf) format("woff");
+}
+@font-face {
+  font-display: block;
+  font-family: first-font;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/PSFournierTry-Light-BF674684598711f.otf) format("woff2"),
+    url(../assets/fonts/PSFournierTry-Light-BF674684598711f.otf) format("woff");
+}
+
+.font-1 {
+  font-family: "first-font", serif;
+}
+
+.font-2 {
+  font-family: "second-font", sans-serif;
+}
+
+.font-3 {
+  font-family: "third-font", sans-serif; /* Replace with your font */
+}
+
+.mobile-fullscreen-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.word-container {
+  display: inline-block; /* Keep all letters together */
+}
+
+.word-container span {
+  display: inline;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+
+.mobile-fullscreen-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0; /* Remove gap between letters */
+  /* letter-spacing: -1px;  */
+}
+
+/* ===== CLOSE ICON ===== */
+.close-mobile-menu {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  font-family: "Space Grotesk", sans-serif;
+  z-index: 1001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.mobile-menu-overlay{
+  background-color: #000b11;
+  height: 80rem;
+}
+.mobile-fullscreen-nav-list{
+  margin-top: -400px;
+}
+
+/* Responsive design for small screens */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .left-nav {
+    gap: 20px;
+  }
+
+  .time {
+    font-size: 11px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .left-nav {
+    gap: 15px;
+  }
+
+  .time {
+    font-size: 10px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .mobile-fullscreen-nav-link {
+    font-size: 20px;
+    padding: 1rem 0;
+  }
+
+  .close-mobile-menu {
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .mobile-nav-header {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Spotlight Cursor Styles */
+.cursor {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
+/* Hide cursor by default, only show when mobile menu is active */
+@media (max-width: 768px) {
+  .mobile-menu-overlay.active {
+    cursor: none !important;
+  }
+}
+
+/* Hide cursor on desktop */
+@media (min-width: 769px) {
+  .cursor {
+    display: none !important;
+  }
+}
+
