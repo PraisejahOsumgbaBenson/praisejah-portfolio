@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import hoverSound from "../assets/sounds/nav_keys.mp3"; // Regular hover sound
+import hoverSound from "../assets/sounds/nav_keys.mp3";
+import unlockSound from "../assets/sounds/silent.mp3";
 import "./Style.css";
-import unlockSound from "../assets/sounds/silent.mp3"; // Silent sound used to unlock browser autoplay policy
 
 function Header({ onAboutClick }) {
-  // Stores the current time in Nigeria (Africa/Lagos time zone)
   const [time, setTime] = useState("");
-
-  // Controls whether hover sounds should play or not
   const [soundUnlocked, setSoundUnlocked] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Keeps track of last sound play time to prevent sound spam
-  let lastPlayTime = 0;
+  // Refs
+  const cursorRef = useRef(null);
+  const animationFrameId = useRef(null);
+  const cursorX = useRef(0);
+  const cursorY = useRef(0);
+  const lastPlayTime = useRef(0);
 
-  // 🕒 Automatically updates the current time every second
+  // 🕒 Time update effect
   useEffect(() => {
     const updateTime = () => {
       const currentTime = new Date().toLocaleTimeString("en-NG", {
@@ -27,94 +30,145 @@ function Header({ onAboutClick }) {
       setTime(currentTime);
     };
 
-    updateTime(); // Run once immediately
-    const interval = setInterval(updateTime, 1000); // Update every second
-
-    return () => clearInterval(interval); // Cleanup
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  // 🔓 Unlocks sound playback on first user interaction (browser requirement)
+  // 🔓 Unlock sound
   useEffect(() => {
     const unlockAudio = () => {
-      const audio = new Audio(unlockSound); // Use a silent/soft sound
-      audio.muted = true; // Required to allow autoplay in modern browsers
-
+      const audio = new Audio(unlockSound);
+      audio.muted = true;
       audio
         .play()
         .then(() => {
-          audio.muted = false; // Unmute after unlocking
-          setSoundUnlocked(true); // Allow hover sound to play going forward
+          audio.muted = false;
+          setSoundUnlocked(true);
         })
-        .catch(() => {
-          console.warn("User interaction needed to unlock audio.");
-        });
-
-      // Remove event listeners after first interaction
+        .catch(() => console.warn("User interaction needed to unlock audio."));
       window.removeEventListener("click", unlockAudio);
       window.removeEventListener("keydown", unlockAudio);
     };
-
-    // Add event listeners for first click or keypress
     window.addEventListener("click", unlockAudio);
     window.addEventListener("keydown", unlockAudio);
-
-    // Cleanup listeners if component unmounts
     return () => {
       window.removeEventListener("click", unlockAudio);
       window.removeEventListener("keydown", unlockAudio);
     };
   }, []);
 
-  // 🔊 Plays hover sound (but not more than once every 400ms)
+  // 🔊 Hover sound
   const playHoverSound = () => {
-    if (!soundUnlocked) return; // Only play if sound was unlocked
-
+    if (!soundUnlocked) return;
     const now = Date.now();
-    const delay = 400; // Minimum time between sound plays (ms)
-
-    if (now - lastPlayTime > delay) {
+    if (now - lastPlayTime.current > 400) {
       const audio = new Audio(hoverSound);
-      audio.volume = 0.2; // Set volume lower to avoid loud clicks
-      audio.play().catch((err) => {
-        console.warn("Sound play error:", err);
-      });
-      lastPlayTime = now;
+      audio.volume = 0.2;
+      audio.play().catch((err) => console.warn("Sound play error:", err));
+      lastPlayTime.current = now;
     }
   };
 
-  // 🎯 Animation when logo is hovered
+  // 🎨 Logo animations
   const handleLogoHover = () => {
-    gsap.to(".logo", {
-      scale: 1.0,
-      duration: 0.4,
-      ease: "power2.out",
-    });
+    gsap.to(".logo", { scale: 1.05, duration: 0.3, ease: "power2.out" });
   };
 
-  // 🔁 Logo scales back when mouse leaves
   const handleLogoMouseLeave = () => {
-    gsap.to(".logo", {
-      scale: 1,
-      duration: 0.4,
-      ease: "power2.inOut",
-    });
+    gsap.to(".logo", { scale: 1, duration: 0.3, ease: "power2.inOut" });
   };
+
+  // 📱 Mobile Detection
+  useEffect(() => {
+    const checkMobile = () => window.innerWidth <= 768;
+    setIsMobile(checkMobile());
+
+    const handleResize = () => {
+      setIsMobile(checkMobile());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // 📱 Mobile menu toggle
+  const toggleMobileMenu = () => {
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+    playHoverSound();
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // 🎯 Cursor Effect - Only when mobile menu is open
+  useEffect(() => {
+    const cursor = cursorRef.current;
+    if (!cursor || !isMobile) return;
+
+    const updateCursorPosition = () => {
+      cursor.style.left = cursorX.current + "px";
+      cursor.style.top = cursorY.current + "px";
+      animationFrameId.current = requestAnimationFrame(updateCursorPosition);
+    };
+
+    const handleMouseMove = (e) => {
+      cursorX.current = e.clientX;
+      cursorY.current = e.clientY;
+
+      // Only show cursor when mobile menu is open
+      if (isMobileMenuOpen) {
+        cursor.style.opacity = "1";
+      }
+    };
+
+    const handleMouseLeave = () => {
+      cursor.style.opacity = "0";
+    };
+
+    // Add event listeners only when menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.cursor = "none";
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseleave", handleMouseLeave);
+      updateCursorPosition();
+    } else {
+      // When menu is closed, hide cursor and restore normal cursor
+      cursor.style.opacity = "0";
+      document.body.style.cursor = "auto";
+    }
+
+    // Cleanup function
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.body.style.cursor = "auto";
+    };
+  }, [isMobile, isMobileMenuOpen]); // Re-run when menu opens/closes
 
   return (
     <header className="header">
+      {/* Spotlight Cursor - Only visible on mobile AND when menu is open */}
+      {isMobile && <div className="cursor" ref={cursorRef}></div>}
+
       <div className="left-nav">
-        {/* Logo and Time */}
         <div className="header-left">
           <Link
             to="/"
             onMouseEnter={() => {
-              handleLogoHover(); // Animate
-              playHoverSound(); // Sound on hover
+              handleLogoHover();
+              playHoverSound();
             }}
             onMouseLeave={handleLogoMouseLeave}
             style={{ textDecoration: "none" }}
+            onClick={closeMobileMenu}
           >
-            <p className="logo" style={{ cursor: "pointer" }}>
+            <p className="logo">
               <span>P</span>
               <span>j</span>
             </p>
@@ -122,12 +176,11 @@ function Header({ onAboutClick }) {
         </div>
 
         <div className="time">
-          {/* Time display */}
           <p>NIGERIA, {time} WAT</p>
         </div>
       </div>
 
-      {/* Navigation links */}
+      {/* Desktop Navigation */}
       <nav className="header-center">
         <ul className="nav-list">
           <li>
@@ -149,15 +202,6 @@ function Header({ onAboutClick }) {
               ABOUT
             </Link>
           </li>
-         {/*  <li>
-            <Link
-              to="/projects"
-              className="nav-link"
-              onMouseEnter={playHoverSound}
-            >
-              PROJECT
-            </Link>
-          </li> */}
           <li>
             <Link
               to="/contact"
@@ -169,11 +213,89 @@ function Header({ onAboutClick }) {
           </li>
         </ul>
 
-        {/* Dark mode toggle (future enhancement) */}
         <div className="d-mode">
           <button className="darkmode" onMouseEnter={playHoverSound}></button>
         </div>
       </nav>
+
+      {/* Mobile Menu Button */}
+      <button
+        className={`mobile-menu-btn ${isMobileMenuOpen ? "active" : ""}`}
+        onClick={toggleMobileMenu}
+        onMouseEnter={playHoverSound}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`mobile-menu-overlay ${isMobileMenuOpen ? "active" : ""}`}
+        onClick={closeMobileMenu}
+        onMouseEnter={playHoverSound}
+      >
+        <nav
+          className={`mobile-fullscreen-nav ${
+            isMobileMenuOpen ? "active" : ""
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ul className="mobile-fullscreen-nav-list">
+            <li>
+              <Link
+                to="/"
+                data-number="01"
+                className="mobile-fullscreen-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <span className="word-container">
+                  <span className="font-1">N</span>
+                  <span className="font-2">o</span>
+                  <span className="font-3">me</span>
+                </span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/about"
+                data-number="03"
+                data-position="back"
+                className="mobile-fullscreen-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <span className="word-container">
+                  <span className="font-1">A</span>
+                  <span className="font-1">b</span>
+                  <span className="font-1">e</span>
+                  <span className="font-2">u</span>
+                  <span className="font-3">t</span>
+                </span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/contact"
+                data-number="04"
+                className="mobile-fullscreen-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <span className="word-container">
+                  <span className="font-1">C</span>
+                  <span className="font-2">o</span>
+                  <span className="font-1">n</span>
+                  <span className="font-3">t</span>
+                  <span className="font-3">a</span>
+                  <span className="font-3">c</span>
+                  <span className="font-3">t</span>
+                </span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
