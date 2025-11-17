@@ -1,30 +1,44 @@
-/* Hide the default cursor everywhere */
+/* cursor.css */
+/* Hide the default cursor everywhere - FOR ALL SCREENS */
 * {
   cursor: none !important;
 }
 
 .cursor-ring {
   position: fixed;
-  width: 40px; /* Adjust size as needed */
-  height: 40px; /* Adjust size as needed */
-  border: 2px solid rgba(228, 109, 135, 0.5); /* Color and transparency */
-  border-radius: 50%; /* Circular shape */
-  pointer-events: none; /* Prevent it from blocking clicks */
-  transform: translate(-50%, -50%); /* Center the ring */
-  z-index: 10000; /* Increased z-index to ensure it's above everything */
-  transition: transform 0.1s ease, border-color 0.8s ease; /* Separate transitions */
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(228, 109, 135, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  transition: transform 0.1s ease, border-color 0.8s ease;
   left: 0;
   top: 0;
 }
 
 .cursor-ring.clicked {
-  transform: translate(-50%, -50%) scale(1.5); /* Scale up when clicked */
-  border-color: #e98ea3; /* Change color on click */
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: #e98ea3;
 }
 
-/* Optional: Hide cursor on touch devices */
+/* Remove the desktop hiding - we want cursor on ALL screens */
+/* DELETE THIS PART:
+@media (min-width: 769px) {
+  .cursor {
+    display: none !important;
+  }
+}
+*/
+
+/* Optional: Only hide custom cursor on touch devices if needed */
 @media (hover: none) and (pointer: coarse) {
   .cursor-ring {
     display: none;
+  }
+  /* But keep the default cursor hidden */
+  * {
+    cursor: none !important;
   }
 }
