@@ -1,3 +1,8 @@
+/* Hide the default cursor everywhere */
+* {
+  cursor: none !important;
+}
+
 .cursor-ring {
   position: fixed;
   width: 40px; /* Adjust size as needed */
@@ -6,18 +11,20 @@
   border-radius: 50%; /* Circular shape */
   pointer-events: none; /* Prevent it from blocking clicks */
   transform: translate(-50%, -50%); /* Center the ring */
-  z-index: 1000; /* Ensure it's above other elements */
+  z-index: 10000; /* Increased z-index to ensure it's above everything */
+  transition: transform 0.1s ease, border-color 0.8s ease; /* Separate transitions */
+  left: 0;
+  top: 0;
 }
 
 .cursor-ring.clicked {
   transform: translate(-50%, -50%) scale(1.5); /* Scale up when clicked */
   border-color: #e98ea3; /* Change color on click */
-  transition: all 0.8s ease; /* Smooth transition */
 }
 
-/* Hide the default cursor */
-body, html {
-  cursor: none; /* Hide the default cursor */
-
-  margin: 0; /* Remove default margin */
+/* Optional: Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
 }
