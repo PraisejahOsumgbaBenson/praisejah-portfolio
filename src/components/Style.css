@@ -2162,3 +2162,9 @@ sup{
 }
 
 }
+@media (max-width: 768px) {
+  .cv {
+    touch-action: manipulation; /* Removes 300ms delay */
+    -webkit-tap-highlight-color: transparent; /* Removes gray tap flash */
+  }
+}

@@ -176,11 +176,26 @@ function Home() {
               </span>
               <a
                 href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
-                download
-                className="cv"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="cv"
                 onMouseEnter={() => playHoverSound("cv")}
+                onClick={(e) => {
+                  // Play sound immediately
+                  if (audioReady) {
+                    const audio = new Audio(hoverSound);
+                    audio.volume = 0.2;
+                    audio.play().catch(console.warn);
+                  }
+                }}
+                onTouchStart={(e) => {
+                  // This fires immediately on touch for mobile
+                  if (audioReady) {
+                    const audio = new Audio(hoverSound);
+                    audio.volume = 0.2;
+                    audio.play().catch(console.warn);
+                  }
+                }}
               >
                 <span className="cv-text">My CV</span>
               </a>
