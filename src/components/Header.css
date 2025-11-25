@@ -1,0 +1,268 @@
+/* ===== MOBILE NAVBAR - ONLY FOR SMALL SCREENS ===== */
+@media (max-width: 480px) {
+  /* Copy the original mobile menu overlay styles */
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Grid Pattern Background */
+  .mobile-menu-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(186, 141, 166, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 130, 187, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: center center;
+    animation: gridFloat 20s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes gridFloat {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 30px 30px;
+    }
+  }
+
+  /* Copy the original fullscreen nav styles */
+  .mobile-fullscreen-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: "Fraunces", serif;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+  }
+
+  .mobile-fullscreen-nav.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Copy the original menu list styling */
+  .mobile-fullscreen-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0rem;
+  }
+
+  .mobile-fullscreen-nav-list li {
+    margin: 0;
+  }
+
+  /* Copy the original link styles */
+  .mobile-fullscreen-nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-size: 4rem; /* Slightly smaller for small screens */
+    font-family: "Fraunces", serif;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0rem 0;
+    margin-bottom: -15px; /* Reduced negative margin */
+  }
+
+  .mobile-fullscreen-nav-link::before {
+    content: attr(data-number);
+    font-size: 0.7rem;
+    color: #aaa;
+    font-family: "Space Grotesk", sans-serif;
+    min-width: 1.5rem;
+    align-self: flex-end;
+    margin-bottom: 0.8rem; /* Reduced margin */
+  }
+
+  /* Copy the original positioning for About */
+  .mobile-fullscreen-nav-link[data-position="back"]::before {
+    order: 1;
+    margin-left: 0.5rem;
+  }
+
+  /* Copy the original word container styles */
+  .mobile-fullscreen-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .word-container {
+    display: inline-block;
+  }
+
+  .word-container span {
+    display: inline;
+    line-height: 1;
+    vertical-align: baseline;
+  }
+
+  /* FIXED POSITIONING - Better for small screens */
+  .mobile-menu-overlay{
+    background-color: #020202;
+    height: 100vh; /* Use viewport height instead of fixed rem */
+  }
+  
+  .mobile-fullscreen-nav-list{
+    margin-top: -120px; /* Much less negative margin to prevent being too high */
+  }
+
+  /* Font styles */
+  .font-1 {
+    font-family: "first-font", serif;
+  }
+
+  .font-2 {
+    font-family: "second-font", sans-serif;
+  }
+
+  .font-3 {
+    font-family: "third-font", sans-serif;
+  }
+}
+
+/* Specific fixes for different small screen sizes */
+@media (max-width: 412px) and (min-width: 380px) {
+  .mobile-fullscreen-nav-list {
+    margin-top: -100px !important;
+  }
+  
+  .mobile-fullscreen-nav-link {
+    font-size: 3.8rem !important;
+  }
+}
+
+@media (max-width: 380px) and (min-width: 360px) {
+  .mobile-fullscreen-nav-list {
+    margin-top: -80px !important;
+  }
+  
+  .mobile-fullscreen-nav-link {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (max-width: 360px) and (min-width: 320px) {
+  .mobile-fullscreen-nav-list {
+    margin-top: -60px !important;
+  }
+  
+  .mobile-fullscreen-nav-link {
+    font-size: 3.2rem !important;
+    margin-bottom: -10px !important;
+  }
+}
+
+@media (max-width: 319px) {
+  .mobile-fullscreen-nav-list {
+    margin-top: -40px !important;
+  }
+  
+  .mobile-fullscreen-nav-link {
+    font-size: 2.8rem !important;
+    margin-bottom: -8px !important;
+  }
+}
+
+/* HIDE MOBILE NAVBAR ON TABLETS AND LARGER SCREENS */
+@media (min-width: 481px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
+  
+  .mobile-menu-overlay {
+    display: none !important;
+  }
+  
+  .mobile-fullscreen-nav {
+    display: none !important;
+  }
+}
+
+/* Ensure desktop navigation shows on tablets and larger */
+@media (min-width: 481px) {
+  .header-center {
+    display: flex !important;
+  }
+}
+
+/* Enhanced Cursor Styles for Mobile */
+.cursor {
+  position: fixed;
+  width: 60px; /* Slightly smaller for mobile */
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 10000;
+  opacity: 0;
+  transition: 
+    opacity 0.3s ease,
+    transform 0.15s ease-out; /* Smoother movement */
+  transform: translate(-50%, -50%);
+  display: block;
+  will-change: transform; /* Better performance */
+}
+
+/* Hide cursor by default, only show when mobile menu is active */
+@media (max-width: 768px) {
+  .mobile-menu-overlay.active {
+    cursor: none !important;
+    /* Prevent text selection while moving cursor */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Ensure the mobile menu overlay doesn't block touch events */
+  .mobile-menu-overlay {
+    touch-action: pan-y; /* Allow vertical scrolling but not horizontal */
+  }
+}
+
+/* Hide cursor on desktop */
+@media (min-width: 769px) {
+  .cursor {
+    display: none !important;
+  }
+}
