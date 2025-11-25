@@ -174,31 +174,38 @@ function Home() {
                 Building impactful software and exploring efficient solutions
                 excite me. Open-source contributor and problem-solver.
               </span>
-              <a
-                href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cv"
-                onMouseEnter={() => playHoverSound("cv")}
-                onClick={(e) => {
-                  // Play sound immediately
-                  if (audioReady) {
-                    const audio = new Audio(hoverSound);
-                    audio.volume = 0.2;
-                    audio.play().catch(console.warn);
-                  }
-                }}
-                onTouchStart={(e) => {
-                  // This fires immediately on touch for mobile
-                  if (audioReady) {
-                    const audio = new Audio(hoverSound);
-                    audio.volume = 0.2;
-                    audio.play().catch(console.warn);
-                  }
-                }}
-              >
-                <span className="cv-text">My CV</span>
-              </a>
+               <div
+                  className="cv-wrapper"
+                  onClick={() => {
+                    if (audioReady) {
+                      const audio = new Audio(hoverSound);
+                      audio.volume = 0.2;
+                      audio.play().catch(console.warn);
+                    }
+                    window.open(
+                      "https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing",
+                      "_blank"
+                    );
+                  }}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    if (audioReady) {
+                      const audio = new Audio(hoverSound);
+                      audio.volume = 0.2;
+                      audio.play().catch(console.warn);
+                    }
+                  }}
+                >
+                  <a
+                    href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cv"
+                    style={{ pointerEvents: 'none' }} // Let the wrapper handle the click
+                  >
+                    <span className="cv-text">My CV</span>
+                  </a>
+                </div>
             </div>
           </div>
 

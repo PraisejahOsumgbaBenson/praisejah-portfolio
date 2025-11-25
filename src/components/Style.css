@@ -2168,3 +2168,15 @@ sup{
     -webkit-tap-highlight-color: transparent; /* Removes gray tap flash */
   }
 }
+
+.cv-wrapper {
+  display: inline-block;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .cv-wrapper {
+    position: relative;
+    z-index: 100;
+  }
+}
