@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import hoverSound from "../assets/sounds/nav_keys.mp3";
 import unlockSound from "../assets/sounds/silent.mp3";
 import "./Style.css";
+import "../components/Header.css";
 
 function Header({ onAboutClick }) {
   const [time, setTime] = useState("");
@@ -103,7 +104,7 @@ function Header({ onAboutClick }) {
     setIsMobileMenuOpen(false);
   };
 
-  // 🎯 Cursor Effect - Only when mobile menu is open
+  // 🎯 ENHANCED Cursor Effect - Now with Touch Support
   useEffect(() => {
     const cursor = cursorRef.current;
     if (!cursor || !isMobile) return;
@@ -114,6 +115,7 @@ function Header({ onAboutClick }) {
       animationFrameId.current = requestAnimationFrame(updateCursorPosition);
     };
 
+    // Mouse movement handler
     const handleMouseMove = (e) => {
       cursorX.current = e.clientX;
       cursorY.current = e.clientY;
@@ -121,6 +123,41 @@ function Header({ onAboutClick }) {
       // Only show cursor when mobile menu is open
       if (isMobileMenuOpen) {
         cursor.style.opacity = "1";
+      }
+    };
+
+    // Touch movement handler - NEW
+    const handleTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        cursorX.current = touch.clientX;
+        cursorY.current = touch.clientY;
+
+        // Only show cursor when mobile menu is open
+        if (isMobileMenuOpen) {
+          cursor.style.opacity = "1";
+        }
+
+        // Prevent default to avoid page scrolling while moving cursor
+        e.preventDefault();
+      }
+    };
+
+    // Touch start handler - NEW
+    const handleTouchStart = (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        cursorX.current = touch.clientX;
+        cursorY.current = touch.clientY;
+
+        if (isMobileMenuOpen) {
+          cursor.style.opacity = "1";
+          // Add click effect on touch
+          cursor.style.transform = "translate(-50%, -50%) scale(1.2)";
+          setTimeout(() => {
+            cursor.style.transform = "translate(-50%, -50%) scale(1)";
+          }, 150);
+        }
       }
     };
 
@@ -132,8 +169,19 @@ function Header({ onAboutClick }) {
     if (isMobileMenuOpen) {
       document.body.style.cursor = "none";
       document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      document.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
       document.addEventListener("mouseleave", handleMouseLeave);
       updateCursorPosition();
+
+      // Show cursor initially at center
+      cursorX.current = window.innerWidth / 2;
+      cursorY.current = window.innerHeight / 2;
+      cursor.style.opacity = "1";
     } else {
       // When menu is closed, hide cursor and restore normal cursor
       cursor.style.opacity = "0";
@@ -146,6 +194,8 @@ function Header({ onAboutClick }) {
         cancelAnimationFrame(animationFrameId.current);
       }
       document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchstart", handleTouchStart);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.body.style.cursor = "auto";
     };
@@ -153,7 +203,7 @@ function Header({ onAboutClick }) {
 
   return (
     <header className="header">
-      {/* Spotlight Cursor - Only visible on mobile AND when menu is open */}
+      {/* Enhanced Spotlight Cursor - Now with touch support */}
       {isMobile && <div className="cursor" ref={cursorRef}></div>}
 
       <div className="left-nav">
@@ -233,7 +283,6 @@ function Header({ onAboutClick }) {
       <div
         className={`mobile-menu-overlay ${isMobileMenuOpen ? "active" : ""}`}
         onClick={closeMobileMenu}
-        onMouseEnter={playHoverSound}
       >
         <nav
           className={`mobile-fullscreen-nav ${
