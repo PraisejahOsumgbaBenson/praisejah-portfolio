@@ -2,6 +2,7 @@ import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Cursor from "./custom/cursor";
 
+
 /**
  * Lazy load all major components to improve initial load performance.
  * This splits your code into separate chunks that load on demand.
@@ -22,6 +23,14 @@ const About = lazy(() =>
 const Contact = lazy(() =>
   import(/* webpackChunkName: "contact" */ "./components/Contact")
 );
+const Blog = lazy(() =>
+  import(/* webpackChunkName: "blog" */ "./ pages/Blog/BlogList")
+);
+
+const BlogDetail = lazy(() =>
+  import(/* webpackChunkName: "blog-detail" */ "./ pages/Blog/BlogDetail")
+);
+
 
 /**
  * Loading component that shows while lazy-loaded components are being fetched
@@ -65,10 +74,12 @@ function App() {
             // Main content routes after intro completes
             <Routes>
               <Route path="/" element={<Home />} />
-         {/*      <Route path="/projects" element={<Project />} /> */}
+              {/*      <Route path="/projects" element={<Project />} /> */}
 
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogDetail />} />
             </Routes>
           )}
         </Suspense>
