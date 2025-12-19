@@ -1,0 +1,225 @@
+/* Blog Page Main Container */
+.blog-page {
+  min-height: 100vh;
+  background-color: #566246; /* Your site's dark green background */
+  padding: 120px 20px 60px;
+  position: relative;
+}
+
+/* Grid pattern overlay for the entire blog page - SIMPLE AND CLEAN */
+.blog-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(219, 145, 151, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(219, 145, 151, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content is above the grid */
+.blog-header-section,
+.blog-tags-container,
+.blog-posts-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Section - Left Aligned but Centered Vertically */
+.blog-header-section {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  text-align: left;
+}
+
+.blog-main-title {
+  font-size: 4.5rem;
+  font-weight: 400;
+  color: #be8a94;
+  margin-bottom: 20px;
+  font-family: safiro, serif;
+  position: relative;
+  display: inline-block;
+}
+
+.blog-main-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #db9197, #be8a94);
+  border-radius: 2px;
+}
+
+.blog-subtitle {
+  font-size: 1.2rem;
+  color: #F1F2EB;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 800px;
+  font-family: safiro-regular, serif;
+}
+
+.blog-description {
+  font-size: 1rem;
+  color: #D8DAD3;
+  line-height: 1.6;
+  max-width: 800px;
+  font-family: safiro-regular, serif;
+}
+
+/* Tags Container */
+.blog-tags-container {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+}
+
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.blog-tag {
+  padding: 10px 20px;
+  background: rgba(129, 149, 130, 0.2);
+  border: 1.5px solid #819582;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #D8DAD3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: safiro-regular, serif;
+  min-width: 80px;
+  text-align: center;
+}
+
+.blog-tag:hover {
+  border-color: #db9197;
+  color: #db9197;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(219, 145, 151, 0.1);
+}
+
+.blog-tag.active {
+  background: #db9197;
+  border-color: #db9197;
+  color: #F1F2EB;
+}
+
+/* Posts Section - Centered with left-aligned cards */
+.blog-posts-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-posts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  width: 100%;
+}
+
+/* Single column layout - each card on its own line */
+.blog-post-item {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* REMOVED ALL EXTRA GRID LINES BETWEEN CARDS */
+
+/* No posts message */
+.no-posts-message {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(27, 41, 23, 0.7);
+  border-radius: 12px;
+  border: 2px solid rgba(219, 145, 151, 0.4);
+  margin-top: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.no-posts-message p {
+  color: #db9197;
+  font-size: 1.1rem;
+  font-family: safiro-regular, serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blog-page {
+    padding: 100px 20px 40px;
+  }
+  
+  .blog-main-title {
+    font-size: 3.5rem;
+  }
+  
+  .blog-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .blog-description {
+    font-size: 0.95rem;
+  }
+  
+  .blog-tags {
+    gap: 10px;
+  }
+  
+  .blog-tag {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .blog-posts-grid {
+    gap: 30px;
+  }
+  
+  .blog-post-item {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-page {
+    padding: 80px 15px 30px;
+  }
+  
+  .blog-main-title {
+    font-size: 2.8rem;
+  }
+  
+  .blog-subtitle {
+    font-size: 1rem;
+  }
+  
+  .blog-tags {
+    gap: 8px;
+  }
+  
+  .blog-tag {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .no-posts-message {
+    padding: 40px 15px;
+  }
+  
+  .no-posts-message p {
+    font-size: 1rem;
+  }
+}
+
