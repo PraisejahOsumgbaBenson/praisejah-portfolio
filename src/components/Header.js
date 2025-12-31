@@ -254,6 +254,16 @@ function Header({ onAboutClick }) {
           </li>
           <li>
             <Link
+              to="/blog"
+              className="nav-link"
+              onMouseEnter={playHoverSound}
+              onClick={onAboutClick}
+            >
+              BLOG
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/contact"
               className="nav-link"
               onMouseEnter={playHoverSound}

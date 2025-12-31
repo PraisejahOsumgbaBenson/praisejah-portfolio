@@ -1,65 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BlogCard from "../../components/BlogCard";
+import { getAllPosts } from "../../lib/markdown";
 import "./Blog.css";
 import Header from "../../components/Header";
 
 const BlogList = () => {
-  // Updated sample blog data with your site's colors and no images
-  const initialBlogPosts = [
-    {
-      id: "1",
-      title: "Getting Started with React Hooks",
-      excerpt:
-        "Learn how to use React Hooks to write cleaner and more maintainable functional components with practical examples and best practices.",
-      date: "March 15, 2024",
-      tags: ["React", "JavaScript", "Web Development"],
-      reading_time: "5 min read",
-    },
-    {
-      id: "2",
-      title: "Mastering CSS Grid Layout",
-      excerpt:
-        "A comprehensive guide to creating modern layouts with CSS Grid, including advanced techniques and responsive design patterns.",
-      date: "March 10, 2024",
-      tags: ["CSS", "Web Design", "Frontend"],
-      reading_time: "8 min read",
-    },
-    {
-      id: "3",
-      title: "Building Scalable APIs with Node.js",
-      excerpt:
-        "Best practices for designing and building RESTful APIs that can handle millions of requests while maintaining performance and security.",
-      date: "March 5, 2024",
-      tags: ["Node.js", "Backend", "API"],
-      reading_time: "10 min read",
-    },
-    {
-      id: "4",
-      title: "The Future of Web Development",
-      excerpt:
-        "Exploring emerging trends and technologies that will shape web development in 2024 and beyond, from AI tools to new frameworks.",
-      date: "February 28, 2024",
-      tags: ["Web Development", "Trends", "Technology"],
-      reading_time: "6 min read",
-    }
-   
-  ];
-
-  const [posts] = useState(initialBlogPosts);
-  const [filteredPosts, setFilteredPosts] = useState(initialBlogPosts);
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [activeTag, setActiveTag] = useState("all");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPosts = () => {
+      try {
+        const allPosts = getAllPosts();
+        console.log(
+          "Loaded posts:",
+          allPosts.map((p) => p.slug)
+        ); // Debug
+        setPosts(allPosts);
+        setFilteredPosts(allPosts);
+      } catch (error) {
+        console.error("Error loading posts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPosts();
+  }, []);
 
   // Get all unique tags from posts
-  const allTags = ["all", ...new Set(posts.flatMap((post) => post.tags))];
+  const allTags = [
+    "all",
+    ...new Set(posts.flatMap((post) => post.frontmatter.tags || [])),
+  ];
 
   const filterByTag = (tag) => {
     setActiveTag(tag);
     if (tag === "all") {
       setFilteredPosts(posts);
     } else {
-      const filtered = posts.filter((post) => post.tags.includes(tag));
+      const filtered = posts.filter((post) =>
+        (post.frontmatter.tags || []).includes(tag)
+      );
       setFilteredPosts(filtered);
     }
+  };
+
+  if (loading) {
+    return (
+      <div className="blog-page">
+        <div className="blog-detail-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading blog posts...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   return (
@@ -95,11 +101,24 @@ const BlogList = () => {
 
       <div className="blog-posts-section">
         <div className="blog-posts-grid">
-          {filteredPosts.map((post) => (
-            <div key={post.id} className="blog-post-item">
-              <BlogCard post={post} />
-            </div>
-          ))}
+          {filteredPosts.map((post) => {
+            console.log("Creating BlogCard with slug:", post.slug); // Debug
+            return (
+              <div key={post.slug} className="blog-post-item">
+                <BlogCard
+                  post={{
+                    id: post.slug, // This is CRITICAL - must match markdown slug
+                    title: post.frontmatter.title,
+                    excerpt: post.frontmatter.excerpt,
+                    date: formatDate(post.frontmatter.date),
+                    tags: post.frontmatter.tags || [],
+                    reading_time: post.readingTime.text,
+                    featured_image: post.frontmatter.featured_image,
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
 
         {filteredPosts.length === 0 && (
