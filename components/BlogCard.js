@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { FaCalendarAlt, FaClock } from "react-icons/fa"; // Import icons
 import "./BlogCard.css";
 
 const BlogCard = ({ post }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const {
     id = "1",
     title = "Blog Post Title",
@@ -16,11 +19,21 @@ const BlogCard = ({ post }) => {
 
   return (
     <Link href={`/blog/${id}`} className="blog-card-link">
-      <div className="blog-card">
+      <div
+        className="blog-card"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="blog-card-content">
           <div className="blog-card-header">
-            <span className="blog-card-date">{date}</span>
-            <span className="blog-card-reading-time">{reading_time}</span>
+            <span className="blog-card-date">
+              <FaCalendarAlt className="calendar-icon" />
+              {date}
+            </span>
+            <span className="blog-card-reading-time">
+              <FaClock className="clock-icon" />
+              {reading_time}
+            </span>
           </div>
 
           <h3 className="blog-card-title">{title}</h3>
@@ -32,6 +45,13 @@ const BlogCard = ({ post }) => {
                 #{tag}
               </span>
             ))}
+          </div>
+
+          <div className="blog-card-footer">
+            <span className="read-article-text">
+              Read article
+              <span className={`arrow ${isHovered ? "hovered" : ""}`}>→</span>
+            </span>
           </div>
         </div>
       </div>

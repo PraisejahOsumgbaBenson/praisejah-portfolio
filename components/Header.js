@@ -5,11 +5,12 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import "./Header.css";
 
-function Header({ onAboutClick }) {
+function Header({ onAboutClick, transparent = false }) {
   const [time, setTime] = useState("");
   const [soundUnlocked, setSoundUnlocked] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false); // Add this state
 
   // Refs
   const cursorRef = useRef(null);
@@ -57,6 +58,30 @@ function Header({ onAboutClick }) {
       window.removeEventListener("keydown", unlockAudio);
     };
   }, []);
+
+  // 📜 SCROLL EFFECT - Add this useEffect
+  useEffect(() => {
+    if (!transparent) return; // Only run for transparent headers
+
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 50) {
+        // Change this value as needed
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [transparent]); // Only run when transparent prop changes
 
   // 🔊 Hover sound
   const playHoverSound = () => {
@@ -130,7 +155,7 @@ function Header({ onAboutClick }) {
         if (isMobileMenuOpen) {
           cursor.style.opacity = "1";
         }
-        e.preventDefault();
+        e.preventDefault(); // Prevent scrolling when touching the screen
       }
     };
 
@@ -185,10 +210,15 @@ function Header({ onAboutClick }) {
   }, [isMobile, isMobileMenuOpen]);
 
   return (
-    <header className="header">
+    <header
+      className={`header ${transparent ? "transparent" : ""} ${
+        hasScrolled ? "scrolled" : ""
+      }`}
+    >
+      {" "}
+      {/* Add scrolled class */}
       {/* Enhanced Spotlight Cursor - Now with touch support */}
       {isMobile && <div className="cursor" ref={cursorRef}></div>}
-
       <div className="left-nav">
         <div className="header-left">
           <Link
@@ -212,7 +242,6 @@ function Header({ onAboutClick }) {
           <p>NIGERIA, {time} WAT</p>
         </div>
       </div>
-
       {/* Desktop Navigation */}
       <nav className="header-center">
         <ul className="nav-list">
@@ -260,7 +289,6 @@ function Header({ onAboutClick }) {
           <button className="darkmode" onMouseEnter={playHoverSound}></button>
         </div>
       </nav>
-
       {/* Mobile Menu Button */}
       <button
         className={`mobile-menu-btn ${isMobileMenuOpen ? "active" : ""}`}
@@ -271,7 +299,6 @@ function Header({ onAboutClick }) {
         <span></span>
         <span></span>
       </button>
-
       {/* Mobile Menu Overlay */}
       <div
         className={`mobile-menu-overlay ${isMobileMenuOpen ? "active" : ""}`}

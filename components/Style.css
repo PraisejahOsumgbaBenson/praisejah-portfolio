@@ -2175,3 +2175,125 @@ sup {
     z-index: 100;
   }
 }
+
+
+
+
+/* ===== DOT GRID BACKGROUND ===== */
+.dot-grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(6, 6, 6, 0.699) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+  z-index: -1; /* Place it behind all content */
+  pointer-events: none; /* Allow clicks to pass through */
+  opacity: 0.7; /* Adjust opacity to make it subtle */
+}
+
+
+
+/* For mobile view */
+@media (max-width: 768px) {
+  .dot-grid-background {
+    background-size: 30px 30px; /* Smaller dots on mobile */
+    opacity: 0.5; /* More subtle on mobile */
+  }
+  
+  /* Ensure mobile menu appears above dot grid */
+  .mobile-menu-overlay.active,
+  .mobile-fullscreen-nav.active {
+    z-index: 1000;
+  }
+}
+
+
+
+/* Header container - NOW TRANSPARENT */
+.header {
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 1.6rem;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent; /* Changed to transparent */
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: transparent; /* Added for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem;
+    background-color: transparent; /* Added for smaller mobile */
+  }
+}
+
+
+/* ===== PILLS EFFECT STYLES - SMOOTH VERSION ===== */
+#pill-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.pill {
+  position: absolute;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: 
+    transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.5),
+    opacity 0.2s ease-out;
+  z-index: 5;
+  font-family: safiro-regular;
+  color: #141414;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(219, 145, 151, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  will-change: transform, opacity;
+}
+
+.pill.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Ensure pills stay behind interactive elements */
+
+/* For mobile */
+@media (max-width: 768px) {
+  #pill-container {
+    display: none;
+  }
+}
