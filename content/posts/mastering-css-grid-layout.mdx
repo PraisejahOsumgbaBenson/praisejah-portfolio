@@ -1,0 +1,65 @@
+---
+title: "Mastering CSS Grid Layout"
+date: "2024-03-10"
+tags: ["CSS", "Web Design", "Frontend"]
+excerpt: "A comprehensive guide to creating modern layouts with CSS Grid, including advanced techniques and responsive design patterns."
+author: "Your Name"
+featured_image: ""
+---
+
+# Mastering CSS Grid Layout
+
+CSS Grid Layout is a two-dimensional layout system for the web. It lets you lay out items in rows and columns, and it's incredibly powerful for creating complex layouts with minimal code.
+
+## Grid Container
+
+To start using CSS Grid, you need to define a grid container:
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 20px;
+}
+```
+
+## Common Grid Patterns
+
+### Holy Grail Layout
+
+```css
+.holy-grail {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "nav content sidebar"
+    "footer footer footer";
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.header {
+  grid-area: header;
+}
+.nav {
+  grid-area: nav;
+}
+.content {
+  grid-area: content;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.footer {
+  grid-area: footer;
+}
+```
+
+## Browser Support
+
+CSS Grid is fully supported in all modern browsers.
+
+## Conclusion
+
+CSS Grid is the most powerful layout system available to web developers today.

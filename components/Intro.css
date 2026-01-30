@@ -1,0 +1,23 @@
+.intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #566246;
+  margin-top: -10px;
+}
+
+.intro-text {
+  font-size: 5rem;
+  letter-spacing: 6px;
+  font-weight: 600;
+  color: #db9197;
+  display: inline-block;
+  font-family: "meo", system-ui;
+}
+
+@font-face {
+  font-family: "meo";
+  src: url("/fonts/Glamour.ttf") format("truetype");
+  font-weight: 100;
+}
