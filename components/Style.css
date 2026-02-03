@@ -322,7 +322,7 @@ sup {
 
 .name-text {
   align-items: center;
-  font-size: 10rem;
+  font-size: 14rem;
   margin-top: -100px;
   color: #be8a94;
   font-family: safiro;
@@ -2297,3 +2297,217 @@ sup {
     display: none;
   }
 }
+
+/* Add this to your CSS file */
+
+  /* Add this at the end of your Style.css file */
+@media (min-width: 769px) {
+  .content-box {
+    position: fixed;
+    top: 40%;
+  }
+  .cv {
+    margin-left: 100px;
+  }
+}
+
+
+/* ===== MACBOOK 1440x900 SPECIFIC FIXES ===== */
+@media (min-width: 1369px) and (max-width: 1600px) {
+  /* Main content adjustments */
+  .home-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  /* Name text sizing */
+  .name-text {
+    font-size: 8rem !important;
+    margin-top: -50px !important;
+  }
+  
+  .praisejah-letter {
+    font-size: 9rem !important;
+  }
+  
+  /* Social icons positioning */
+  .socials-container {
+   
+    left: 60rem;
+    
+  }
+  
+  
+  
+  /* Footer positioning */
+  .footer-text,
+  .f-text {
+    position: fixed;
+    top: auto;
+    bottom: 30px;
+  }
+  
+  .footer-text {
+    right: 90px;
+  }
+  
+  .f-text {
+    left: 70px;
+  }
+  
+  /* Ensure content box is properly centered and fixed */
+  .content-box {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 2;
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  
+  /* CV button */
+  .cv {
+    margin-left: 100px;
+  }
+}
+
+/* Add for screens around 1300-1368px width */
+@media (min-width: 1300px) and (max-width: 1368px) {
+  .praisejah-letter {
+    font-size: 9rem !important;
+  }
+  
+  .home-container {
+    margin-top: 80px;
+  }
+  
+  .socials-container {
+    right: -180px;
+  }
+  
+  /* Adjust for the short height */
+  .footer-text,
+  .f-text {
+    top: 53rem;
+  }
+  
+  .terminal-icon {
+    margin-top: 95rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .praisejah-letter {
+    font-size: 9rem !important;
+  }
+  
+  /* Footer arrangement for this range */
+  .footer-text,
+  .f-text {
+    position: fixed !important;
+    bottom: 25px !important;
+    top: auto !important;
+  }
+  
+  .footer-text {
+    right: 30px !important;
+    left: auto !important;
+    text-align: right;
+    width: 180px;
+  }
+  
+  .f-text {
+    left: 30px !important;
+    right: auto !important;
+    text-align: left;
+    width: 180px;
+  }
+  
+  /* Adjust for shorter screens within this range */
+  @media (max-height: 600px) {
+    .footer-text,
+    .f-text {
+      bottom: 15px !important;
+    }
+    
+    .footer-text {
+      right: 20px !important;
+    }
+    
+    .f-text {
+      left: 20px !important;
+    }
+  }
+  
+  /* Adjust for taller screens within this range */
+  @media (min-height: 800px) {
+    .footer-text,
+    .f-text {
+      bottom: 35px !important;
+    }
+  }
+}
+
+/* For 1100px - 1400px width (covers both 1105x601 and 1366x689) */
+@media (min-width: 1100px) and (max-width: 1400px) {
+  .footer-text,
+  .f-text {
+    position: fixed !important;
+    bottom: 35px !important;
+    top: auto !important;
+    z-index: 100;
+    display: block !important; /* Ensure it's displayed */
+    opacity: 1 !important; /* Ensure it's visible */
+    visibility: visible !important;
+  }
+  
+  .footer-text {
+    right: 50px !important;
+    text-align: right;
+    width: 210px;
+    font-size: 18px;
+  }
+  
+  .f-text {
+    left: 50px !important;
+    text-align: left;
+    width: 210px;
+    font-size: 18px;
+  }
+  
+  /* Height-based adjustments */
+  @media (max-height: 650px) {
+    /* For shorter screens like 601px */
+    .footer-text,
+    .f-text {
+      bottom: 22px !important;
+      font-size: 17px;
+    }
+  }
+  
+  @media (min-height: 650px) and (max-height: 720px) {
+    /* For medium height like 689px */
+    .footer-text,
+    .f-text {
+      bottom: 30px !important;
+      font-size: 18px;
+    }
+  }
+  
+  @media (min-height: 720px) {
+    /* For taller screens */
+    .footer-text,
+    .f-text {
+      bottom: 45px !important;
+      font-size: 19px;
+    }
+  }
+}
+
