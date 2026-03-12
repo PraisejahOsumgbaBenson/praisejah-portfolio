@@ -1,6 +1,8 @@
 "use client";
 
 import "./globals.css";
+import "../components/Style.css"; // Add this
+import "../components/Header.css"; // Add this
 import Script from "next/script";
 import Cursor from "../components/Cursor";
 import ClientProviders from "../components/ClientProviders";

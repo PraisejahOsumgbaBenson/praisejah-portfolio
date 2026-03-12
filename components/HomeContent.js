@@ -5,6 +5,7 @@ import Header from "./Header";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { gsap } from "gsap";
 import "./Style.css";
+import "./Header.css";
 import Terminal from "./Terminal";
 
 function HomeContent() {
@@ -55,16 +56,16 @@ function HomeContent() {
     if (window.innerWidth <= 768) return;
 
     const pills = [
-      { text: "UX Strategy", color: "#EDE7D1" },
-      { text: "Content Strategy", color: "#D6CDEA" },
-      { text: "UX/UI Design", color: "#E6E2F1" },
+      { text: "API & Backend Logic", color: "#EDE7D1" },
+      { text: "Systemic Problem Solving", color: "#D6CDEA" },
+      { text: "Product Engineering", color: "#E6E2F1" },
       { text: "Website Design & Dev", color: "#D4B35E" },
-      { text: "Consulting", color: "#F08A5D" },
+      { text: "Open Source", color: "#F08A5D" },
       { text: "Creative Technology", color: "#C6EBC5" },
-      { text: "Frontend Dev", color: "#A4C2A5" },
+      { text: "API & Backend Logic", color: "#A4C2A5" },
       { text: "React Developer", color: "#DB9197" },
-      { text: "Open Source", color: "#BE8A94" },
-      { text: "Problem Solver", color: "#819582" },
+      { text: "Performance Optimization", color: "#BE8A94" },
+      { text: "Database Design", color: "#819582" },
     ];
 
     const container = document.getElementById("pill-container");
@@ -350,13 +351,14 @@ function HomeContent() {
             <br />
 
             {/* Description + CV */}
+            {/* Description + CV */}
             <div className="desc-section">
               <span className="desc-text" ref={descTextRef}>
                 Building impactful software and exploring efficient solutions
                 excite me. Open-source contributor and problem-solver.
               </span>
-              <div
-                className="cv-wrapper"
+              <button
+                className="cv-button"
                 ref={cvRef}
                 onClick={() => {
                   if (audioReady) {
@@ -369,6 +371,7 @@ function HomeContent() {
                     "_blank"
                   );
                 }}
+                onMouseEnter={() => playHoverSound("cv-button")}
                 onTouchStart={(e) => {
                   e.preventDefault();
                   if (audioReady) {
@@ -378,16 +381,8 @@ function HomeContent() {
                   }
                 }}
               >
-                <a
-                  href="https://docs.google.com/document/d/1EbcNjwS7MV_L7YGUTaiuXubdN51vSlOXLhCvCRp7ylQ/edit?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cv"
-                  style={{ pointerEvents: "none" }}
-                >
-                  <span className="cv-text">My CV</span>
-                </a>
-              </div>
+                My CV
+              </button>
             </div>
           </div>
 
@@ -429,9 +424,7 @@ function HomeContent() {
 
       {/* Pills Effect Container */}
       <div id="pill-container"></div>
-      <div className="pill-count-display">
-        Pills: <span id="pill-count">0</span>
-      </div>
+      <div className="pill-count-display"></div>
 
       <Terminal />
     </>
