@@ -1728,6 +1728,7 @@ sup {
   }
 }
 
+/* iPhone 13 / iPhone 12 Pro (390 × 844 px viewport) */
 @media (max-width: 390px) {
   .background-name {
     left: -14%;
@@ -1763,7 +1764,7 @@ sup {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
     max-width: 320px;
-    margin-top: 210px;
+    margin-top: 150px;
     margin-right: -1.5rem;
     min-height: auto;
   }
