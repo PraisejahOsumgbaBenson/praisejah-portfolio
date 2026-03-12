@@ -3,7 +3,12 @@ const nextConfig = {
   // Enable strict mode for React
   reactStrictMode: true,
 
-  // Configure webpack for font files and audio
+  // Allow dev access from local network devices
+  allowedDevOrigins: ["http://192.168.2.195:3001", "http://192.168.2.195:3002"],
+
+  // ...existing code...
+
+  // Configure webpack for font files and audio (fallback)
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(mp3|wav|ogg)$/,
