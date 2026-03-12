@@ -12,7 +12,6 @@ function Header({ onAboutClick, transparent = false }) {
   const [isMobile, setIsMobile] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false); // Add this state
 
-  // Refs
   const cursorRef = useRef(null);
   const animationFrameId = useRef(null);
   const cursorX = useRef(0);
@@ -30,7 +29,6 @@ function Header({ onAboutClick, transparent = false }) {
       });
       setTime(currentTime);
     };
-
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);

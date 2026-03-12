@@ -268,3 +268,30 @@
 .header.transparent.scrolled {
   background: #566246 !important;
 }
+
+/* ===== TRANSPARENT HEADER MODE ===== */
+.header.transparent {
+  background: transparent !important;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* GLASS BACKGROUND ON SCROLL */
+.header.transparent.scrolled {
+  background: rgba(86, 98, 70, 0.8) !important; /* #566246 with opacity */
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Ensure the header has a transition */
+.header {
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* For mobile, keep the glass effect */
+@media (max-width: 768px) {
+  .header.transparent.scrolled {
+    background: rgba(86, 98, 70, 0.85) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+}
