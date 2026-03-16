@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -20,6 +20,20 @@ import "../Blog.css";
 
 const BlogDetailClient = ({ post, slug }) => {
   const [copied, setCopied] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    // Set initial width
+    setWindowWidth(window.innerWidth);
+
+    // Handle resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -43,30 +57,18 @@ const BlogDetailClient = ({ post, slug }) => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       "_blank",
-      "noopener,noreferrer"
-    );
-  };
-
-  const shareOnTelegram = () => {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent(
-      post?.frontmatter.title || "Check out this article"
-    );
-    window.open(
-      `https://t.me/share/url?url=${url}&text=${text}`,
-      "_blank",
-      "noopener,noreferrer"
+      "noopener,noreferrer",
     );
   };
 
   const shareOnTwitter = () => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(
-      post?.frontmatter.title || "Check out this article!"
+      post?.frontmatter.title || "Check out this article!",
     );
     window.open(
       `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -74,7 +76,7 @@ const BlogDetailClient = ({ post, slug }) => {
     const url = encodeURIComponent(window.location.href);
     window.open(
       `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -83,7 +85,7 @@ const BlogDetailClient = ({ post, slug }) => {
       <div className="blog-detail-page">
         <Header transparent={true} />
         <div className="blog-detail-container">
-          <div className="simple-back-link">
+          <div className="back-link-container">
             <Link href="/blog" className="back-arrow">
               <FiArrowUpLeft className="arrow-icon" />
               Back to Posts
@@ -104,8 +106,10 @@ const BlogDetailClient = ({ post, slug }) => {
 
       <div className="blog-detail-container">
         <div className="blog-detail-layout">
-          {/* Left sidebar for tags and share */}
-          <aside className="blog-sidebar">
+          {/* Left sidebar for tags and share - hidden on mobile */}
+          <aside
+            className={`blog-sidebar ${windowWidth <= 1024 ? "sidebar-hidden" : ""}`}
+          >
             {/* Topics section */}
             <div className="topics-section">
               <h3 className="topics-title">
@@ -164,18 +168,18 @@ const BlogDetailClient = ({ post, slug }) => {
 
           {/* Main article content */}
           <div className="article-container">
-            {/* Back link - UP TOP */}
-            <div className="simple-back-link">
+            {/* Back link - visible on all devices */}
+            <div className="back-link-container">
               <Link href="/blog" className="back-arrow">
                 <FiArrowUpLeft className="arrow-icon" />
                 Back to Posts
               </Link>
             </div>
 
-            {/* Title - BIG */}
+            {/* Title */}
             <h1 className="simple-title">{post.frontmatter.title}</h1>
 
-            {/* Date and reading time with React Icons - SMALL SPACE UNDER TITLE */}
+            {/* Date and reading time */}
             <div className="article-meta">
               <div className="meta-item">
                 <FiCalendar className="meta-icon" />
@@ -192,6 +196,24 @@ const BlogDetailClient = ({ post, slug }) => {
               </div>
             </div>
 
+            {/* Tablet/Mobile tags - visible on medium and small screens */}
+            {windowWidth <= 1024 && (
+              <div className="mobile-tags-section">
+                <h3 className="mobile-tags-title">
+                  <FiTag className="topic-icon" />
+                  Topics
+                </h3>
+                <div className="mobile-tags">
+                  {post.frontmatter.tags &&
+                    post.frontmatter.tags.map((tag, index) => (
+                      <span key={index} className="mobile-tag">
+                        #{tag}
+                      </span>
+                    ))}
+                </div>
+              </div>
+            )}
+
             <article className="simple-blog-article">
               <div className="simple-content">
                 {post.frontmatter.excerpt && (
@@ -205,17 +227,17 @@ const BlogDetailClient = ({ post, slug }) => {
                 </div>
               </div>
 
-              {/* Footer with share options for mobile */}
+              {/* Footer with share options for all devices below 1024px */}
               <footer className="mobile-share-footer">
                 <div className="mobile-share-section">
                   <h3 className="share-title">
                     <FiShare2 className="share-title-icon" />
                     Share this article
                   </h3>
-                  <div className="share-icons">
+                  <div className="share-icons mobile-share-icons">
                     <button
                       onClick={shareOnTwitter}
-                      className="share-icon"
+                      className="share-icon mobile-share-icon"
                       aria-label="Share on Twitter"
                     >
                       <FiTwitter className="icon" />
@@ -223,7 +245,7 @@ const BlogDetailClient = ({ post, slug }) => {
                     </button>
                     <button
                       onClick={shareOnFacebook}
-                      className="share-icon"
+                      className="share-icon mobile-share-icon"
                       aria-label="Share on Facebook"
                     >
                       <FiFacebook className="icon" />
@@ -231,7 +253,7 @@ const BlogDetailClient = ({ post, slug }) => {
                     </button>
                     <button
                       onClick={shareOnLinkedIn}
-                      className="share-icon"
+                      className="share-icon mobile-share-icon"
                       aria-label="Share on LinkedIn"
                     >
                       <FiLinkedin className="icon" />
@@ -239,7 +261,7 @@ const BlogDetailClient = ({ post, slug }) => {
                     </button>
                     <button
                       onClick={copyToClipboard}
-                      className="share-icon copy-link"
+                      className="share-icon mobile-share-icon copy-link"
                       aria-label="Copy link"
                     >
                       <FiLink className="icon" />
