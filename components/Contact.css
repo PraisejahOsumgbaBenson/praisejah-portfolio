@@ -1,6 +1,7 @@
 /* Custom font face declaration for Safiro Regular */
 @font-face {
-  font-display: block; /* Controls how font is displayed while loading */
+  font-display: block;
+  /* Controls how font is displayed while loading */
   font-family: safiro-regular;
   font-style: normal;
   font-weight: 400;
@@ -10,191 +11,602 @@
 
 /* Main container styling */
 .contact-container {
-  font-family: "Courier New", monospace; /* Fallback font */
-  color: #f3e3e3; /* Light text color for contrast */
-  margin-top: 200px; /* Spacing from top of page */
+  font-family: "Courier New", monospace;
+  /* Fallback font */
+  color: #f3e3e3;
+  /* Light text color for contrast */
+  margin-top: 200px;
+  /* Spacing from top of page */
 }
 
 /* Wrapper with glassmorphism effect */
 .contact-wrapper {
-  max-width: 1200px; /* Maximum width for large screens */
-  margin: 0 auto; /* Center alignment */
-  padding: 80px 40px; /* Internal spacing */
-  background: rgba(255, 255, 255, 0.15); /* Semi-transparent white background */
-  backdrop-filter: blur(10px); /* Glass blur effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 20px; /* Rounded corners */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  border: 1px solid rgba(255, 255, 255, 0.18); /* Light border */
+  max-width: 1200px;
+  /* Maximum width for large screens */
+  margin: 0 auto;
+  /* Center alignment */
+  padding: 80px 40px;
+  /* Internal spacing */
+  background: rgba(255, 255, 255, 0.15);
+  /* Semi-transparent white background */
+  backdrop-filter: blur(10px);
+  /* Glass blur effect */
+  -webkit-backdrop-filter: blur(10px);
+  /* Safari support */
+  border-radius: 20px;
+  /* Rounded corners */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* Light border */
 }
 
 /* Flex container for two-column layout */
 .contact-content {
   display: flex;
-  justify-content: space-between; /* Space between columns */
+  justify-content: space-between;
+  /* Space between columns */
 }
 
 /* Left section styling (contact info) */
 .left-section {
-  width: 55%; /* Takes majority of space */
-  margin-left: 3%; /* Left margin for alignment */
+  width: 55%;
+  /* Takes majority of space */
+  margin-left: 3%;
+  /* Left margin for alignment */
 }
 
 /* Right section styling (form) */
 .right-section {
-  width: 40%; /* Smaller width than left section */
-  margin-right: -3%; /* Negative margin to push to right */
-  margin-top: 50px; /* Top spacing */
+  width: 40%;
+  /* Smaller width than left section */
+  margin-right: -3%;
+  /* Negative margin to push to right */
+  margin-top: 50px;
+  /* Top spacing */
 }
 
 /* Main title styling */
 .main-title {
-  font-size: 48px; /* Large font size */
-  margin-bottom: 20px; /* Bottom spacing */
-  line-height: 1; /* Tight line height */
-  white-space: nowrap; /* Prevent text wrapping */
-  font-family: safiro-regular; /* Custom font */
+  font-size: 48px;
+  /* Large font size */
+  margin-bottom: 20px;
+  /* Bottom spacing */
+  line-height: 1;
+  /* Tight line height */
+  white-space: nowrap;
+  /* Prevent text wrapping */
+  font-family: safiro-regular;
+  /* Custom font */
 }
 
 /* Email text styling */
 .email {
-  font-size: 15px; /* Medium font size */
-  margin-top: 50px; /* Top spacing */
+  font-size: 15px;
+  /* Medium font size */
+  margin-top: 50px;
+  /* Top spacing */
 }
 
 /* Container for info blocks */
 .info-blocks-container {
-  display: flex; /* Flex layout */
-  gap: 20px; /* Space between blocks */
-  margin-top: 220px; /* Large top spacing */
+  display: flex;
+  /* Flex layout */
+  gap: 20px;
+  /* Space between blocks */
+  margin-top: 220px;
+  /* Large top spacing */
 }
 
 /* Individual info block */
 .info-block {
-  flex: 1; /* Equal width blocks */
+  flex: 1;
+  /* Equal width blocks */
 }
 
 /* Info title styling */
 .info-title {
-  font-size: 15px; /* Medium font size */
-  margin-bottom: 10px; /* Bottom spacing */
-  font-family: safiro-regular; /* Custom font */
+  font-size: 15px;
+  /* Medium font size */
+  margin-bottom: 10px;
+  /* Bottom spacing */
+  font-family: safiro-regular;
+  /* Custom font */
 }
 
 /* Info content text styling */
 .info-content {
-  font-size: 13px; /* Small font size */
+  font-size: 13px;
+  /* Small font size */
 }
 
 /* Form title styling */
 .form-title {
-  font-size: 24px; /* Medium-large font size */
-  font-weight: bold; /* Bold text */
-  margin-bottom: 40px; /* Bottom spacing */
-  font-family: safiro-regular; /* Custom font */
+  font-size: 24px;
+  /* Medium-large font size */
+  font-weight: bold;
+  /* Bold text */
+  margin-bottom: 40px;
+  /* Bottom spacing */
+  font-family: safiro-regular;
+  /* Custom font */
 }
 
 /* Form row for grouping inputs */
 .form-row {
-  display: flex; /* Flex layout */
-  justify-content: space-between; /* Space between inputs */
-  margin-bottom: 30px; /* Bottom spacing */
+  display: flex;
+  /* Flex layout */
+  justify-content: space-between;
+  /* Space between inputs */
+  margin-bottom: 30px;
+  /* Bottom spacing */
 }
 
 /* Individual form group (input + label) */
 .form-group {
-  width: 48%; /* Nearly half width */
+  width: 48%;
+  /* Nearly half width */
 }
 
 /* Full width form group */
 .full-width {
-  width: 100%; /* Full container width */
+  width: 100%;
+  /* Full container width */
 }
 
 /* Label styling */
 label {
-  display: block; /* Block element */
-  margin-bottom: 8px; /* Bottom spacing */
-  font-family: safiro-regular; /* Custom font */
-  font-size: 15px; /* Medium font size */
+  display: block;
+  /* Block element */
+  margin-bottom: 8px;
+  /* Bottom spacing */
+  font-family: safiro-regular;
+  /* Custom font */
+  font-size: 15px;
+  /* Medium font size */
 }
 
 /* Container for input and animated line */
 .input-container {
-  position: relative; /* For absolute positioning of line */
-  padding-bottom: 5px; /* Space for animated line */
+  position: relative;
+  /* For absolute positioning of line */
+  padding-bottom: 5px;
+  /* Space for animated line */
 }
 
 /* Input field styling */
 .animated-input {
-  width: 100%; /* Full width */
-  background: transparent; /* Transparent background */
-  border: none; /* No border */
-  outline: none; /* Remove focus outline */
-  color: #f3e3e3; /* Text color */
-  font-size: 14px; /* Font size */
-  padding: 0; /* No padding */
-  font-family: "Courier New", monospace; /* Font family */
+  width: 100%;
+  /* Full width */
+  background: transparent;
+  /* Transparent background */
+  border: none;
+  /* No border */
+  outline: none;
+  /* Remove focus outline */
+  color: #f3e3e3;
+  /* Text color */
+  font-size: 14px;
+  /* Font size */
+  padding: 0;
+  /* No padding */
+  font-family: "Courier New", monospace;
+  /* Font family */
 }
 
 /* Placeholder text styling */
 .animated-input::placeholder {
-  color: #f3e3e3; /* Same as text color */
-  opacity: 1; /* Ensure full opacity */
+  color: #f3e3e3;
+  /* Same as text color */
+  opacity: 1;
+  /* Ensure full opacity */
 }
 
 /* Textarea specific styling */
 .textarea {
-  min-height: 24px; /* Minimum height */
-  resize: vertical; /* Allow vertical resizing only */
+  min-height: 24px;
+  /* Minimum height */
+  resize: vertical;
+  /* Allow vertical resizing only */
 }
 
 /* Animated line element */
 .input-line {
-  position: absolute; /* Position relative to container */
-  bottom: 0; /* Align to bottom */
-  left: 0; /* Align to left */
-  width: 0; /* Initially hidden (no width) */
-  height: 1px; /* Thin line */
-  background-color: #f3e3e3; /* Line color */
-  transition: width 0.3s ease; /* Smooth width animation */
+  position: absolute;
+  /* Position relative to container */
+  bottom: 0;
+  /* Align to bottom */
+  left: 0;
+  /* Align to left */
+  width: 0;
+  /* Initially hidden (no width) */
+  height: 1px;
+  /* Thin line */
+  background-color: #f3e3e3;
+  /* Line color */
+  transition: width 0.3s ease;
+  /* Smooth width animation */
 }
 
 /* Animate line to full width on input focus */
-.animated-input:focus + .input-line {
-  width: 100%; /* Full width animation */
+.animated-input:focus+.input-line {
+  width: 100%;
+  /* Full width animation */
 }
 
 /* Submit section styling */
 .submit-section {
-  margin-top: 20px; /* Top spacing */
+  margin-top: 20px;
+  /* Top spacing */
 }
 
 /* Submit button styling */
 .submit-button {
-  background: none; /* Transparent background */
-  border: none; /* No border */
-  padding: 0; /* No padding */
-  cursor: pointer; /* Pointer cursor on hover */
-  width: 100%; /* Full width */
-  color: rgb(255, 247, 247); /* Text color */
+  background: none;
+  /* Transparent background */
+  border: none;
+  /* No border */
+  padding: 0;
+  /* No padding */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  width: 100%;
+  /* Full width */
+  color: rgb(255, 247, 247);
+  /* Text color */
 }
 
 /* Submit line container */
 .submit-line {
-  display: flex; /* Flex layout */
-  align-items: center; /* Center vertically */
-  font-family: safiro-regular; /* Custom font */
+  display: flex;
+  /* Flex layout */
+  align-items: center;
+  /* Center vertically */
+  font-family: safiro-regular;
+  /* Custom font */
 }
 
 /* Submit text styling */
 .submit-line span {
-  margin-right: 10px; /* Right spacing */
-  font-weight: bold; /* Bold text */
+  margin-right: 10px;
+  /* Right spacing */
+  font-weight: bold;
+  /* Bold text */
 }
 
 /* Arrow icon styling */
 .arrow-icon {
-  font-size: 20px; /* Icon size */
-  color: #d9979c; /* Pinkish color */
+  font-size: 20px;
+  /* Icon size */
+  color: #d9979c;
+  /* Pinkish color */
+}
+
+/* Status message styling */
+.status-message {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: safiro-regular;
+  font-size: 14px;
+  text-align: center;
+}
+
+.status-message.success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+.status-message.error {
+  background: rgba(244, 67, 54, 0.2);
+  color: #f44336;
+  border: 1px solid #f44336;
+}
+
+.status-message.sending {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+  border: 1px solid #ff9800;
+}
+
+/* ===== RESPONSIVE STYLES - ADDED FOR MOBILE ===== */
+
+/* Tablets and small laptops (1024px and below) */
+@media screen and (max-width: 1024px) {
+  .contact-wrapper {
+    padding: 70px 35px;
+    margin: 0 20px;
+  }
+
+  .main-title {
+    font-size: 42px;
+  }
+
+  .info-blocks-container {
+    margin-top: 180px;
+    gap: 15px;
+  }
+}
+
+/* Tablets (768px to 1023px) */
+@media screen and (max-width: 768px) {
+  .contact-container {
+    margin-top: 150px;
+  }
+
+  .contact-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .left-section {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .right-section {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0;
+  }
+
+  .main-title {
+    font-size: 36px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .email {
+    margin-top: 30px;
+  }
+
+  .info-blocks-container {
+    margin-top: 60px;
+    gap: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .form-title {
+    margin-bottom: 30px;
+  }
+}
+
+/* Large phones (480px to 767px) */
+@media screen and (max-width: 480px) {
+  .contact-container {
+    margin-top: 120px;
+  }
+
+  .contact-wrapper {
+    padding: 50px 20px;
+    margin: 0 15px;
+  }
+
+  .main-title {
+    font-size: 32px;
+  }
+
+  .email {
+    font-size: 14px;
+    margin-top: 25px;
+  }
+
+  .info-blocks-container {
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .info-block {
+    width: 100%;
+  }
+
+  .info-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .info-content {
+    font-size: 12px;
+  }
+
+  .form-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .animated-input {
+    font-size: 13px;
+  }
+
+  .submit-line {
+    font-size: 15px;
+  }
+
+  .arrow-icon {
+    font-size: 18px;
+  }
+
+  .status-message {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+/* Small phones (360px and below) */
+@media screen and (max-width: 360px) {
+  .contact-container {
+    margin-top: 100px;
+  }
+
+  .contact-wrapper {
+    padding: 40px 15px;
+  }
+
+  .main-title {
+    font-size: 28px;
+  }
+
+  .email {
+    font-size: 13px;
+    margin-top: 20px;
+  }
+
+  .info-title {
+    font-size: 13px;
+  }
+
+  .info-content {
+    font-size: 11px;
+  }
+
+  .form-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  .animated-input {
+    font-size: 12px;
+  }
+
+  .submit-line {
+    font-size: 14px;
+  }
+
+  .submit-line span {
+    margin-right: 8px;
+  }
+
+  .arrow-icon {
+    font-size: 16px;
+  }
+
+  .status-message {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
+
+/* Extra small phones (320px and below) */
+@media screen and (max-width: 320px) {
+  .contact-wrapper {
+    padding: 30px 12px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .email {
+    font-size: 12px;
+    margin-top: 15px;
+  }
+
+  .info-title {
+    font-size: 12px;
+  }
+
+  .info-content {
+    font-size: 10px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  .animated-input {
+    font-size: 11px;
+  }
+
+  .submit-line {
+    font-size: 13px;
+  }
+
+  .arrow-icon {
+    font-size: 14px;
+  }
+
+  .submit-line span {
+    margin-right: 6px;
+  }
+}
+
+/* Landscape orientation for phones */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  .contact-container {
+    margin-top: 100px;
+  }
+
+  .contact-wrapper {
+    padding: 40px 30px;
+  }
+
+  .info-blocks-container {
+    margin-top: 40px;
+  }
+
+  .form-row {
+    margin-bottom: 15px;
+  }
+
+  .submit-section {
+    margin-top: 15px;
+  }
+}
+
+/* Fix for devices with notches */
+@supports (padding: max(0px)) {
+  .contact-wrapper {
+    padding-left: max(40px, env(safe-area-inset-left));
+    padding-right: max(40px, env(safe-area-inset-right));
+  }
+
+  @media screen and (max-width: 480px) {
+    .contact-wrapper {
+      padding-left: max(20px, env(safe-area-inset-left));
+      padding-right: max(20px, env(safe-area-inset-right));
+    }
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .submit-button {
+    min-height: 44px;
+    /* Apple's minimum touch target size */
+    display: flex;
+    align-items: center;
+  }
+
+  .animated-input {
+    font-size: 16px;
+    /* Prevent zoom on iOS */
+  }
+
+  .info-block {
+    padding: 12px 0;
+  }
 }
