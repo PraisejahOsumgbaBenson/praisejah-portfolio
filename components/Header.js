@@ -327,7 +327,7 @@ function Header({ onAboutClick, transparent = false }) {
             <li>
               <Link
                 href="/about"
-                data-number="03"
+                data-number="02"
                 data-position="back"
                 className="mobile-fullscreen-nav-link"
                 onClick={closeMobileMenu}
@@ -338,6 +338,20 @@ function Header({ onAboutClick, transparent = false }) {
                   <span className="font-1">e</span>
                   <span className="font-2">u</span>
                   <span className="font-3">t</span>
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog"
+                data-number="01"
+                className="mobile-fullscreen-nav-link"
+                onClick={closeMobileMenu}
+              >
+                <span className="word-container">
+                  <span className="font-1">B</span>
+                  <span className="font-2">l</span>
+                  <span className="font-3">og</span>
                 </span>
               </Link>
             </li>

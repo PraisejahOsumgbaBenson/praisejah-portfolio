@@ -487,16 +487,20 @@ function About() {
       // 1. First show the plain green background
       experienceTl.to({}, { duration: 0.3 });
 
-      // 2. Then animate in the stripes
+      // 2. Then animate in the stripes - FIXED VERSION
       experienceTl.to(experienceSectionRef.current, {
         "--stripes-opacity": 1,
         duration: 0.8,
         ease: "power2.inOut",
         onUpdate: function () {
-          experienceSectionRef.current.style.setProperty(
-            "--stripes-opacity",
-            this.progress(),
-          );
+          if (experienceSectionRef.current) {
+            // Safely get the progress value
+            const progress = this.progress ? this.progress() : 0;
+            experienceSectionRef.current.style.setProperty(
+              "--stripes-opacity",
+              progress,
+            );
+          }
         },
       });
 
