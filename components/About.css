@@ -1983,3 +1983,200 @@ body {
     padding: 7px 14px !important;
   }
 }
+
+/* 1024x600 specific fix - for screens with 600px height */
+@media (max-height: 600px) and (min-width: 1024px) {
+  .hero {
+    height: 100vh;
+    min-height: 600px;
+    padding: 3vw !important;
+    grid-template-rows: 60px 140px auto 1fr !important;
+  }
+
+  .label {
+    font-size: 14px !important;
+    margin-top: 80px !important;
+    grid-column: 1 / 6 !important;
+  }
+
+  .main-text {
+    font-size: clamp(22px, 3vw, 32px) !important;
+    margin-top: 20px !important;
+    line-height: 1.2 !important;
+    grid-column: 1 / 9 !important;
+  }
+
+  .notes-container {
+    grid-column: 8 / 13 !important;
+    gap: 20px !important;
+    margin-top: 20px !important;
+  }
+
+  .note {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  .note-number {
+    font-size: 10px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .big-word {
+   
+    left: 2vw;
+  }
+
+  /* Adjust the hero scrolling text position */
+  .hero-scrolling-text {
+    height: 30px;
+    font-size: 12px;
+  }
+
+  /* Adjust resume section for shorter screens */
+  .resume-layout {
+    padding: 10px !important;
+  }
+
+  .left-column {
+    margin-top: 0 !important;
+    padding: 20px !important;
+    min-height: auto !important;
+  }
+
+  .middle-column,
+  .right-column {
+    padding: 20px !important;
+  }
+
+  .resume-highlights {
+    min-height: auto !important;
+  }
+
+  .highlights-title {
+    font-size: 3.5rem !important;
+    margin-bottom: 20px !important;
+  }
+
+  .highlights-title .thin {
+    font-size: 1.8rem !important;
+    margin-left: 20px !important;
+    margin-top: -15px !important;
+  }
+
+  .full-cv-link {
+    margin-left: 15px !important;
+    margin-top: -10px !important;
+  }
+
+  .entry {
+    margin-bottom: 8px !important;
+  }
+
+  .date {
+    font-size: 0.75rem !important;
+  }
+
+  .details,
+  .tools {
+    font-size: 0.85rem !important;
+  }
+
+  .heading {
+    font-size: 1.1rem !important;
+    padding-bottom: 10px !important;
+  }
+
+  .before-education,
+  .before-tools {
+    margin: 15px 0 !important;
+  }
+
+  /* Adjust experience section for shorter screens */
+  .experience-section {
+    padding: 40px 30px !important;
+    min-height: auto !important;
+  }
+
+  .section-main-title {
+    font-size: 2.5rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .section-subtitle {
+    font-size: 1rem !important;
+    margin-bottom: 20px !important;
+  }
+
+  .experience-grid {
+    gap: 20px !important;
+  }
+
+  .experience-card {
+    padding: 25px !important;
+  }
+
+  .card-title {
+    font-size: 1.3rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .card-description {
+    font-size: 0.85rem !important;
+    margin-bottom: 15px !important;
+  }
+
+  .card-tags span {
+    font-size: 0.7rem !important;
+    padding: 4px 10px !important;
+  }
+
+  .card-number {
+    font-size: 1.8rem !important;
+  }
+}
+
+/* For even smaller heights (like 540px) */
+@media (max-height: 540px) and (min-width: 1024px) {
+  .hero {
+    grid-template-rows: 40px 100px auto 1fr !important;
+  }
+
+  .label {
+    margin-top: 60px !important;
+    font-size: 12px !important;
+  }
+
+  .main-text {
+    font-size: clamp(18px, 2.5vw, 24px) !important;
+    margin-top: 10px !important;
+  }
+
+  .notes-container {
+    margin-top: 10px !important;
+    gap: 15px !important;
+  }
+
+  .note {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+
+  .big-word {
+    font-size: clamp(60px, 10vw, 80px) !important;
+    bottom: 12vw;
+  }
+
+  .experience-card {
+    padding: 20px !important;
+  }
+
+  .card-title {
+    font-size: 1.2rem !important;
+  }
+
+  .card-description {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+}
