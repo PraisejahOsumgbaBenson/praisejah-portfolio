@@ -7,6 +7,7 @@ import Image from "next/image";
 import "./About.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import experiencesData from "../data/experiences.json";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -681,7 +682,7 @@ function About() {
       document.body.style.overflowY = "";
     };
   }, []);
-  
+
   return (
     <>
       <div className="about-container">
@@ -928,181 +929,33 @@ function About() {
           </div>
 
           <div className="experience-grid">
-            <div className="experience-card card-1" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">01</span>
-                <span className="card-year">2025 - Present</span>
+            {experiencesData.map((exp) => (
+              <div
+                key={exp.id}
+                className={`experience-card ${exp.cardClass}`}
+                ref={addToExperienceCards}
+              >
+                <div className="card-header">
+                  <span className="card-number">{exp.number}</span>
+                  <span className="card-year">{exp.year}</span>
+                </div>
+                <h3 className="card-title">{exp.title}</h3>
+                {exp.descriptionHtml ? (
+                  <p
+                    className="card-description"
+                    dangerouslySetInnerHTML={{ __html: exp.description }}
+                  />
+                ) : (
+                  <p className="card-description">{exp.description}</p>
+                )}
+                <div className="card-tags">
+                  {exp.tags.map((tag, index) => (
+                    <span key={index}>{tag}</span>
+                  ))}
+                </div>
+                <div className="card-highlight"></div>
               </div>
-              <h3 className="card-title">Glitch Intern @ UCLA</h3>
-              <p className="card-description">
-                Building an LLM-powered tool that tracks internship/job news
-                worldwide. Scrapes 500+ sources, analyzes trends, and generates
-                personalized alerts. Working with UCLA seniors to optimize model
-                accuracy.
-              </p>
-              <div className="card-tags">
-                <span>LLM Development</span>
-                <span>Opportunity Analytics</span>
-                <span>Web Scraping</span>
-                <span>NLP Pipelines</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-2" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">02</span>
-                <span className="card-year">Summer 2025</span>
-              </div>
-              <h3 className="card-title">
-                Neurodiversity Researcher @ Stanford SNP-REACH
-              </h3>
-              <p className="card-description">
-                Developed new frameworks to share neurodiversity awareness and
-                create inclusive environments. Collected and analyzed data on
-                neurodivergent experiences in tech education.
-              </p>
-              <div className="card-tags">
-                <span>Awareness Campaigns</span>
-                <span>Inclusion Research</span>
-                <span>Data Analysis</span>
-                <span>Education</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-3" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">03</span>
-                <span className="card-year">Summer 2025</span>
-              </div>
-              <h3 className="card-title">Quantum Computing @ IBM Qiskit</h3>
-              <p className="card-description">
-                Completed intensive quantum programming training using Qiskit.
-                Built and simulated quantum circuits through hands-on labs
-                covering superposition, entanglement, and quantum algorithms.
-              </p>
-              <div className="card-tags">
-                <span>Qiskit</span>
-                <span>Quantum Circuits</span>
-                <span>Quantum Algorithms</span>
-                <span>Python</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-1" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">04</span>
-                <span className="card-year">Spring 2025</span>
-              </div>
-              <h3 className="card-title">
-                Yale Entrepreneurial Fellowship (1st Place)
-              </h3>
-              <p className="card-description">
-                Contributed research and product development for Proact+, an AI
-                focus app that won top prize among 10 teams. Helped design
-                behavioral models and pitch the solution to judges.
-              </p>
-              <div className="card-tags">
-                <span>AI Research</span>
-                <span>Product Development</span>
-                <span>Pitching</span>
-                <span>Team Collaboration</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-2" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">05</span>
-                <span className="card-year">Sep 2024 - Present</span>
-              </div>
-              <h3 className="card-title">
-                The BulleTeen | Web Dev & Hiring Lead
-              </h3>
-              <p className="card-description">
-                <span className="card-achievement"></span> Boosted STEM
-                accessibility 50% via UX optimization
-                <br />
-                <span className="card-achievement"></span> Scaled to 500+
-                monthly visitors
-                <br />
-                <span className="card-achievement"></span> Built/managed 55+
-                volunteer team
-                <br />
-                <span className="card-achievement"></span> Produced global STEM
-                content pipeline
-              </p>
-              <div className="card-tags">
-                <span>Web Accessibility</span>
-                <span>Team Scaling</span>
-                <span>Content Strategy</span>
-                <span>UX Optimization</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-3" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">06</span>
-                <span className="card-year">2024-2025</span>
-              </div>
-              <h3 className="card-title">Non-Trivial</h3>
-              <p className="card-description">
-                Researched and modeled climate solutions as global finalist,
-                analyzing environmental datasets and presenting findings to
-                domain experts.
-              </p>
-              <div className="card-tags">
-                <span>Climate Research</span>
-                <span>Data Analysis</span>
-                <span>Research Presentation</span>
-                <span>Global Finalist</span>
-                <span>Competitive Analysis</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-4" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">07</span>
-                <span className="card-year">2022-2023</span>
-              </div>
-              <h3 className="card-title">Pearl Impact Network Africa</h3>
-              <p className="card-description">
-                Modernized NGO website with improved UX/UI, increasing
-                engagement by 40% through responsive design and streamlined
-                content delivery.
-              </p>
-              <div className="card-tags">
-                <span>Web Redesign</span>
-                <span>UX Optimization</span>
-                <span>Non-profit Tech</span>
-                <span>Frontend Development</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
-
-            <div className="experience-card card-5" ref={addToExperienceCards}>
-              <div className="card-header">
-                <span className="card-number">08</span>
-                <span className="card-year">2019 - 2020</span>
-              </div>
-              <h3 className="card-title">Innovation Growth Hub Mentor</h3>
-              <p className="card-description">
-                Taught Scratch programming to 50+ peers and co-designed women's
-                rights app prototypes, blending tech education with social
-                advocacy.
-              </p>
-              <div className="card-tags">
-                <span>Tech Education</span>
-                <span>App Prototyping</span>
-                <span>Youth Mentorship</span>
-                <span>Gender Equity</span>
-              </div>
-              <div className="card-highlight"></div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

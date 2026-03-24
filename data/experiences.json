@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "number": "01",
+    "year": "2025 - Present",
+    "title": "Glitch Intern @ UCLA",
+    "description": "Building an LLM-powered tool that tracks internship/job news worldwide. Scrapes 500+ sources, analyzes trends, and generates personalized alerts. Working with UCLA seniors to optimize model accuracy.",
+    "tags": [
+      "LLM Development",
+      "Opportunity Analytics",
+      "Web Scraping",
+      "NLP Pipelines"
+    ],
+    "cardClass": "card-1"
+  },
+  {
+    "id": 2,
+    "number": "02",
+    "year": "Summer 2025",
+    "title": "Neurodiversity Researcher @ Stanford SNP-REACH",
+    "description": "Developed new frameworks to share neurodiversity awareness and create inclusive environments. Collected and analyzed data on neurodivergent experiences in tech education.",
+    "tags": [
+      "Awareness Campaigns",
+      "Inclusion Research",
+      "Data Analysis",
+      "Education"
+    ],
+    "cardClass": "card-2"
+  },
+  {
+    "id": 3,
+    "number": "03",
+    "year": "Summer 2025",
+    "title": "Quantum Computing @ IBM Qiskit",
+    "description": "Completed intensive quantum programming training using Qiskit. Built and simulated quantum circuits through hands-on labs covering superposition, entanglement, and quantum algorithms.",
+    "tags": ["Qiskit", "Quantum Circuits", "Quantum Algorithms", "Python"],
+    "cardClass": "card-3"
+  },
+  {
+    "id": 4,
+    "number": "04",
+    "year": "Spring 2025",
+    "title": "Yale Entrepreneurial Fellowship (1st Place)",
+    "description": "Contributed research and product development for Proact+, an AI focus app that won top prize among 10 teams. Helped design behavioral models and pitch the solution to judges.",
+    "tags": [
+      "AI Research",
+      "Product Development",
+      "Pitching",
+      "Team Collaboration"
+    ],
+    "cardClass": "card-1"
+  },
+  {
+    "id": 5,
+    "number": "05",
+    "year": "Sep 2024 - Present",
+    "title": "The BulleTeen | Web Dev & Hiring Lead",
+    "descriptionHtml": true,
+    "description": "<span class=\"card-achievement\"></span> Boosted STEM accessibility 50% via UX optimization<br /><span class=\"card-achievement\"></span> Scaled to 500+ monthly visitors<br /><span class=\"card-achievement\"></span> Built/managed 55+ volunteer team<br /><span class=\"card-achievement\"></span> Produced global STEM content pipeline",
+    "tags": [
+      "Web Accessibility",
+      "Team Scaling",
+      "Content Strategy",
+      "UX Optimization"
+    ],
+    "cardClass": "card-2"
+  },
+  {
+    "id": 6,
+    "number": "06",
+    "year": "2024-2025",
+    "title": "Non-Trivial",
+    "description": "Researched and modeled climate solutions as global finalist, analyzing environmental datasets and presenting findings to domain experts.",
+    "tags": [
+      "Climate Research",
+      "Data Analysis",
+      "Research Presentation",
+      "Global Finalist",
+      "Competitive Analysis"
+    ],
+    "cardClass": "card-3"
+  },
+  {
+    "id": 7,
+    "number": "07",
+    "year": "2022-2023",
+    "title": "Pearl Impact Network Africa",
+    "description": "Modernized NGO website with improved UX/UI, increasing engagement by 40% through responsive design and streamlined content delivery.",
+    "tags": [
+      "Web Redesign",
+      "UX Optimization",
+      "Non-profit Tech",
+      "Frontend Development"
+    ],
+    "cardClass": "card-4"
+  },
+  {
+    "id": 8,
+    "number": "08",
+    "year": "2019 - 2020",
+    "title": "Innovation Growth Hub Mentor",
+    "description": "Taught Scratch programming to 50+ peers and co-designed women's rights app prototypes, blending tech education with social advocacy.",
+    "tags": [
+      "Tech Education",
+      "App Prototyping",
+      "Youth Mentorship",
+      "Gender Equity"
+    ],
+    "cardClass": "card-5"
+  }
+]
