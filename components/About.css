@@ -440,9 +440,9 @@ body {
   font-size: 1.3rem;
   cursor: pointer;
   padding-bottom: 20px;
-  font-family: "resumes", serif;
+  font-family: "details", serif;
   letter-spacing: 1px;
-  color: rgb(255, 207, 238);
+  color: rgb(18, 13, 16);
 }
 
 /* Fixed entry layout - year and details side by side */
