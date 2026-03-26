@@ -1,6 +1,8 @@
 "use client";
 
 import "./globals.css";
+import "../components/Style.css"; // Add this
+import "../components/Header.css"; // Add this
 import Script from "next/script";
 import Cursor from "../components/Cursor";
 import ClientProviders from "../components/ClientProviders";
@@ -15,14 +17,6 @@ export default function RootLayout({ children }) {
         <meta
           name="description"
           content="Praisejah's Portfolio - Software Engineer"
-        />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=striper@400&f[]=chillax@400&f[]=stardom@400&f[]=space-grotesk@300,400&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Gaegu&family=Gotu&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap"
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/logo192.png" />
