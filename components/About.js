@@ -626,63 +626,6 @@ function About() {
       experienceCardsRef.current.push(el);
     }
   };
-  // Add this useEffect to handle scroll locking at the bottom
-  useEffect(() => {
-    const handleScrollLock = () => {
-      const experienceSection = experienceSectionRef.current;
-      if (!experienceSection) return;
-
-      const rect = experienceSection.getBoundingClientRect();
-      const isAtBottom = rect.bottom <= window.innerHeight;
-      const scrollPosition = window.scrollY;
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-
-      // If we're at the bottom of the page
-      if (scrollPosition >= maxScroll - 10) {
-        // 10px threshold
-        // Lock scrolling by preventing default only when trying to scroll past
-        document.body.style.overflowY = "hidden";
-      } else {
-        // Re-enable scrolling
-        document.body.style.overflowY = "";
-      }
-    };
-
-    // Also prevent wheel events when at the bottom and trying to scroll further
-    const preventOverscroll = (e) => {
-      const experienceSection = experienceSectionRef.current;
-      if (!experienceSection) return;
-
-      const scrollPosition = window.scrollY;
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const deltaY = e.deltaY;
-
-      // If at the bottom and trying to scroll down
-      if (scrollPosition >= maxScroll - 5 && deltaY > 0) {
-        e.preventDefault();
-      }
-
-      // If at the top and trying to scroll up
-      if (scrollPosition <= 5 && deltaY < 0) {
-        e.preventDefault();
-      }
-    };
-
-    window.addEventListener("scroll", handleScrollLock);
-    window.addEventListener("wheel", preventOverscroll, { passive: false });
-
-    handleScrollLock(); // Check initial state
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollLock);
-      window.removeEventListener("wheel", preventOverscroll);
-      // Clean up styles when component unmounts
-      document.body.style.overflowY = "";
-    };
-  }, []);
-
   return (
     <>
       <div className="about-container">
