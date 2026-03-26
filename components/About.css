@@ -89,9 +89,14 @@ body {
 }
 
 /* Ensure all content appears above the canvas but below dots */
-.hero>*:not(canvas):not(.hero::after) {
+.hero>*:not(canvas) {
   position: relative;
   z-index: 2;
+}
+
+.hero::after {
+  position: relative;
+  z-index: 1;
 }
 
 .label {
