@@ -6,7 +6,8 @@ const nextConfig = {
   // Allow dev access from local network devices
   allowedDevOrigins: ["http://192.168.2.195:3001", "http://192.168.2.195:3002"],
 
-  // ...existing code...
+  // Turbopack config (empty but required for Next.js 16+)
+  turbopack: {},
 
   // Configure webpack for font files and audio (fallback)
   webpack: (config) => {
