@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Praisejah Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A personal portfolio and blog built with Next.js (App Router), focused on interactive UI, animation, and technical writing.
+
+## Overview
+
+This project powers `praisejah`'s portfolio site with:
+
+- A custom animated landing experience
+- About and contact pages
+- An MDX-powered blog system with dynamic post routes
+- Custom UI interactions (cursor effects, GSAP motion, terminal-style component)
+
+## Tech Stack
+
+- Next.js 14 (App Router)
+- React 18
+- GSAP + Framer Motion
+- MDX content via `gray-matter`
+- `react-markdown` + `remark-gfm`
+- `reading-time` metadata extraction
+- `react-icons`
+
+## Project Structure
+
+```text
+app/
+  page.js                 # Home route
+  about/page.js           # About route
+  contact/page.js         # Contact route
+  blog/page.js            # Blog listing
+  blog/[slug]/page.js     # Blog detail pages
+components/               # Reusable UI and page components
+content/posts/            # MDX blog posts
+lib/mdx.js                # Post loading + metadata utilities
+public/                   # Static assets (fonts, images, sounds)
+```
+
+## Local Development
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start development server:
+
+```bash
+npm run dev
+```
+
+3. Open:
+
+```text
+http://localhost:3000
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm run dev` - start local dev server
+- `npm run build` - create production build
+- `npm run start` - run production server
+- `npm run lint` - run lint checks
 
-### `npm start`
+## Content Management (Blog)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Blog posts are stored as `.mdx` files in `content/posts/`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Each post is parsed through `lib/mdx.js`, which handles:
 
-### `npm test`
+- slug generation
+- frontmatter parsing
+- reading time calculation
+- sorting by published date
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Notes
 
-### `npm run build`
+- Analytics scripts are loaded in `app/layout.js` (Microsoft Clarity + Google Analytics).
+- Font and media assets are served from `public/`.
+- `next.config.js` includes custom handling for audio assets and image settings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This project has been deployed on Vercel and is being prepared for Cloudflare Workers deployment using the OpenNext Cloudflare adapter.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you want, I can also provide a Cloudflare-ready deployment section with exact `wrangler` and `opennext` commands for this repo.
