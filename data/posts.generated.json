@@ -1,0 +1,65 @@
+[
+  {
+    "slug": "building-scalable-apis-with-nodejs",
+    "frontmatter": {
+      "title": "Building Scalable APIs with Node.js",
+      "date": "2024-03-05",
+      "tags": [
+        "Node.js",
+        "Backend",
+        "API"
+      ],
+      "excerpt": "Best practices for designing and building RESTful APIs that can handle millions of requests.",
+      "author": "Your Name",
+      "featured_image": ""
+    },
+    "content": "\n# Building Scalable APIs with Node.js\n\nBuilding scalable APIs requires careful planning and architecture. Here are key principles:\n\n## 1. RESTful Design\n\n- Use proper HTTP methods (GET, POST, PUT, DELETE)\n- Use meaningful resource names\n- Version your API\n\n## 2. Error Handling\n\n- Consistent error responses\n- Proper HTTP status codes\n- Detailed error messages for debugging\n\n## 3. Performance Optimization\n\n- Implement caching\n- Use pagination for large datasets\n- Database query optimization\n\n## 4. Security\n\n- Authentication & Authorization\n- Input validation\n- Rate limiting\n\n## 5. Monitoring & Logging\n\n- Request logging\n- Performance metrics\n- Error tracking\n\n## Conclusion\n\nBuilding scalable APIs is both an art and a science. Start implementing these principles today.\n",
+    "readingTime": {
+      "text": "1 min read",
+      "minutes": 0.6,
+      "words": 120
+    }
+  },
+  {
+    "slug": "getting-started-with-react-hooks",
+    "frontmatter": {
+      "title": "Getting Started with React Hooks",
+      "date": "2024-03-15",
+      "tags": [
+        "React",
+        "JavaScript",
+        "Web Development"
+      ],
+      "excerpt": "Learn how to use React Hooks to write cleaner and more maintainable functional components with practical examples.",
+      "author": "Your Name",
+      "featured_image": ""
+    },
+    "content": "\n# Getting Started with React Hooks\n\nReact Hooks revolutionized how we write React components. They allow you to use state and other React features without writing a class.\n\n## Why Use Hooks?\n\nHooks solve several problems:\n\n1. **Reusing stateful logic** between components\n2. **Simplifying complex components** that were hard to understand\n3. **Avoiding wrapper hell** in your component tree\n\n## Basic Hooks\n\n### useState\n\nThe `useState` hook lets you add state to functional components:\n\n```jsx\nimport React, { useState } from \"react\";\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <p>You clicked {count} times</p>\n      <button onClick={() => setCount(count + 1)}>Click me</button>\n    </div>\n  );\n}\n```\n\n### useEffect\n\nThe `useEffect` hook lets you perform side effects:\n\n```jsx\nimport React, { useState, useEffect } from \"react\";\n\nfunction Example() {\n  const [count, setCount] = useState(0);\n\n  useEffect(() => {\n    document.title = `You clicked ${count} times`;\n  }, [count]); // Only re-run if count changes\n\n  return (\n    <div>\n      <p>You clicked {count} times</p>\n      <button onClick={() => setCount(count + 1)}>Click me</button>\n    </div>\n  );\n}\n```\n\n## Custom Hooks\n\nYou can create your own hooks to extract component logic into reusable functions.\n\n## Conclusion\n\nStart using hooks in your next project and experience the benefits firsthand!\n",
+    "readingTime": {
+      "text": "1 min read",
+      "minutes": 1,
+      "words": 200
+    }
+  },
+  {
+    "slug": "mastering-css-grid-layout",
+    "frontmatter": {
+      "title": "Mastering CSS Grid Layout",
+      "date": "2024-03-10",
+      "tags": [
+        "CSS",
+        "Web Design",
+        "Frontend"
+      ],
+      "excerpt": "A comprehensive guide to creating modern layouts with CSS Grid, including advanced techniques and responsive design patterns.",
+      "author": "Your Name",
+      "featured_image": ""
+    },
+    "content": "\n# Mastering CSS Grid Layout\n\nCSS Grid Layout is a two-dimensional layout system for the web. It lets you lay out items in rows and columns, and it's incredibly powerful for creating complex layouts with minimal code.\n\n## Grid Container\n\nTo start using CSS Grid, you need to define a grid container:\n\n```css\n.container {\n  display: grid;\n  grid-template-columns: 1fr 2fr 1fr;\n  grid-gap: 20px;\n}\n```\n\n## Common Grid Patterns\n\n### Holy Grail Layout\n\n```css\n.holy-grail {\n  display: grid;\n  grid-template-areas:\n    \"header header header\"\n    \"nav content sidebar\"\n    \"footer footer footer\";\n  grid-template-columns: 200px 1fr 200px;\n  grid-template-rows: auto 1fr auto;\n  min-height: 100vh;\n}\n\n.header {\n  grid-area: header;\n}\n.nav {\n  grid-area: nav;\n}\n.content {\n  grid-area: content;\n}\n.sidebar {\n  grid-area: sidebar;\n}\n.footer {\n  grid-area: footer;\n}\n```\n\n## Browser Support\n\nCSS Grid is fully supported in all modern browsers.\n\n## Conclusion\n\nCSS Grid is the most powerful layout system available to web developers today.\n",
+    "readingTime": {
+      "text": "1 min read",
+      "minutes": 0.76,
+      "words": 152
+    }
+  }
+]

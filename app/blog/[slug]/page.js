@@ -9,8 +9,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function BlogDetailPage({ params }) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogDetailPage({ params }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
 
-  return <BlogDetailClient post={post} slug={params.slug} />;
+  return <BlogDetailClient post={post} slug={slug} />;
 }
