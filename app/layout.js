@@ -10,7 +10,12 @@ import ClientProviders from "../components/ClientProviders";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
+const bebasNeue = Bebas_Neue({
+  weight: "400",
   subsets: ["latin"],
+  variable: "--font-bebas-neue",
+  display: "swap",
+});
   variable: "--font-bebas-neue",
 });
 
