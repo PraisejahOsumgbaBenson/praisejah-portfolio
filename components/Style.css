@@ -357,7 +357,7 @@ sup {
   position: fixed;
   bottom: 20px;
   right: 100px;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--font-bebas-neue), "Bebas Neue", sans-serif;
   font-size: 17px;
   color: #db9197;
   text-align: right;
@@ -370,7 +370,7 @@ sup {
   position: fixed;
   bottom: 20px;
   left: 100px;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: var(--font-bebas-neue), "Bebas Neue", sans-serif;
   font-size: 17px;
   color: #db9197;
   text-align: right;
@@ -2670,6 +2670,7 @@ sup {
     margin-top: 20px;
   }
 }
+
 
 /* Adjust for different screen sizes */
 @media (min-width: 769px) and (max-width: 1100px) {

@@ -4,8 +4,15 @@ import "./globals.css";
 import "../components/Style.css"; // Add this
 import "../components/Header.css"; // Add this
 import Script from "next/script";
+import { Bebas_Neue } from "next/font/google";
 import Cursor from "../components/Cursor";
 import ClientProviders from "../components/ClientProviders";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas-neue",
+});
 
 export default function RootLayout({ children }) {
   return (
@@ -22,7 +29,7 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/logo192.png" />
         <title>Praisejah | Portfolio</title>
       </head>
-      <body>
+      <body className={bebasNeue.variable}>
         <Script id="clarity-script" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
