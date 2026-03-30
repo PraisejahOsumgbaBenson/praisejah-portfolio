@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "include": [
+    "/blog/*",
+    "/_next/*",
+    "/fonts/*",
+    "/images/*",
+    "/sounds/*"
+  ],
+  "exclude": []
+}

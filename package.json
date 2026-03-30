@@ -25,11 +25,15 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate-posts && next build",
     "start": "next start",
     "lint": "next lint",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "generate-posts": "node scripts/generate-posts-json.js",
+    "copy-posts": "node scripts/copy-posts.js",
+    "cf-build": "npm run generate-posts && opennextjs-cloudflare build && cp public/_routes.json .open-next/assets/",
+    "cf-copy-posts": "cp lib/posts.json .open-next/server-functions/default/lib/posts.json",
+    "preview": "npm run cf-build && npm run cf-copy-posts && opennextjs-cloudflare preview",
+    "deploy": "npm run cf-build && npm run cf-copy-posts && opennextjs-cloudflare deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   }
 }
