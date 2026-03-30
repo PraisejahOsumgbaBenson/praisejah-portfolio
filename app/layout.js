@@ -1,8 +1,8 @@
 "use client";
 
 import "./globals.css";
-import "../components/Style.css"; // Add this
-import "../components/Header.css"; // Add this
+import "../components/Style.css";
+import "../components/Header.css";
 import Script from "next/script";
 import { Bebas_Neue } from "next/font/google";
 import Cursor from "../components/Cursor";
@@ -10,13 +10,9 @@ import ClientProviders from "../components/ClientProviders";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
-const bebasNeue = Bebas_Neue({
-  weight: "400",
   subsets: ["latin"],
   variable: "--font-bebas-neue",
   display: "swap",
-});
-  variable: "--font-bebas-neue",
 });
 
 export default function RootLayout({ children }) {
