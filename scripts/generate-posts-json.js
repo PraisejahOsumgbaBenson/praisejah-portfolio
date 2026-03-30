@@ -21,11 +21,23 @@ const posts = files.map(fileName => {
   const { data, content } = matter(fileContents);
   const stats = readingTime(content);
 
+  let date = null;
+  if (data.date) {
+    const parsed = new Date(data.date);
+    if (Number.isNaN(parsed.getTime())) {
+      console.warn(`Warning: Post "${slug}" has an invalid date value: "${data.date}". Storing as null.`);
+    } else {
+      date = data.date;
+    }
+  } else {
+    console.warn(`Warning: Post "${slug}" is missing a date. Storing as null.`);
+  }
+
   return {
     slug,
     frontmatter: {
       title: data.title || '',
-      date: data.date || '',
+      date,
       tags: data.tags || [],
       excerpt: data.excerpt || '',
       author: data.author || '',
@@ -38,7 +50,13 @@ const posts = files.map(fileName => {
       words: stats.words,
     },
   };
-}).sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
+}).sort((a, b) => {
+  const timeA = new Date(a.frontmatter.date).getTime();
+  const timeB = new Date(b.frontmatter.date).getTime();
+  const safeA = Number.isNaN(timeA) ? 0 : timeA;
+  const safeB = Number.isNaN(timeB) ? 0 : timeB;
+  return safeB - safeA;
+});
 
 fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
 console.log(`Generated ${posts.length} posts to ${outputFile}`);
