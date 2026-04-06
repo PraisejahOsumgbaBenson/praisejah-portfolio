@@ -1,5 +1,5 @@
 ---
-title: "My Next.js Hosting Journey: Netlify → Vercel → Cloudflare (and Why `fs` Broke My Blog)"
+title: "My Next.js Hosting Journey: Netlify -> Vercel -> Cloudflare (and Why `fs` Broke My Blog)"
 date: "2024-03-10"
 tags: ["React", "JavaScript", "Web Development", "Node.js", "Backend"]
 excerpt: "Moving across hosting platforms taught me a crucial lesson: where your code runs matters just as much as what your code does. Here's what happened when fs stopped working."
@@ -7,7 +7,7 @@ author: "Praisejah Osumgba-Benson"
 featured_image: ""
 ---
 
-# My Next.js Hosting Journey: Netlify → Vercel → Cloudflare (and Why `fs` Broke My Blog)
+# My Next.js Hosting Journey: Netlify -> Vercel -> Cloudflare (and Why `fs` Broke My Blog)
 
 ## Intro
 
@@ -17,27 +17,23 @@ At first, hosting didn't feel like a big decision. I just needed somewhere to de
 
 That changed as soon as I moved the project from Netlify to Vercel and later to Cloudflare Workers.
 
-Each move worked—until it didn't.
+Each move worked until it didn't.
 
 The moment things broke was small but important:
 
-<blockquote>
-  <code>fs</code> stopped working.
-</blockquote>
+> `fs` stopped working.
 
 And that's when it became clear:
 
-<blockquote>
-  Where your code runs matters just as much as what your code does.
-</blockquote>
+> Where your code runs matters just as much as what your code does.
 
 ## The Original Setup
 
 The blog started with a simple structure:
 
-- Markdown files inside <code>/posts</code>
+- Markdown files inside `/posts`
 - Each post read and rendered dynamically
-- File access handled with <code>fs</code>
+- File access handled with `fs`
 
 It looked like this:
 
@@ -57,6 +53,10 @@ export function getPosts() {
     };
   });
 }
+```
+
+It was simple, predictable, and worked exactly how I expected locally and during builds.
+
 ## Phase 1: Starting on Netlify
 
 Netlify handled the first deployment without issues.
@@ -93,15 +93,11 @@ But even though the experience improved, I still wanted:
 
 That's what led me to Cloudflare.
 
----
-
 ## Phase 3: Moving to Cloudflare Workers
 
 Cloudflare Workers was appealing for one reason:
 
-<blockquote>
-  Run code closer to users, everywhere.
-</blockquote>
+> Run code closer to users, everywhere.
 
 The shift was immediate:
 
@@ -111,26 +107,27 @@ The shift was immediate:
 
 And then the issue showed up:
 
-<blockquote>
-  <code>fs</code> is not defined
-</blockquote>
+> `fs` is not defined
 
----
-
-## The <code>fs</code> Problem
+## The `fs` Problem
 
 The problem wasn't obvious at first, because everything worked before.
 
 Here's what was really happening:
 
-- Locally → full Node.js → <code>fs</code> works
-- Build step → files exist → <code>fs</code> works
-- Edge runtime → no filesystem → <code>fs</code> fails
+- Locally -> full Node.js -> `fs` works
+- Build step -> files exist -> `fs` works
+- Edge runtime -> no filesystem -> `fs` fails
 
 So this line:
 
 ```ts
 fs.readFileSync(...)
+```
+
+was depending on something that simply doesn't exist in Cloudflare's runtime.
+
+The issue wasn't the code itself. It was when the code was running.
 
 ## How I Fixed It
 
@@ -158,78 +155,59 @@ const posts = files.map((file) => {
 const output = `export const posts = ${JSON.stringify(posts)};`;
 
 fs.writeFileSync("./lib/posts.data.ts", output);
+```
 
 ### Step 2: Use static data at runtime
 
-<CodeBlock language="ts">
-{`import { posts } from "@/lib/posts.data";
+```ts
+import { posts } from "@/lib/posts.data";
 
 export function getPosts() {
   return posts;
-}`}
-</CodeBlock>
+}
+```
 
 ### Step 3: Add it to the build process
 
-<CodeBlock language="json">
-{`{
+```json
+{
   "scripts": {
     "generate-posts": "ts-node scripts/generatePosts.ts",
     "build": "npm run generate-posts && next build"
   }
-}`}
-</CodeBlock>
+}
+```
 
-<Paragraph>
-  Now:
-</Paragraph>
+Now:
 
-<UnorderedList>
-  <ListItem>No filesystem is needed at runtime</ListItem>
-  <ListItem>The app works on Cloudflare Workers</ListItem>
-  <ListItem>Everything is predictable</ListItem>
-</UnorderedList>
+- No filesystem is needed at runtime
+- The app works on Cloudflare Workers
+- Everything is predictable
 
-<Paragraph>
-  The only tradeoff is rebuilding when content changes, which is fine for a blog.
-</Paragraph>
-
-<Divider />
+The only tradeoff is rebuilding when content changes, which is fine for a blog.
 
 ## The Bigger Lesson: Edge vs Traditional Hosting
 
-<Paragraph>
-  This wasn't just about fixing <InlineCode>fs</InlineCode>.
-</Paragraph>
+This wasn't just about fixing `fs`.
 
-<Paragraph>
-  It changed how I think about hosting:
-</Paragraph>
+It changed how I think about hosting:
 
-<UnorderedList>
-  <ListItem>Traditional servers → full control, fewer constraints</ListItem>
-  <ListItem>Edge platforms → faster globally, but stricter environments</ListItem>
-</UnorderedList>
+- Traditional servers -> full control, fewer constraints
+- Edge platforms -> faster globally, but stricter environments
 
-<Paragraph>
-  The real tradeoff is simple:
-</Paragraph>
+The real tradeoff is simple:
 
-<Blockquote>
-  Flexibility vs distribution
-</Blockquote>
+> Flexibility vs distribution
 
 ## Cloudflare vs Vercel
 
 Both are strong, just different.
 
-- <strong>Vercel</strong> → easiest way to run Next.js
-- <strong>Cloudflare</strong> → better for global performance
+- **Vercel** -> easiest way to run Next.js
+- **Cloudflare** -> better for global performance
 
-Vercel feels seamless.  
-Cloudflare feels powerful—but expects you to design for it.
-
----
+Vercel feels seamless.
+Cloudflare feels powerful, but expects you to design for it.
 
 ## What I'd Do Differently
 
@@ -239,22 +217,18 @@ If I started again:
 - I'd avoid relying on runtime filesystem access
 - I'd separate content processing from rendering from the start
 
----
-
 ## Who Should Use What
 
-- <strong>VPS</strong> → if you need full backend control
-- <strong>Vercel</strong> → if you want speed and simplicity with Next.js
-- <strong>Cloudflare Workers</strong> → if you want edge performance and are okay with constraints
+- **VPS** -> if you need full backend control
+- **Vercel** -> if you want speed and simplicity with Next.js
+- **Cloudflare Workers** -> if you want edge performance and are okay with constraints
 
 ## Conclusion
 
-Moving across these platforms wasn't just about deployment—it changed how I design applications.
+Moving across these platforms wasn't just about deployment. It changed how I design applications.
 
 Each environment forced different decisions, and those decisions made the app better.
 
 The one thing I'd keep in mind going forward:
 
-<blockquote>
-  Build for where your code runs, not just where you write it.
-</blockquote>
+> Build for where your code runs, not just where you write it.
