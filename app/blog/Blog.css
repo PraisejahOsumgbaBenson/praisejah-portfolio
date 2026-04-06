@@ -535,6 +535,10 @@
   font-family: 'Space Mono', monospace;
   font-size: 0.9em;
   color: #c7e2c7;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 .markdown-content pre {
@@ -564,6 +568,10 @@
   font-size: 1.1rem;
   background: rgba(27, 41, 23, 0.3);
   border-radius: 0 8px 8px 0;
+}
+
+.markdown-content blockquote p {
+  margin: 0;
 }
 
 .markdown-content a {
