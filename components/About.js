@@ -8,9 +8,38 @@ import "./About.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import experiencesData from "../data/experiences.json";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
+
+function StaticExperienceFallback() {
+  return (
+    <section className="experience-section">
+      <div className="section-header">
+        <span className="section-label">experience</span>
+        <div className="vertical-line"></div>
+        <h2 className="section-main-title">Adventures in Tech</h2>
+        <p className="section-subtitle">
+          Static fallback loaded due to a runtime error
+        </p>
+      </div>
+
+      <div className="experience-grid">
+        {experiencesData.slice(0, 3).map((exp) => (
+          <article key={exp.id} className={`experience-card ${exp.cardClass}`}>
+            <div className="card-header">
+              <span className="card-number">{exp.number}</span>
+              <span className="card-year">{exp.year}</span>
+            </div>
+            <h3 className="card-title">{exp.title}</h3>
+            <p className="card-description">{exp.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function About() {
   const experienceSectionRef = useRef(null);
@@ -858,51 +887,55 @@ function About() {
           </div>
         </div>
 
-        {/* Experience Section */}
-        <div className="experience-section" ref={experienceSectionRef}>
-          <div className="section-header">
-            <span className="section-label">experience</span>
-            <div className="vertical-line"></div>
-            <h2 className="section-main-title" ref={experienceTitleRef}>
-              Adventures in Tech
-            </h2>
-            <p className="section-subtitle" ref={experienceSubtitleRef}>
-              Notable projects and contributions
-            </p>
-          </div>
+        <ErrorBoundary fallback={<StaticExperienceFallback />}>
+          {/* Experience Section */}
+          <div className="experience-section" ref={experienceSectionRef}>
+            <div className="section-header">
+              <span className="section-label">experience</span>
+              <div className="vertical-line"></div>
+              <h2 className="section-main-title" ref={experienceTitleRef}>
+                Adventures in Tech
+              </h2>
+              <p className="section-subtitle" ref={experienceSubtitleRef}>
+                Notable projects and contributions
+              </p>
+            </div>
 
-          <div className="experience-grid">
-            {experiencesData.map((exp) => (
-              <div
-                key={exp.id}
-                className={`experience-card ${exp.cardClass}`}
-                ref={addToExperienceCards}
-              >
-                <div className="card-header">
-                  <span className="card-number">{exp.number}</span>
-                  <span className="card-year">{exp.year}</span>
+            <div className="experience-grid">
+              {experiencesData.map((exp) => (
+                <div
+                  key={exp.id}
+                  className={`experience-card ${exp.cardClass}`}
+                  ref={addToExperienceCards}
+                >
+                  <div className="card-header">
+                    <span className="card-number">{exp.number}</span>
+                    <span className="card-year">{exp.year}</span>
+                  </div>
+                  <h3 className="card-title">{exp.title}</h3>
+                  {exp.descriptionHtml ? (
+                    <p
+                      className="card-description"
+                      dangerouslySetInnerHTML={{ __html: exp.description }}
+                    />
+                  ) : (
+                    <p className="card-description">{exp.description}</p>
+                  )}
+                  <div className="card-tags">
+                    {exp.tags.map((tag, index) => (
+                      <span key={index}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className="card-highlight"></div>
                 </div>
-                <h3 className="card-title">{exp.title}</h3>
-                {exp.descriptionHtml ? (
-                  <p
-                    className="card-description"
-                    dangerouslySetInnerHTML={{ __html: exp.description }}
-                  />
-                ) : (
-                  <p className="card-description">{exp.description}</p>
-                )}
-                <div className="card-tags">
-                  {exp.tags.map((tag, index) => (
-                    <span key={index}>{tag}</span>
-                  ))}
-                </div>
-                <div className="card-highlight"></div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        </ErrorBoundary>
       </div>
-      <Terminal />
+      <ErrorBoundary showHomeLink={false}>
+        <Terminal />
+      </ErrorBoundary>
     </>
   );
 }

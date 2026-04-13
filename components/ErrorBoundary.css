@@ -1,0 +1,89 @@
+.error-boundary-shell {
+    width: 100%;
+    min-height: 320px;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(219, 145, 151, 0.2), transparent 40%),
+        radial-gradient(circle at 80% 0%, rgba(164, 194, 165, 0.2), transparent 42%),
+        linear-gradient(135deg, #4e5b3e 0%, #566246 55%, #68775a 100%);
+}
+
+.error-boundary-panel {
+    width: min(680px, 100%);
+    border: 1px solid rgba(241, 242, 235, 0.25);
+    border-radius: 18px;
+    padding: 2rem;
+    background: rgba(20, 20, 20, 0.35);
+    backdrop-filter: blur(5px);
+    color: #f1f2eb;
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.25);
+}
+
+.error-kicker {
+    font-family: "Space Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #f5c3cf;
+    font-size: 0.75rem;
+    margin-bottom: 0.65rem;
+}
+
+.error-boundary-panel h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.1;
+}
+
+.error-boundary-panel p {
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: rgba(241, 242, 235, 0.9);
+}
+
+.error-actions {
+    margin-top: 1.3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.error-actions button,
+.error-actions a {
+    appearance: none;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.error-actions button {
+    background: #db9197;
+    color: #141414;
+}
+
+.error-actions a {
+    background: #a4c2a5;
+    color: #141414;
+}
+
+.error-actions button:hover,
+.error-actions a:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+@media (max-width: 640px) {
+    .error-boundary-shell {
+        padding: 1.2rem;
+    }
+
+    .error-boundary-panel {
+        padding: 1.3rem;
+    }
+}
