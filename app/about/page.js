@@ -1,5 +1,4 @@
 import About from "../../components/About";
-import { ErrorBoundary } from "../../components/ErrorBoundary";
 
 export const metadata = {
   title: "About | Praisejah",
@@ -7,12 +6,5 @@ export const metadata = {
 };
 
 export default function AboutPage() {
-  return (
-    <ErrorBoundary
-      title="About section error"
-      message="The about page hit an unexpected problem. Try reloading this page."
-    >
-      <About />
-    </ErrorBoundary>
-  );
+  return <About />;
 }
