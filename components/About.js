@@ -777,7 +777,7 @@ function About() {
               <div className="entry" ref={addToCertificatesEntries}>
                 <span className="date">2025.</span>
                 <span className="details">
-                  Stanford Neurodiversity Project's Research (SNP-REACH)
+                  Stanford Neurodiversity Project&apos;s Research (SNP-REACH)
                 </span>
               </div>
               <div className="entry" ref={addToCertificatesEntries}>

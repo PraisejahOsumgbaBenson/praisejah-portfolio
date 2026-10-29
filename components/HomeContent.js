@@ -19,27 +19,27 @@ function HomeContent() {
   const footerTextRef = useRef(null);
   const fTextRef = useRef(null);
 
-  const cooldownMap = new Map();
+  const cooldownMap = useRef(new Map());
+  const firstPlayDone = useRef(false);
   const hoverDelay = 200;
-  let firstPlayDone = false;
 
   const playHoverSound = (elementId) => {
     if (!audioReady) return;
 
     const now = Date.now();
-    const lastTime = cooldownMap.get(elementId) || 0;
+    const lastTime = cooldownMap.current.get(elementId) || 0;
 
     if (now - lastTime < hoverDelay) return;
 
-    cooldownMap.set(elementId, now);
+    cooldownMap.current.set(elementId, now);
 
     const audio = new Audio("/sounds/header_keys.mp3");
-    audio.volume = firstPlayDone ? 0.2 : 0.05;
+    audio.volume = firstPlayDone.current ? 0.2 : 0.05;
     audio.play().catch((err) => {
       console.warn("Playback blocked:", err);
     });
 
-    firstPlayDone = true;
+    firstPlayDone.current = true;
   };
 
   const handleHover = () => {
