@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -16,24 +16,12 @@ import {
   FiShare2,
 } from "react-icons/fi";
 import Header from "../../../components/Header";
+import useWindowWidth from "../../../lib/useWindowWidth";
 import "../Blog.css";
 
 const BlogDetailClient = ({ post, slug }) => {
   const [copied, setCopied] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    // Set initial width
-    setWindowWidth(window.innerWidth);
-
-    // Handle resize
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const windowWidth = useWindowWidth();
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);

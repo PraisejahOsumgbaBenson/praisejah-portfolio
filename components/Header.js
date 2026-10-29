@@ -3,14 +3,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
+import useWindowWidth from "../lib/useWindowWidth";
 import "./Header.css";
 
 function Header({ onAboutClick, transparent = false }) {
   const [time, setTime] = useState("");
   const [soundUnlocked, setSoundUnlocked] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false); // Add this state
+  const windowWidth = useWindowWidth();
+  const isMobile = windowWidth > 0 && windowWidth <= 768;
 
   const cursorRef = useRef(null);
   const animationFrameId = useRef(null);
@@ -101,19 +103,6 @@ function Header({ onAboutClick, transparent = false }) {
   const handleLogoMouseLeave = () => {
     gsap.to(".logo", { scale: 1, duration: 0.3, ease: "power2.inOut" });
   };
-
-  // 📱 Mobile Detection
-  useEffect(() => {
-    const checkMobile = () => window.innerWidth <= 768;
-    setIsMobile(checkMobile());
-
-    const handleResize = () => {
-      setIsMobile(checkMobile());
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   // 📱 Mobile menu toggle
   const toggleMobileMenu = () => {

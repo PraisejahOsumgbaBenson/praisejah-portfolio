@@ -1,19 +1,31 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "./AuraBackground.css";
 
 const AuraBackground = () => {
   const auraRef = useRef(null);
   const gradientRef = useRef(null);
+  const [particles] = useState(() =>
+    Array.from({ length: 15 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 5}s`,
+      width: `${Math.random() * 3 + 1}px`,
+      height: `${Math.random() * 3 + 1}px`,
+    }))
+  );
 
   useEffect(() => {
+    const aura = auraRef.current;
+    const gradient = gradientRef.current;
+
     // Create the initial animation
     const tl = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0.5 });
 
     // Main aura pulse animation
-    tl.to(gradientRef.current, {
+    tl.to(gradient, {
       attr: {
         cx: "40%",
         cy: "40%",
@@ -22,7 +34,7 @@ const AuraBackground = () => {
       duration: 8,
       ease: "sine.inOut",
     }).to(
-      gradientRef.current,
+      gradient,
       {
         attr: {
           cx: "30%",
@@ -37,7 +49,7 @@ const AuraBackground = () => {
 
     // Subtle movement animation
     const moveAura = () => {
-      gsap.to(auraRef.current, {
+      gsap.to(aura, {
         x: () => Math.random() * 20 - 10,
         y: () => Math.random() * 20 - 10,
         duration: 15,
@@ -51,7 +63,7 @@ const AuraBackground = () => {
     // Cleanup
     return () => {
       tl.kill();
-      gsap.killTweensOf(auraRef.current);
+      gsap.killTweensOf(aura);
     };
   }, []);
 
@@ -115,18 +127,8 @@ const AuraBackground = () => {
 
       {/* Additional floating elements for depth */}
       <div className="aura-particles">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="aura-particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-            }}
-          />
+        {particles.map((style, i) => (
+          <div key={i} className="aura-particle" style={style} />
         ))}
       </div>
     </div>
