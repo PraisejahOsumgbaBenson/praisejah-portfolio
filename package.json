@@ -2,12 +2,15 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24.22.2"
+  },
   "dependencies": {
     "framer-motion": "^12.5.0",
     "gray-matter": "^4.0.3",
     "gsap": "^3.14.2",
-    "marked": "^18.0.0",
-    "next": "^16.2.1",
+    "marked": "^18.1.2",
+    "next": "^16.4.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-icons": "^5.5.0",
@@ -18,17 +21,17 @@
     "three": "^0.170.0"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.17.3",
+    "@opennextjs/cloudflare": "^1.20.14",
     "@types/node": "^20.0.0",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "^14.2.0",
-    "wrangler": "^4.77.0"
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.3",
+    "wrangler": "^4.156.0"
   },
   "scripts": {
     "dev": "next dev",
     "build": "npm run generate-posts && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "generate-posts": "node scripts/generate-posts-json.js",
     "copy-posts": "node scripts/copy-posts.js",
     "cf-build": "npm run generate-posts && opennextjs-cloudflare build && cp public/_routes.json .open-next/assets/",

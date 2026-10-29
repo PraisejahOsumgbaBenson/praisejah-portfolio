@@ -54,7 +54,7 @@ A highly interactive, animated personal portfolio and technical blog built with 
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Next.js | ^16.2.1 | React framework with App Router |
+| Next.js | ^16.4.3 | React framework with App Router |
 | React | ^19.2.4 | UI library |
 | React DOM | ^19.2.4 | React rendering for DOM |
 
@@ -86,10 +86,10 @@ A highly interactive, animated personal portfolio and technical blog built with 
 
 | Tool | Version | Purpose |
 |------|---------|---------|
-| @opennextjs/cloudflare | ^1.17.3 | Cloudflare Workers adapter |
-| wrangler | ^4.77.0 | Cloudflare Workers CLI |
-| eslint | ^8.0.0 | Code linting |
-| eslint-config-next | ^14.2.0 | Next.js specific ESLint config |
+| @opennextjs/cloudflare | ^1.20.14 | Cloudflare Workers adapter |
+| wrangler | ^4.156.0 | Cloudflare Workers CLI |
+| eslint | ^9.39.5 | Code linting |
+| eslint-config-next | ^16.4.3 | Next.js specific ESLint config |
 
 ---
 
@@ -215,9 +215,11 @@ Your content here...
 
 ### Prerequisites
 
-- Node.js 18.17 or later
+- Node.js 24.22.2 (LTS) or later
 - npm or yarn package manager
 - Git for version control
+
+The repository pins the Node version in `.nvmrc` and `.node-version`, so `nvm use` or `fnm use` selects it automatically.
 
 ### Installation
 
