@@ -2,7 +2,7 @@
 
 A highly interactive, animated personal portfolio and technical blog built with Next.js (App Router). This project showcases modern web development techniques including GSAP animations, Framer Motion, custom cursor effects, a terminal-style component, and an MDX-powered blog system.
 
-![Portfolio Preview](https://via.placeholder.com/1200x600/1a1a2e/e94560?text=Praisejah+Portfolio)
+
 
 ## Table of Contents
 
